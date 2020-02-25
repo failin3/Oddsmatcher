@@ -98,11 +98,12 @@ driver = webdriver.Chrome()
 
 url_list = getMatchUrls(match_url, driver)
 
-json_s = ""
+json_s = "["
 for url in url_list:
     game = parseMatch(url, driver)
     json_s += game.toJSON()
-    break
+json_s = json_s.replace("}{", "},{")
+json_s += "]"
 
 with open("ss_output.json", "w") as file:
     file.write(json_s)
