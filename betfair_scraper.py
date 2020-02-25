@@ -131,9 +131,12 @@ for game in final_list:
     print("{}: {}".format(game.marketId, game.liquidity))
 
 
-json_s = ""
+json_s = '['
 for item in final_list:
     json_s += item.toJSON()
+json_s = json_s.replace("}{", "},{")
+json_s += ']'
+
 
 with open("betfair_output.json", "w") as file:
     file.write(json_s)
