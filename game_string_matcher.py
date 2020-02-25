@@ -1,4 +1,5 @@
 import json
+import operator
 
 class Runner:
     def __init__(self, score, name, backodds, layodds, closeness):
@@ -9,14 +10,20 @@ class Runner:
         self.closeness = closeness
 
 def checkOdds(bfgame, ssgame):
+    runner_list = []
     counter = 1
-    for bfodds, ssodds in zip(bfgame, ssgame):
-        closeness = (1/bfodds - 1/ssodds)*100 + 100
-        if closeness > 95:
-            runner = Runner(counter, bfgame["name"], ssodds, bfodds, closeness)
-            return runner
-        else:
-            counter += 1
+    print(ssgame["odds"])
+    try:
+        for bfodds, ssodds in zip(bfgame["odds"], ssgame["odds"]):
+            closeness = (1/float(bfodds) - 1/float(ssodds))*100 + 100
+            if closeness > 95:
+                runner = Runner(counter, bfgame["name"], ssodds, bfodds, closeness)
+                runner_list.append(runner)
+            else:
+                counter += 1
+        return runner_list
+    except:
+        pass
 
 with open("betfair_output.json") as file:
     betfair_output = json.load(file)
@@ -25,6 +32,7 @@ with open("ss_output.json") as file:
     ss_output = json.load(file)
     
 next_one = False
+good_runners = []
 for bfgame in betfair_output:
     betfair_name = bfgame["name"]
     for ssgame in ss_output:
@@ -38,7 +46,14 @@ for bfgame in betfair_output:
         if first_word in betfair_name.lower() and second_word in betfair_name.lower():
             print("SUCCESS: {}".format(game_string))
             next_one = True
+            new_runners = checkOdds(bfgame, ssgame)
+            if new_runners:
+                good_runners = good_runners + new_runners
             break
     if next_one == False:
         print("Failure")
+
+good_runners = sorted(good_runners, key=operator.attrgetter('closeness'))
+for runner in good_runners:
+    print("{}: {} - {}      {}%".format(runner.name, runner.backodds, runner.layodds, runner.closeness))
 
