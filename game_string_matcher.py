@@ -2,22 +2,23 @@ import json
 import operator
 
 class Runner:
-    def __init__(self, score, name, backodds, layodds, closeness):
+    def __init__(self, score, name, backodds, layodds, closeness, liquidity):
         self.name = name
         self.score = score
         self.backodds = backodds
         self.layodds = layodds
         self.closeness = closeness
+        self.liquidity = liquidity
 
 def checkOdds(bfgame, ssgame):
     runner_list = []
     counter = 1
     print(ssgame["odds"])
     try:
-        for bfodds, ssodds in zip(bfgame["odds"], ssgame["odds"]):
+        for bfodds, ssodds, liquidity in zip(bfgame["odds"], ssgame["odds"], bfgame["liquidity"]):
             closeness = (1/float(bfodds) - 1/float(ssodds))*100 + 100
             if closeness > 95:
-                runner = Runner(counter, bfgame["name"], ssodds, bfodds, closeness)
+                runner = Runner(counter, bfgame["name"], ssodds, bfodds, closeness, liquidity)
                 runner_list.append(runner)
             else:
                 counter += 1
@@ -55,5 +56,5 @@ for bfgame in betfair_output:
 
 good_runners = sorted(good_runners, key=operator.attrgetter('closeness'))
 for runner in good_runners:
-    print("{}: {} - {}      {}%".format(runner.name, runner.backodds, runner.layodds, runner.closeness))
+    print("{}: {} - {}      {}%     Liquidity: {}".format(runner.name, runner.backodds, runner.layodds, runner.closeness, runner.liquidity))
 
