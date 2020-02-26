@@ -55,7 +55,7 @@ def getOutcomeFromNumber(good_runners):
 def checkOdds(bfgame, ssgame):
     runner_list = []
     counter = 0
-    print(ssgame["odds"])
+    #print(ssgame["odds"])
     try:
         for bfodds, ssodds, liquidity in zip(bfgame["odds"], ssgame["odds"], bfgame["liquidity"]):
             counter += 1
