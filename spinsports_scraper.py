@@ -97,6 +97,20 @@ def getMatchUrls(url, driver):
     url_list = []
     driver.get(url)
     sleep(4)
+    
+    #Click to go to the page of all games next 24 hours
+    elements = driver.find_elements_by_tag_name("li")
+    for element in elements:
+        if element.text == "Upcoming":
+            element.click()
+            sleep(1)
+            break
+    dropdown = driver.find_elements_by_class_name("filter-htmldropdown-placeholder")[1]
+    dropdown.click()
+    sleep(1)
+    selection = driver.find_elements_by_xpath("//*[contains(text(), 'Next 24 Hours')]")[0]
+    selection.click()
+    sleep(1)
     soup = BeautifulSoup(driver.page_source, features="html.parser")
     for game in soup.find_all("a", class_="event-details event-details-upcomming"):
         url = game["href"]
@@ -108,11 +122,12 @@ def getMatchUrls(url, driver):
 
 url = "/en/sports/soccer/germany-1-bundesliga/20200224/eintracht-frankfurt-vs-union-berlin/"
 match_url = "https://spinsportsmga.spinpalace.com/en/sports/soccer/"
+browse_url = "https://spinsportsmga.spinpalace.com/en/sports/"
 
 driver = webdriver.Chrome("bin/chromedriver")
 
 while True:
-    url_list = getMatchUrls(match_url, driver)
+    url_list = getMatchUrls(browse_url, driver)
 
     json_s = "["
     for url in url_list:
