@@ -102,7 +102,7 @@ while True:
                         good_runners = good_runners + new_runners
                     break
             except IndexError:
-                pass
+                break
         if next_one == False:
             print("Could not find a match for: {}".format(betfair_name))
 
