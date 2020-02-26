@@ -129,7 +129,6 @@ def sentKeepAlive(application_key, session_key):
     url="https://api.betfair.com/exchange/betting/json-rpc/v1"
     header = { 'Accept' : 'application/json', 'X-Application' : application_key, 'X-Authentication' : session_key }
     response = requests.post(url, headers=header)
-    print(response)
     
 
 application_key, session_key = getApiCredentials()
