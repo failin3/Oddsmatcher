@@ -17,7 +17,7 @@ class Game:
             sort_keys=True, indent=4)
 
 DATE_OF_MATCHES = datetime.datetime.now().strftime("%Y-%m-%d")
-if datetime.datetime.now().hour >= 22:
+if datetime.datetime.now().hour >= 21:
     DATE_OF_MATCHES = (datetime.datetime.now()+datetime.timedelta(days=1)).strftime("%Y-%m-%d")
 START_TIME = "00:00"
 END_TIME = "23:59"
@@ -89,6 +89,7 @@ def getBestMatches(date, application_key, session_key):
     json_req = '[{{"jsonrpc": "2.0","method": "SportsAPING/v1.0/listEvents","params": {{"filter": {{"eventTypeIds": ["1"],"marketStartTime": {{"from": "{}T{}:00Z","to": "{}T{}:00Z"}}}}}},"id": 1}}]'.format(date[0], date[1], date[0], date[2])
     response = requests.post(url, data=json_req, headers=header)
     games = response.json()
+    print(games)
 
     for event in games[0]["result"]:
         #event_title = event["event"]["name"]
@@ -124,9 +125,21 @@ def getBestMatches(date, application_key, session_key):
                 my_class.liquidity = liquidity_list
     return game_classes
 
+def sentKeepAlive(application_key, session_key):
+    url="https://api.betfair.com/exchange/betting/json-rpc/v1"
+    header = { 'Accept' : 'application/json', 'X-Application' : application_key, 'X-Authentication' : session_key }
+    response = requests.post(url, headers=header)
+    print(response)
+    
+
 application_key, session_key = getApiCredentials()
 
+#Dont call keepAlive too often (once an hour)
+keepAliveCounter = 0
+max_keepAlive = 30
 while True:
+    if keepAliveCounter > 30:
+        sentKeepAlive(application_key, session_key)
     try:
         final_list = getBestMatches([DATE_OF_MATCHES, START_TIME, END_TIME], application_key, session_key)
         for game in final_list:
