@@ -127,18 +127,22 @@ def getBestMatches(date, application_key, session_key):
 application_key, session_key = getApiCredentials()
 
 while True:
-    final_list = getBestMatches([DATE_OF_MATCHES, START_TIME, END_TIME], application_key, session_key)
-    for game in final_list:
-        print("{}: {}".format(game.marketId, game.liquidity))
+    try:
+        final_list = getBestMatches([DATE_OF_MATCHES, START_TIME, END_TIME], application_key, session_key)
+        for game in final_list:
+            print("{}: {}".format(game.marketId, game.liquidity))
 
 
-    json_s = '['
-    for item in final_list:
-        json_s += item.toJSON()
-    json_s = json_s.replace("}{", "},{")
-    json_s += ']'
+        json_s = '['
+        for item in final_list:
+            json_s += item.toJSON()
+        json_s = json_s.replace("}{", "},{")
+        json_s += ']'
 
 
-    with open("betfair_output.json", "w") as file:
-        file.write(json_s)
-    sleep(5*60)
+        with open("betfair_output.json", "w") as file:
+            file.write(json_s)
+        sleep(5*60)
+    except ValueError:
+        print("No JSON, retrying")
+        sleep(60)
