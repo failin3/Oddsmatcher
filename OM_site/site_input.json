@@ -1,1233 +1,2177 @@
 [{
-    "backodds": "65.50",
-    "closeness": 99.53,
-    "layodds": 95.0,
-    "liquidity": 3.91,
-    "marketId": "1.169222744",
-    "name": "Brechin v Queens Park",
+    "backodds": "12.50",
+    "closeness": 111.61,
+    "layodds": 5.1,
+    "liquidity": 119.18,
+    "marketId": "1.169335585",
+    "name": "Tallinna FC Flora v Sogndal",
+    "score": "2:2"
+},{
+    "backodds": "41.50",
+    "closeness": 109.22,
+    "layodds": 8.6,
+    "liquidity": 23.87,
+    "marketId": "1.169314270",
+    "name": "Partizan Belgrade v FK Proleter",
+    "score": "3:0"
+},{
+    "backodds": "20.75",
+    "closeness": 108.34,
+    "layodds": 7.6,
+    "liquidity": 73.3,
+    "marketId": "1.169335585",
+    "name": "Tallinna FC Flora v Sogndal",
+    "score": "1:3"
+},{
+    "backodds": "29.75",
+    "closeness": 108.27,
+    "layodds": 8.6,
+    "liquidity": 23.59,
+    "marketId": "1.169335585",
+    "name": "Tallinna FC Flora v Sogndal",
+    "score": "2:3"
+},{
+    "backodds": "24.75",
+    "closeness": 107.59,
+    "layodds": 8.6,
+    "liquidity": 0,
+    "marketId": "1.169335585",
+    "name": "Tallinna FC Flora v Sogndal",
+    "score": "3:0"
+},{
+    "backodds": "18.00",
+    "closeness": 106.94,
+    "layodds": 8.0,
+    "liquidity": 30.08,
+    "marketId": "1.169314270",
+    "name": "Partizan Belgrade v FK Proleter",
+    "score": "2:0"
+},{
+    "backodds": "20.75",
+    "closeness": 106.81,
+    "layodds": 8.6,
+    "liquidity": 0,
+    "marketId": "1.169335585",
+    "name": "Tallinna FC Flora v Sogndal",
+    "score": "3:1"
+},{
+    "backodds": "24.75",
+    "closeness": 105.96,
+    "layodds": 10.0,
+    "liquidity": 18.89,
+    "marketId": "1.169341486",
+    "name": "Al-Ettifaq v Malkiya",
+    "score": "0:3"
+},{
+    "backodds": "12.25",
+    "closeness": 104.99,
+    "layodds": 7.6,
+    "liquidity": 0,
+    "marketId": "1.169335585",
+    "name": "Tallinna FC Flora v Sogndal",
+    "score": "2:0"
+},{
+    "backodds": "29.75",
+    "closeness": 104.97,
+    "layodds": 12.0,
+    "liquidity": 57.09,
+    "marketId": "1.169335585",
+    "name": "Tallinna FC Flora v Sogndal",
+    "score": "3:2"
+},{
+    "backodds": "24.75",
+    "closeness": 103.65,
+    "layodds": 13.0,
+    "liquidity": 20.74,
+    "marketId": "1.169320808",
+    "name": "Bengaluru FC v Maziya S & RC",
+    "score": "3:0"
+},{
+    "backodds": "34.50",
+    "closeness": 103.35,
+    "layodds": 16.0,
+    "liquidity": 10.98,
+    "marketId": "1.169314270",
+    "name": "Partizan Belgrade v FK Proleter",
+    "score": "3:1"
+},{
+    "backodds": "10.00",
+    "closeness": 103.16,
+    "layodds": 7.6,
+    "liquidity": 0,
+    "marketId": "1.169335585",
+    "name": "Tallinna FC Flora v Sogndal",
+    "score": "2:1"
+},{
+    "backodds": "49.50",
+    "closeness": 102.74,
+    "layodds": 21.0,
+    "liquidity": 18.81,
+    "marketId": "1.169335585",
+    "name": "Tallinna FC Flora v Sogndal",
+    "score": "3:3"
+},{
+    "backodds": "20.75",
+    "closeness": 102.08,
+    "layodds": 14.5,
+    "liquidity": 12.47,
+    "marketId": "1.169320808",
+    "name": "Bengaluru FC v Maziya S & RC",
+    "score": "3:1"
+},{
+    "backodds": "20.75",
+    "closeness": 101.63,
+    "layodds": 15.5,
+    "liquidity": 10.66,
+    "marketId": "1.169341486",
+    "name": "Al-Ettifaq v Malkiya",
+    "score": "1:3"
+},{
+    "backodds": "10.25",
+    "closeness": 101.11,
+    "layodds": 9.2,
+    "liquidity": 44.52,
+    "marketId": "1.169320444",
+    "name": "BG Pathumthani United v Police Tero",
+    "score": "2:0"
+},{
+    "backodds": "13.75",
+    "closeness": 101.06,
+    "layodds": 12.0,
+    "liquidity": 47.85,
+    "marketId": "1.169320444",
+    "name": "BG Pathumthani United v Police Tero",
+    "score": "3:1"
+},{
+    "backodds": "12.25",
+    "closeness": 100.93,
+    "layodds": 11.0,
+    "liquidity": 24.38,
+    "marketId": "1.169320808",
+    "name": "Bengaluru FC v Maziya S & RC",
+    "score": "2:0"
+},{
+    "backodds": "8.50",
+    "closeness": 100.43,
+    "layodds": 8.2,
+    "liquidity": 59.45,
+    "marketId": "1.169320444",
+    "name": "BG Pathumthani United v Police Tero",
+    "score": "2:1"
+},{
+    "backodds": "40.50",
+    "closeness": 100.31,
+    "layodds": 36.0,
+    "liquidity": 0,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "0:3"
+},{
+    "backodds": "12.25",
+    "closeness": 99.84,
+    "layodds": 12.5,
+    "liquidity": 11.8,
+    "marketId": "1.169341486",
+    "name": "Al-Ettifaq v Malkiya",
     "score": "0:2"
 },{
-    "backodds": "70.25",
-    "closeness": 99.49,
-    "layodds": 110.0,
-    "liquidity": 3.32,
-    "marketId": "1.169222744",
-    "name": "Brechin v Queens Park",
+    "backodds": "13.75",
+    "closeness": 99.39,
+    "layodds": 15.0,
+    "liquidity": 12.31,
+    "marketId": "1.169314270",
+    "name": "Partizan Belgrade v FK Proleter",
     "score": "2:1"
 },{
-    "backodds": "9.25",
-    "closeness": 99.19,
-    "layodds": 10.0,
-    "liquidity": 21.38,
+    "backodds": "21.25",
+    "closeness": 99.29,
+    "layodds": 25.0,
+    "liquidity": 61.93,
+    "marketId": "1.169320444",
+    "name": "BG Pathumthani United v Police Tero",
+    "score": "3:2"
+},{
+    "backodds": "24.75",
+    "closeness": 99.29,
+    "layodds": 30.0,
+    "liquidity": 4.27,
+    "marketId": "1.169340221",
+    "name": "Al Kharitiyath v Al Bidda",
+    "score": "3:0"
+},{
+    "backodds": "14.75",
+    "closeness": 99.28,
+    "layodds": 16.5,
+    "liquidity": 69.68,
     "marketId": "1.169114621",
     "name": "Braga v Rangers",
-    "score": "2:1"
+    "score": "1:2"
 },{
-    "backodds": "10.50",
-    "closeness": 99.17,
-    "layodds": 11.5,
-    "liquidity": 48.62,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "2:1"
+    "backodds": "41.75",
+    "closeness": 99.27,
+    "layodds": 60.0,
+    "liquidity": 0,
+    "marketId": "1.169320444",
+    "name": "BG Pathumthani United v Police Tero",
+    "score": "0:3"
 },{
-    "backodds": "9.00",
+    "backodds": "9.75",
+    "closeness": 99.27,
+    "layodds": 10.5,
+    "liquidity": 69.09,
+    "marketId": "1.169114621",
+    "name": "Braga v Rangers",
+    "score": "1:0"
+},{
+    "backodds": "15.50",
+    "closeness": 99.26,
+    "layodds": 17.5,
+    "liquidity": 314.21,
+    "marketId": "1.169114621",
+    "name": "Braga v Rangers",
+    "score": "0:1"
+},{
+    "backodds": "43.50",
+    "closeness": 99.24,
+    "layodds": 65.0,
+    "liquidity": 3.36,
+    "marketId": "1.169314270",
+    "name": "Partizan Belgrade v FK Proleter",
+    "score": "3:2"
+},{
+    "backodds": "49.50",
     "closeness": 99.09,
-    "layodds": 9.8,
-    "liquidity": 23.55,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "2:1"
-},{
-    "backodds": "18.25",
-    "closeness": 99.07,
-    "layodds": 22.0,
-    "liquidity": 96.22,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "2:1"
-},{
-    "backodds": "45.50",
-    "closeness": 99.05,
-    "layodds": 80.0,
-    "liquidity": 19.57,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
+    "layodds": 90.0,
+    "liquidity": 2.38,
+    "marketId": "1.169340312",
+    "name": "Al Markhiya v Al Mesaimeer",
     "score": "3:3"
 },{
-    "backodds": "62.50",
+    "backodds": "23.50",
+    "closeness": 99.08,
+    "layodds": 30.0,
+    "liquidity": 116.44,
+    "marketId": "1.169114621",
+    "name": "Braga v Rangers",
+    "score": "0:2"
+},{
+    "backodds": "23.50",
+    "closeness": 99.08,
+    "layodds": 30.0,
+    "liquidity": 69.46,
+    "marketId": "1.169114621",
+    "name": "Braga v Rangers",
+    "score": "3:2"
+},{
+    "backodds": "46.00",
+    "closeness": 99.08,
+    "layodds": 80.0,
+    "liquidity": 47.91,
+    "marketId": "1.169114621",
+    "name": "Braga v Rangers",
+    "score": "0:3"
+},{
+    "backodds": "10.75",
     "closeness": 99.03,
-    "layodds": 160.0,
-    "liquidity": 40.37,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
-    "score": "3:2"
+    "layodds": 12.0,
+    "liquidity": 17.9,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "1:0"
 },{
-    "backodds": "44.75",
-    "closeness": 99.02,
-    "layodds": 80.0,
-    "liquidity": 34.08,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "3:2"
-},{
-    "backodds": "60.50",
-    "closeness": 99.01,
-    "layodds": 150.0,
-    "liquidity": 46.29,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
-    "score": "3:2"
-},{
-    "backodds": "35.50",
-    "closeness": 99.0,
-    "layodds": 55.0,
-    "liquidity": 51.78,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
+    "backodds": "20.75",
+    "closeness": 99.03,
+    "layodds": 26.0,
+    "liquidity": 4.96,
+    "marketId": "1.169340221",
+    "name": "Al Kharitiyath v Al Bidda",
     "score": "3:1"
-},{
-    "backodds": "35.50",
-    "closeness": 99.0,
-    "layodds": 55.0,
-    "liquidity": 46.62,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
-    "score": "3:1"
-},{
-    "backodds": "14.50",
-    "closeness": 98.99,
-    "layodds": 17.0,
-    "liquidity": 92.76,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "1:2"
-},{
-    "backodds": "8.75",
-    "closeness": 98.99,
-    "layodds": 9.6,
-    "liquidity": 25.51,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "1:2"
-},{
-    "backodds": "40.75",
-    "closeness": 98.97,
-    "layodds": 70.0,
-    "liquidity": 50.63,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
-    "score": "3:3"
-},{
-    "backodds": "24.00",
-    "closeness": 98.96,
-    "layodds": 32.0,
-    "liquidity": 44.59,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "3:2"
 },{
     "backodds": "43.75",
     "closeness": 98.96,
     "layodds": 80.0,
-    "liquidity": 79.3,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
+    "liquidity": 19.11,
+    "marketId": "1.169114621",
+    "name": "Braga v Rangers",
     "score": "3:3"
 },{
     "backodds": "34.75",
     "closeness": 98.94,
     "layodds": 55.0,
-    "liquidity": 42.26,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "2:3"
-},{
-    "backodds": "50.25",
-    "closeness": 98.92,
-    "layodds": 110.0,
-    "liquidity": 102.4,
-    "marketId": "1.169114621",
-    "name": "Braga v Rangers",
-    "score": "3:3"
-},{
-    "backodds": "38.25",
-    "closeness": 98.92,
-    "layodds": 65.0,
-    "liquidity": 33.07,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "3:3"
-},{
-    "backodds": "23.75",
-    "closeness": 98.91,
-    "layodds": 32.0,
-    "liquidity": 149.23,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "3:2"
-},{
-    "backodds": "11.75",
-    "closeness": 98.9,
-    "layodds": 13.5,
-    "liquidity": 101.0,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "1:0"
-},{
-    "backodds": "19.00",
-    "closeness": 98.9,
-    "layodds": 24.0,
-    "liquidity": 25.6,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "3:1"
-},{
-    "backodds": "51.25",
-    "closeness": 98.88,
-    "layodds": 120.0,
-    "liquidity": 25.33,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "3:3"
-},{
-    "backodds": "25.50",
-    "closeness": 98.86,
-    "layodds": 36.0,
-    "liquidity": 19.88,
-    "marketId": "1.169114621",
-    "name": "Braga v Rangers",
-    "score": "3:2"
-},{
-    "backodds": "58.75",
-    "closeness": 98.85,
-    "layodds": 180.0,
-    "liquidity": 51.03,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "3:0"
-},{
-    "backodds": "25.25",
-    "closeness": 98.82,
-    "layodds": 36.0,
-    "liquidity": 70.93,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "2:3"
-},{
-    "backodds": "15.50",
-    "closeness": 98.81,
-    "layodds": 19.0,
-    "liquidity": 27.36,
-    "marketId": "1.169114621",
-    "name": "Braga v Rangers",
-    "score": "3:1"
-},{
-    "backodds": "38.00",
-    "closeness": 98.8,
-    "layodds": 70.0,
-    "liquidity": 106.61,
+    "liquidity": 86.44,
     "marketId": "1.169114621",
     "name": "Braga v Rangers",
     "score": "2:3"
-},{
-    "backodds": "45.50",
-    "closeness": 98.8,
-    "layodds": 100.0,
-    "liquidity": 65.33,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "0:3"
 },{
     "backodds": "14.75",
-    "closeness": 98.78,
-    "layodds": 18.0,
-    "liquidity": 115.35,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "3:1"
-},{
-    "backodds": "46.75",
-    "closeness": 98.77,
-    "layodds": 110.0,
-    "liquidity": 38.93,
+    "closeness": 98.93,
+    "layodds": 17.5,
+    "liquidity": 44.77,
     "marketId": "1.169114621",
     "name": "Braga v Rangers",
-    "score": "0:3"
-},{
-    "backodds": "42.50",
-    "closeness": 98.76,
-    "layodds": 90.0,
-    "liquidity": 13.85,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
     "score": "3:1"
 },{
-    "backodds": "7.75",
-    "closeness": 98.72,
-    "layodds": 8.6,
-    "liquidity": 23.92,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "0:1"
-},{
-    "backodds": "32.25",
-    "closeness": 98.72,
-    "layodds": 55.0,
-    "liquidity": 35.5,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
-    "score": "2:3"
-},{
-    "backodds": "10.75",
-    "closeness": 98.7,
-    "layodds": 12.5,
-    "liquidity": 116.47,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "1:2"
-},{
-    "backodds": "24.50",
-    "closeness": 98.7,
-    "layodds": 36.0,
-    "liquidity": 33.13,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "2:3"
-},{
-    "backodds": "10.00",
-    "closeness": 98.7,
-    "layodds": 11.5,
-    "liquidity": 117.05,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
-    "score": "2:0"
-},{
-    "backodds": "20.50",
-    "closeness": 98.69,
-    "layodds": 28.0,
-    "liquidity": 42.42,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "1:3"
-},{
-    "backodds": "33.50",
-    "closeness": 98.68,
-    "layodds": 60.0,
-    "liquidity": 41.5,
-    "marketId": "1.169114621",
-    "name": "Braga v Rangers",
-    "score": "1:3"
-},{
-    "backodds": "12.50",
-    "closeness": 98.67,
-    "layodds": 15.0,
-    "liquidity": 70.63,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
-    "score": "2:2"
-},{
-    "backodds": "25.25",
-    "closeness": 98.67,
-    "layodds": 38.0,
-    "liquidity": 95.76,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "3:0"
-},{
-    "backodds": "28.50",
-    "closeness": 98.67,
-    "layodds": 46.0,
-    "liquidity": 85.07,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
+    "backodds": "74.00",
+    "closeness": 98.93,
+    "layodds": 350.0,
+    "liquidity": 2.54,
+    "marketId": "1.169314452",
+    "name": "Cukaricki v Vozdovac",
     "score": "0:3"
 },{
-    "backodds": "29.25",
-    "closeness": 98.66,
-    "layodds": 48.0,
-    "liquidity": 31.15,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
-    "score": "2:3"
-},{
-    "backodds": "13.50",
-    "closeness": 98.65,
-    "layodds": 16.5,
-    "liquidity": 41.17,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "1:3"
-},{
-    "backodds": "13.50",
-    "closeness": 98.65,
-    "layodds": 16.5,
-    "liquidity": 153.36,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
-    "score": "2:2"
-},{
-    "backodds": "38.50",
-    "closeness": 98.65,
-    "layodds": 80.0,
-    "liquidity": 52.99,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
-    "score": "1:3"
-},{
-    "backodds": "31.50",
-    "closeness": 98.64,
-    "layodds": 55.0,
-    "liquidity": 138.8,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "1:3"
+    "backodds": "65.00",
+    "closeness": 98.92,
+    "layodds": 220.0,
+    "liquidity": 40.73,
+    "marketId": "1.169314452",
+    "name": "Cukaricki v Vozdovac",
+    "score": "3:3"
 },{
     "backodds": "29.75",
-    "closeness": 98.64,
-    "layodds": 50.0,
-    "liquidity": 90.33,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "2:0"
+    "closeness": 98.91,
+    "layodds": 44.0,
+    "liquidity": 10.79,
+    "marketId": "1.169320808",
+    "name": "Bengaluru FC v Maziya S & RC",
+    "score": "3:2"
+},{
+    "backodds": "29.75",
+    "closeness": 98.91,
+    "layodds": 44.0,
+    "liquidity": 2.88,
+    "marketId": "1.169340130",
+    "name": "Al Mu Aidar SC v Al Shamal",
+    "score": "3:2"
+},{
+    "backodds": "29.75",
+    "closeness": 98.91,
+    "layodds": 44.0,
+    "liquidity": 2.88,
+    "marketId": "1.169340221",
+    "name": "Al Kharitiyath v Al Bidda",
+    "score": "3:2"
+},{
+    "backodds": "49.50",
+    "closeness": 98.89,
+    "layodds": 110.0,
+    "liquidity": 2.38,
+    "marketId": "1.169340130",
+    "name": "Al Mu Aidar SC v Al Shamal",
+    "score": "3:3"
+},{
+    "backodds": "59.00",
+    "closeness": 98.89,
+    "layodds": 170.0,
+    "liquidity": 43.03,
+    "marketId": "1.169314452",
+    "name": "Cukaricki v Vozdovac",
+    "score": "2:3"
+},{
+    "backodds": "31.25",
+    "closeness": 98.88,
+    "layodds": 48.0,
+    "liquidity": 42.4,
+    "marketId": "1.169114621",
+    "name": "Braga v Rangers",
+    "score": "1:3"
+},{
+    "backodds": "59.00",
+    "closeness": 98.86,
+    "layodds": 180.0,
+    "liquidity": 27.93,
+    "marketId": "1.169314452",
+    "name": "Cukaricki v Vozdovac",
+    "score": "1:3"
+},{
+    "backodds": "66.50",
+    "closeness": 98.84,
+    "layodds": 290.0,
+    "liquidity": 3.72,
+    "marketId": "1.169314727",
+    "name": "FK Spartak v Mladost Lucani",
+    "score": "3:3"
+},{
+    "backodds": "29.75",
+    "closeness": 98.81,
+    "layodds": 46.0,
+    "liquidity": 2.74,
+    "marketId": "1.169340312",
+    "name": "Al Markhiya v Al Mesaimeer",
+    "score": "3:2"
+},{
+    "backodds": "29.75",
+    "closeness": 98.81,
+    "layodds": 46.0,
+    "liquidity": 2.74,
+    "marketId": "1.169340312",
+    "name": "Al Markhiya v Al Mesaimeer",
+    "score": "2:3"
+},{
+    "backodds": "49.50",
+    "closeness": 98.81,
+    "layodds": 120.0,
+    "liquidity": 2.38,
+    "marketId": "1.169340221",
+    "name": "Al Kharitiyath v Al Bidda",
+    "score": "3:3"
+},{
+    "backodds": "60.25",
+    "closeness": 98.78,
+    "layodds": 230.0,
+    "liquidity": 2.46,
+    "marketId": "1.169314634",
+    "name": "Macva Sabac v FK Backa Topola",
+    "score": "3:3"
+},{
+    "backodds": "15.25",
+    "closeness": 98.71,
+    "layodds": 19.0,
+    "liquidity": 14.0,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "0:1"
+},{
+    "backodds": "9.25",
+    "closeness": 98.71,
+    "layodds": 10.5,
+    "liquidity": 222.53,
+    "marketId": "1.169114621",
+    "name": "Braga v Rangers",
+    "score": "2:1"
+},{
+    "backodds": "16.50",
+    "closeness": 98.7,
+    "layodds": 21.0,
+    "liquidity": 75.86,
+    "marketId": "1.169114621",
+    "name": "Braga v Rangers",
+    "score": "3:0"
+},{
+    "backodds": "56.25",
+    "closeness": 98.7,
+    "layodds": 210.0,
+    "liquidity": 2.95,
+    "marketId": "1.169314543",
+    "name": "Vojvodina v Radnicki Nis",
+    "score": "3:3"
+},{
+    "backodds": "49.50",
+    "closeness": 98.69,
+    "layodds": 140.0,
+    "liquidity": 4.53,
+    "marketId": "1.169320808",
+    "name": "Bengaluru FC v Maziya S & RC",
+    "score": "3:3"
+},{
+    "backodds": "49.50",
+    "closeness": 98.65,
+    "layodds": 150.0,
+    "liquidity": 0,
+    "marketId": "1.169340039",
+    "name": "Lusail v Al Waab Sports Club",
+    "score": "3:3"
 },{
     "backodds": "20.75",
     "closeness": 98.63,
     "layodds": 29.0,
-    "liquidity": 34.81,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
-    "score": "3:0"
-},{
-    "backodds": "16.25",
-    "closeness": 98.61,
-    "layodds": 21.0,
-    "liquidity": 98.06,
-    "marketId": "1.169114621",
-    "name": "Braga v Rangers",
-    "score": "3:0"
-},{
-    "backodds": "16.25",
-    "closeness": 98.61,
-    "layodds": 21.0,
-    "liquidity": 62.32,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "1:0"
-},{
-    "backodds": "15.00",
-    "closeness": 98.6,
-    "layodds": 19.0,
-    "liquidity": 58.83,
-    "marketId": "1.169114621",
-    "name": "Braga v Rangers",
-    "score": "1:2"
-},{
-    "backodds": "15.00",
-    "closeness": 98.6,
-    "layodds": 19.0,
-    "liquidity": 85.04,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "2:0"
-},{
-    "backodds": "10.25",
-    "closeness": 98.58,
-    "layodds": 12.0,
-    "liquidity": 67.84,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
-    "score": "2:0"
-},{
-    "backodds": "12.00",
-    "closeness": 98.56,
-    "layodds": 14.5,
-    "liquidity": 91.0,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "0:1"
-},{
-    "backodds": "50.00",
-    "closeness": 98.53,
-    "layodds": 190.0,
-    "liquidity": 2.85,
-    "marketId": "1.169320626",
-    "name": "Akhisar Belediye v Giresunspor",
-    "score": "0:2"
-},{
-    "backodds": "48.50",
-    "closeness": 98.53,
-    "layodds": 170.0,
-    "liquidity": 7.69,
-    "marketId": "1.169322143",
-    "name": "Adanaspor v Umraniyespor",
-    "score": "0:2"
-},{
-    "backodds": "33.25",
-    "closeness": 98.53,
-    "layodds": 65.0,
-    "liquidity": 38.92,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
-    "score": "1:3"
-},{
-    "backodds": "16.00",
-    "closeness": 98.51,
-    "layodds": 21.0,
-    "liquidity": 47.74,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "0:2"
-},{
-    "backodds": "8.50",
-    "closeness": 98.44,
-    "layodds": 9.8,
-    "liquidity": 91.68,
-    "marketId": "1.169114621",
-    "name": "Braga v Rangers",
-    "score": "1:0"
-},{
-    "backodds": "9.75",
-    "closeness": 98.44,
-    "layodds": 11.5,
-    "liquidity": 44.45,
-    "marketId": "1.169114621",
-    "name": "Braga v Rangers",
-    "score": "2:0"
-},{
-    "backodds": "15.25",
-    "closeness": 98.44,
-    "layodds": 20.0,
-    "liquidity": 62.0,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
-    "score": "1:2"
-},{
-    "backodds": "22.75",
-    "closeness": 98.38,
-    "layodds": 36.0,
-    "liquidity": 120.2,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "0:2"
-},{
-    "backodds": "21.75",
-    "closeness": 98.34,
-    "layodds": 34.0,
-    "liquidity": 14.72,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
-    "score": "0:2"
-},{
-    "backodds": "21.75",
-    "closeness": 98.34,
-    "layodds": 34.0,
-    "liquidity": 114.92,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
-    "score": "3:0"
-},{
-    "backodds": "23.25",
-    "closeness": 98.33,
-    "layodds": 38.0,
-    "liquidity": 117.89,
-    "marketId": "1.169114621",
-    "name": "Braga v Rangers",
-    "score": "0:2"
-},{
-    "backodds": "20.00",
-    "closeness": 98.33,
-    "layodds": 30.0,
-    "liquidity": 38.3,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
-    "score": "0:2"
-},{
-    "backodds": "16.00",
-    "closeness": 98.3,
-    "layodds": 22.0,
-    "liquidity": 112.19,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "3:0"
-},{
-    "backodds": "8.25",
-    "closeness": 98.3,
-    "layodds": 9.6,
-    "liquidity": 98.49,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "0:2"
-},{
-    "backodds": "43.25",
-    "closeness": 98.28,
-    "layodds": 170.0,
-    "liquidity": 9.02,
-    "marketId": "1.169320717",
-    "name": "Altinordu v Erzurum BB",
+    "liquidity": 4.42,
+    "marketId": "1.169340130",
+    "name": "Al Mu Aidar SC v Al Shamal",
     "score": "3:1"
 },{
-    "backodds": "17.00",
-    "closeness": 98.28,
-    "layodds": 24.0,
-    "liquidity": 129.31,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
+    "backodds": "25.00",
+    "closeness": 98.63,
+    "layodds": 38.0,
+    "liquidity": 25.55,
+    "marketId": "1.169314452",
+    "name": "Cukaricki v Vozdovac",
     "score": "1:2"
 },{
-    "backodds": "14.25",
-    "closeness": 98.25,
-    "layodds": 19.0,
-    "liquidity": 88.99,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "0:1"
-},{
-    "backodds": "12.50",
-    "closeness": 98.25,
-    "layodds": 16.0,
-    "liquidity": 93.2,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "0:3"
-},{
-    "backodds": "8.75",
-    "closeness": 98.1,
-    "layodds": 10.5,
-    "liquidity": 163.12,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "1:0"
-},{
-    "backodds": "11.25",
-    "closeness": 98.01,
-    "layodds": 14.5,
-    "liquidity": 80.0,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "2:2"
-},{
-    "backodds": "10.00",
-    "closeness": 98.0,
-    "layodds": 12.5,
-    "liquidity": 188.5,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "2:0"
-},{
-    "backodds": "13.75",
-    "closeness": 97.99,
-    "layodds": 19.0,
-    "liquidity": 31.7,
-    "marketId": "1.169114621",
-    "name": "Braga v Rangers",
-    "score": "0:1"
-},{
-    "backodds": "36.50",
-    "closeness": 97.93,
-    "layodds": 150.0,
-    "liquidity": 7.93,
-    "marketId": "1.169215167",
-    "name": "Havant and W v Slough Town",
-    "score": "2:2"
-},{
-    "backodds": "12.50",
-    "closeness": 97.88,
-    "layodds": 17.0,
-    "liquidity": 110.9,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "2:2"
-},{
-    "backodds": "15.00",
-    "closeness": 97.88,
-    "layodds": 22.0,
-    "liquidity": 64.89,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
-    "score": "2:1"
-},{
-    "backodds": "14.50",
-    "closeness": 97.87,
-    "layodds": 21.0,
-    "liquidity": 42.4,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
-    "score": "2:1"
-},{
-    "backodds": "13.75",
-    "closeness": 97.86,
-    "layodds": 19.5,
-    "liquidity": 49.56,
-    "marketId": "1.169114621",
-    "name": "Braga v Rangers",
-    "score": "2:2"
-},{
-    "backodds": "42.50",
-    "closeness": 97.86,
-    "layodds": 460.0,
-    "liquidity": 4.71,
-    "marketId": "1.169222744",
-    "name": "Brechin v Queens Park",
-    "score": "1:2"
-},{
-    "backodds": "10.75",
-    "closeness": 97.84,
-    "layodds": 14.0,
-    "liquidity": 90.83,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
-    "score": "0:1"
-},{
-    "backodds": "8.50",
-    "closeness": 97.76,
-    "layodds": 10.5,
-    "liquidity": 234.6,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
-    "score": "1:1"
-},{
-    "backodds": "9.00",
-    "closeness": 97.58,
-    "layodds": 11.5,
-    "liquidity": 253.41,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
-    "score": "1:1"
-},{
-    "backodds": "38.00",
-    "closeness": 97.57,
-    "layodds": 500.0,
-    "liquidity": 6.86,
-    "marketId": "1.169320626",
-    "name": "Akhisar Belediye v Giresunspor",
-    "score": "3:0"
-},{
-    "backodds": "11.75",
-    "closeness": 97.55,
-    "layodds": 16.5,
-    "liquidity": 46.94,
-    "marketId": "1.169322143",
-    "name": "Adanaspor v Umraniyespor",
-    "score": "0:1"
-},{
-    "backodds": "38.00",
-    "closeness": 97.54,
-    "layodds": 600.0,
-    "liquidity": 6.74,
-    "marketId": "1.169320626",
-    "name": "Akhisar Belediye v Giresunspor",
+    "backodds": "34.25",
+    "closeness": 98.62,
+    "layodds": 65.0,
+    "liquidity": 16.07,
+    "marketId": "1.169320717",
+    "name": "Altinordu v Erzurum BB",
     "score": "3:2"
 },{
-    "backodds": "6.95",
-    "closeness": 97.52,
-    "layodds": 8.4,
-    "liquidity": 394.16,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
-    "score": "0:0"
+    "backodds": "60.25",
+    "closeness": 98.62,
+    "layodds": 360.0,
+    "liquidity": 2.5,
+    "marketId": "1.169314270",
+    "name": "Partizan Belgrade v FK Proleter",
+    "score": "3:3"
 },{
-    "backodds": "16.50",
-    "closeness": 97.51,
-    "layodds": 28.0,
-    "liquidity": 14.54,
+    "backodds": "8.00",
+    "closeness": 98.61,
+    "layodds": 9.0,
+    "liquidity": 15.48,
+    "marketId": "1.169341670",
+    "name": "Capitalinos v Deportivo Mictlan",
+    "score": "1:0"
+},{
+    "backodds": "37.75",
+    "closeness": 98.6,
+    "layodds": 80.0,
+    "liquidity": 28.16,
+    "marketId": "1.169320444",
+    "name": "BG Pathumthani United v Police Tero",
+    "score": "3:3"
+},{
+    "backodds": "49.50",
+    "closeness": 98.57,
+    "layodds": 170.0,
+    "liquidity": 14.52,
     "marketId": "1.169320717",
     "name": "Altinordu v Erzurum BB",
     "score": "3:3"
 },{
-    "backodds": "13.75",
-    "closeness": 97.49,
-    "layodds": 21.0,
-    "liquidity": 135.37,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "2:2"
+    "backodds": "39.00",
+    "closeness": 98.55,
+    "layodds": 90.0,
+    "liquidity": 7.96,
+    "marketId": "1.169314452",
+    "name": "Cukaricki v Vozdovac",
+    "score": "0:2"
 },{
-    "backodds": "13.00",
-    "closeness": 97.44,
-    "layodds": 19.5,
-    "liquidity": 13.12,
-    "marketId": "1.169222744",
-    "name": "Brechin v Queens Park",
+    "backodds": "55.25",
+    "closeness": 98.51,
+    "layodds": 310.0,
+    "liquidity": 6.23,
+    "marketId": "1.169320626",
+    "name": "Akhisar Belediye v Giresunspor",
+    "score": "3:3"
+},{
+    "backodds": "20.75",
+    "closeness": 98.51,
+    "layodds": 30.0,
+    "liquidity": 4.27,
+    "marketId": "1.169340312",
+    "name": "Al Markhiya v Al Mesaimeer",
     "score": "3:1"
 },{
-    "backodds": "6.50",
-    "closeness": 97.44,
-    "layodds": 7.8,
-    "liquidity": 337.49,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
-    "score": "0:0"
+    "backodds": "13.25",
+    "closeness": 98.51,
+    "layodds": 16.5,
+    "liquidity": 44.56,
+    "marketId": "1.169322143",
+    "name": "Adanaspor v Umraniyespor",
+    "score": "2:1"
 },{
-    "backodds": "9.75",
-    "closeness": 97.44,
-    "layodds": 13.0,
-    "liquidity": 242.77,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
-    "score": "0:1"
+    "backodds": "27.25",
+    "closeness": 98.5,
+    "layodds": 46.0,
+    "liquidity": 12.82,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "3:2"
 },{
-    "backodds": "23.50",
-    "closeness": 97.41,
+    "backodds": "31.50",
+    "closeness": 98.49,
     "layodds": 60.0,
-    "liquidity": 8.5,
-    "marketId": "1.169222744",
-    "name": "Brechin v Queens Park",
-    "score": "3:0"
+    "liquidity": 28.74,
+    "marketId": "1.169320444",
+    "name": "BG Pathumthani United v Police Tero",
+    "score": "2:3"
 },{
-    "backodds": "6.75",
-    "closeness": 97.38,
-    "layodds": 8.2,
-    "liquidity": 17.1,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "1:1"
+    "backodds": "48.75",
+    "closeness": 98.48,
+    "layodds": 190.0,
+    "liquidity": 5.36,
+    "marketId": "1.169314727",
+    "name": "FK Spartak v Mladost Lucani",
+    "score": "2:3"
 },{
-    "backodds": "10.50",
-    "closeness": 97.37,
-    "layodds": 14.5,
-    "liquidity": 53.64,
-    "marketId": "1.169320717",
-    "name": "Altinordu v Erzurum BB",
-    "score": "0:0"
+    "backodds": "51.75",
+    "closeness": 98.48,
+    "layodds": 240.0,
+    "liquidity": 3.51,
+    "marketId": "1.169314727",
+    "name": "FK Spartak v Mladost Lucani",
+    "score": "0:3"
 },{
-    "backodds": "19.00",
-    "closeness": 97.37,
-    "layodds": 38.0,
-    "liquidity": 12.21,
+    "backodds": "29.75",
+    "closeness": 98.46,
+    "layodds": 55.0,
+    "liquidity": 3.55,
+    "marketId": "1.169341486",
+    "name": "Al-Ettifaq v Malkiya",
+    "score": "2:3"
+},{
+    "backodds": "28.00",
+    "closeness": 98.43,
+    "layodds": 50.0,
+    "liquidity": 13.04,
+    "marketId": "1.169320626",
+    "name": "Akhisar Belediye v Giresunspor",
+    "score": "3:2"
+},{
+    "backodds": "27.25",
+    "closeness": 98.41,
+    "layodds": 48.0,
+    "liquidity": 22.47,
     "marketId": "1.169320717",
     "name": "Altinordu v Erzurum BB",
     "score": "2:3"
 },{
-    "backodds": "16.75",
-    "closeness": 97.36,
-    "layodds": 30.0,
-    "liquidity": 14.75,
-    "marketId": "1.169320717",
-    "name": "Altinordu v Erzurum BB",
-    "score": "1:1"
-},{
-    "backodds": "11.50",
-    "closeness": 97.36,
-    "layodds": 16.5,
-    "liquidity": 16.11,
-    "marketId": "1.169320717",
-    "name": "Altinordu v Erzurum BB",
-    "score": "0:1"
-},{
-    "backodds": "35.00",
-    "closeness": 97.33,
-    "layodds": 540.0,
-    "liquidity": 3.95,
-    "marketId": "1.169222744",
-    "name": "Brechin v Queens Park",
-    "score": "2:2"
-},{
-    "backodds": "25.25",
-    "closeness": 97.29,
-    "layodds": 80.0,
-    "liquidity": 13.3,
-    "marketId": "1.169320717",
-    "name": "Altinordu v Erzurum BB",
-    "score": "3:2"
-},{
-    "backodds": "17.00",
-    "closeness": 97.24,
-    "layodds": 32.0,
-    "liquidity": 12.14,
-    "marketId": "1.169322143",
-    "name": "Adanaspor v Umraniyespor",
-    "score": "3:1"
-},{
-    "backodds": "33.25",
-    "closeness": 97.16,
-    "layodds": 600.0,
-    "liquidity": 9.85,
-    "marketId": "1.169320717",
-    "name": "Altinordu v Erzurum BB",
-    "score": "1:2"
-},{
-    "backodds": "33.25",
-    "closeness": 97.16,
-    "layodds": 600.0,
-    "liquidity": 6.71,
-    "marketId": "1.169322143",
-    "name": "Adanaspor v Umraniyespor",
-    "score": "2:1"
-},{
-    "backodds": "14.25",
-    "closeness": 97.15,
-    "layodds": 24.0,
-    "liquidity": 12.64,
-    "marketId": "1.169222744",
-    "name": "Brechin v Queens Park",
-    "score": "0:0"
-},{
-    "backodds": "28.00",
-    "closeness": 97.1,
-    "layodds": 150.0,
-    "liquidity": 7.5,
-    "marketId": "1.169320626",
-    "name": "Akhisar Belediye v Giresunspor",
-    "score": "1:2"
-},{
-    "backodds": "32.25",
-    "closeness": 97.1,
-    "layodds": 500.0,
-    "liquidity": 9.84,
-    "marketId": "1.169322143",
-    "name": "Adanaspor v Umraniyespor",
-    "score": "1:2"
-},{
-    "backodds": "32.50",
-    "closeness": 97.09,
-    "layodds": 600.0,
-    "liquidity": 7.08,
-    "marketId": "1.169215167",
-    "name": "Havant and W v Slough Town",
-    "score": "3:0"
-},{
-    "backodds": "26.25",
-    "closeness": 97.02,
-    "layodds": 120.0,
-    "liquidity": 7.12,
-    "marketId": "1.169322143",
-    "name": "Adanaspor v Umraniyespor",
-    "score": "3:0"
-},{
-    "backodds": "6.80",
-    "closeness": 96.92,
-    "layodds": 8.6,
-    "liquidity": 56.04,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "1:1"
-},{
-    "backodds": "30.25",
-    "closeness": 96.89,
-    "layodds": 500.0,
-    "liquidity": 10.98,
-    "marketId": "1.169320717",
-    "name": "Altinordu v Erzurum BB",
-    "score": "3:0"
-},{
-    "backodds": "30.00",
-    "closeness": 96.87,
-    "layodds": 500.0,
-    "liquidity": 7.4,
-    "marketId": "1.169320626",
-    "name": "Akhisar Belediye v Giresunspor",
-    "score": "3:1"
-},{
-    "backodds": "7.00",
-    "closeness": 96.83,
-    "layodds": 9.0,
-    "liquidity": 48.39,
-    "marketId": "1.169114621",
-    "name": "Braga v Rangers",
-    "score": "1:1"
+    "backodds": "46.00",
+    "closeness": 98.41,
+    "layodds": 170.0,
+    "liquidity": 2.58,
+    "marketId": "1.169341589",
+    "name": "Madrid (W) v Sevilla FC (W)",
+    "score": "3:3"
 },{
     "backodds": "10.75",
-    "closeness": 96.76,
-    "layodds": 16.5,
-    "liquidity": 13.19,
-    "marketId": "1.169320717",
-    "name": "Altinordu v Erzurum BB",
-    "score": "2:2"
+    "closeness": 98.39,
+    "layodds": 13.0,
+    "liquidity": 110.74,
+    "marketId": "1.169114621",
+    "name": "Braga v Rangers",
+    "score": "2:0"
 },{
-    "backodds": "10.25",
-    "closeness": 96.7,
-    "layodds": 15.5,
-    "liquidity": 14.37,
-    "marketId": "1.169320626",
-    "name": "Akhisar Belediye v Giresunspor",
+    "backodds": "49.50",
+    "closeness": 98.38,
+    "layodds": 250.0,
+    "liquidity": 2.5,
+    "marketId": "1.169341486",
+    "name": "Al-Ettifaq v Malkiya",
+    "score": "3:3"
+},{
+    "backodds": "30.25",
+    "closeness": 98.36,
+    "layodds": 60.0,
+    "liquidity": 13.07,
+    "marketId": "1.169322143",
+    "name": "Adanaspor v Umraniyespor",
+    "score": "3:1"
+},{
+    "backodds": "49.50",
+    "closeness": 98.36,
+    "layodds": 260.0,
+    "liquidity": 2.38,
+    "marketId": "1.169341670",
+    "name": "Capitalinos v Deportivo Mictlan",
+    "score": "3:3"
+},{
+    "backodds": "19.00",
+    "closeness": 98.31,
+    "layodds": 28.0,
+    "liquidity": 14.39,
+    "marketId": "1.169320535",
+    "name": "Samut Prakan v Bangkok Utd",
+    "score": "2:0"
+},{
+    "backodds": "22.25",
+    "closeness": 98.28,
+    "layodds": 36.0,
+    "liquidity": 16.09,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "2:3"
+},{
+    "backodds": "24.75",
+    "closeness": 98.23,
+    "layodds": 44.0,
+    "liquidity": 2.88,
+    "marketId": "1.169340130",
+    "name": "Al Mu Aidar SC v Al Shamal",
+    "score": "3:0"
+},{
+    "backodds": "48.25",
+    "closeness": 98.23,
+    "layodds": 330.0,
+    "liquidity": 9.92,
+    "marketId": "1.169322143",
+    "name": "Adanaspor v Umraniyespor",
+    "score": "3:3"
+},{
+    "backodds": "18.25",
+    "closeness": 98.22,
+    "layodds": 27.0,
+    "liquidity": 17.3,
+    "marketId": "1.169314452",
+    "name": "Cukaricki v Vozdovac",
+    "score": "0:1"
+},{
+    "backodds": "23.25",
+    "closeness": 98.2,
+    "layodds": 40.0,
+    "liquidity": 14.39,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "3:1"
+},{
+    "backodds": "13.00",
+    "closeness": 98.19,
+    "layodds": 17.0,
+    "liquidity": 16.45,
+    "marketId": "1.169320535",
+    "name": "Samut Prakan v Bangkok Utd",
     "score": "1:0"
 },{
-    "backodds": "23.75",
-    "closeness": 96.7,
-    "layodds": 110.0,
-    "liquidity": 6.54,
-    "marketId": "1.169222744",
-    "name": "Brechin v Queens Park",
-    "score": "1:1"
+    "backodds": "27.50",
+    "closeness": 98.18,
+    "layodds": 55.0,
+    "liquidity": 11.94,
+    "marketId": "1.169320535",
+    "name": "Samut Prakan v Bangkok Utd",
+    "score": "3:2"
 },{
-    "backodds": "5.80",
-    "closeness": 96.65,
-    "layodds": 7.2,
-    "liquidity": 89.51,
-    "marketId": "1.168899236",
-    "name": "Millwall v Birmingham",
-    "score": "1:0"
+    "backodds": "29.75",
+    "closeness": 98.18,
+    "layodds": 65.0,
+    "liquidity": 2.38,
+    "marketId": "1.169340130",
+    "name": "Al Mu Aidar SC v Al Shamal",
+    "score": "2:3"
 },{
-    "backodds": "6.90",
-    "closeness": 96.62,
-    "layodds": 9.0,
-    "liquidity": 46.54,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "1:1"
+    "backodds": "32.50",
+    "closeness": 98.17,
+    "layodds": 80.0,
+    "liquidity": 6.2,
+    "marketId": "1.169314634",
+    "name": "Macva Sabac v FK Backa Topola",
+    "score": "2:3"
+},{
+    "backodds": "24.75",
+    "closeness": 98.13,
+    "layodds": 46.0,
+    "liquidity": 2.74,
+    "marketId": "1.169341670",
+    "name": "Capitalinos v Deportivo Mictlan",
+    "score": "3:0"
+},{
+    "backodds": "42.00",
+    "closeness": 98.12,
+    "layodds": 200.0,
+    "liquidity": 6.6,
+    "marketId": "1.169314727",
+    "name": "FK Spartak v Mladost Lucani",
+    "score": "1:3"
+},{
+    "backodds": "20.75",
+    "closeness": 98.12,
+    "layodds": 34.0,
+    "liquidity": 3.74,
+    "marketId": "1.169340312",
+    "name": "Al Markhiya v Al Mesaimeer",
+    "score": "1:3"
+},{
+    "backodds": "12.25",
+    "closeness": 98.09,
+    "layodds": 16.0,
+    "liquidity": 8.26,
+    "marketId": "1.169340221",
+    "name": "Al Kharitiyath v Al Bidda",
+    "score": "2:0"
+},{
+    "backodds": "21.25",
+    "closeness": 98.07,
+    "layodds": 36.0,
+    "liquidity": 12.5,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "0:2"
+},{
+    "backodds": "39.50",
+    "closeness": 98.06,
+    "layodds": 170.0,
+    "liquidity": 14.41,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "3:3"
+},{
+    "backodds": "12.75",
+    "closeness": 98.04,
+    "layodds": 17.0,
+    "liquidity": 57.69,
+    "marketId": "1.169314452",
+    "name": "Cukaricki v Vozdovac",
+    "score": "3:1"
+},{
+    "backodds": "13.00",
+    "closeness": 98.02,
+    "layodds": 17.5,
+    "liquidity": 14.62,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "1:2"
+},{
+    "backodds": "23.50",
+    "closeness": 98.02,
+    "layodds": 44.0,
+    "liquidity": 15.28,
+    "marketId": "1.169320535",
+    "name": "Samut Prakan v Bangkok Utd",
+    "score": "3:1"
+},{
+    "backodds": "11.25",
+    "closeness": 98.01,
+    "layodds": 14.5,
+    "liquidity": 16.16,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "2:0"
+},{
+    "backodds": "18.75",
+    "closeness": 98.0,
+    "layodds": 30.0,
+    "liquidity": 21.62,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "0:3"
+},{
+    "backodds": "10.00",
+    "closeness": 98.0,
+    "layodds": 12.5,
+    "liquidity": 19.69,
+    "marketId": "1.169320808",
+    "name": "Bengaluru FC v Maziya S & RC",
+    "score": "2:1"
 },{
     "backodds": "9.00",
-    "closeness": 96.58,
-    "layodds": 13.0,
-    "liquidity": 22.69,
+    "closeness": 97.98,
+    "layodds": 11.0,
+    "liquidity": 18.78,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "2:1"
+},{
+    "backodds": "37.25",
+    "closeness": 97.98,
+    "layodds": 150.0,
+    "liquidity": 3.17,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "3:3"
+},{
+    "backodds": "7.75",
+    "closeness": 97.97,
+    "layodds": 9.2,
+    "liquidity": 20.74,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "1:1"
+},{
+    "backodds": "24.75",
+    "closeness": 97.96,
+    "layodds": 50.0,
+    "liquidity": 2.52,
+    "marketId": "1.169340312",
+    "name": "Al Markhiya v Al Mesaimeer",
+    "score": "3:0"
+},{
+    "backodds": "27.00",
+    "closeness": 97.96,
+    "layodds": 60.0,
+    "liquidity": 97.13,
+    "marketId": "1.169314452",
+    "name": "Cukaricki v Vozdovac",
+    "score": "3:2"
+},{
+    "backodds": "36.75",
+    "closeness": 97.95,
+    "layodds": 150.0,
+    "liquidity": 11.35,
+    "marketId": "1.169320535",
+    "name": "Samut Prakan v Bangkok Utd",
+    "score": "3:3"
+},{
+    "backodds": "12.00",
+    "closeness": 97.92,
+    "layodds": 16.0,
+    "liquidity": 19.1,
+    "marketId": "1.169320535",
+    "name": "Samut Prakan v Bangkok Utd",
+    "score": "2:1"
+},{
+    "backodds": "16.00",
+    "closeness": 97.92,
+    "layodds": 24.0,
+    "liquidity": 18.34,
+    "marketId": "1.169322143",
+    "name": "Adanaspor v Umraniyespor",
+    "score": "1:3"
+},{
+    "backodds": "44.25",
+    "closeness": 97.91,
+    "layodds": 600.0,
+    "liquidity": 6.27,
+    "marketId": "1.169320626",
+    "name": "Akhisar Belediye v Giresunspor",
+    "score": "0:3"
+},{
+    "backodds": "17.25",
+    "closeness": 97.91,
+    "layodds": 27.0,
+    "liquidity": 18.91,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "2:0"
+},{
+    "backodds": "44.25",
+    "closeness": 97.91,
+    "layodds": 600.0,
+    "liquidity": 6.08,
+    "marketId": "1.169314543",
+    "name": "Vojvodina v Radnicki Nis",
+    "score": "0:3"
+},{
+    "backodds": "25.50",
+    "closeness": 97.9,
+    "layodds": 55.0,
+    "liquidity": 9.67,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "1:3"
+},{
+    "backodds": "43.50",
+    "closeness": 97.9,
+    "layodds": 500.0,
+    "liquidity": 6.11,
+    "marketId": "1.169314634",
+    "name": "Macva Sabac v FK Backa Topola",
+    "score": "3:2"
+},{
+    "backodds": "29.75",
+    "closeness": 97.89,
+    "layodds": 80.0,
+    "liquidity": 2.38,
+    "marketId": "1.169340221",
+    "name": "Al Kharitiyath v Al Bidda",
+    "score": "2:3"
+},{
+    "backodds": "26.50",
+    "closeness": 97.89,
+    "layodds": 60.0,
+    "liquidity": 3.23,
+    "marketId": "1.169341589",
+    "name": "Madrid (W) v Sevilla FC (W)",
+    "score": "3:2"
+},{
+    "backodds": "12.50",
+    "closeness": 97.88,
+    "layodds": 17.0,
+    "liquidity": 38.86,
+    "marketId": "1.169114621",
+    "name": "Braga v Rangers",
+    "score": "2:2"
+},{
+    "backodds": "33.25",
+    "closeness": 97.83,
+    "layodds": 120.0,
+    "liquidity": 9.53,
+    "marketId": "1.169314727",
+    "name": "FK Spartak v Mladost Lucani",
+    "score": "3:2"
+},{
+    "backodds": "15.75",
+    "closeness": 97.82,
+    "layodds": 24.0,
+    "liquidity": 23.04,
+    "marketId": "1.169320626",
+    "name": "Akhisar Belediye v Giresunspor",
+    "score": "3:1"
+},{
+    "backodds": "26.00",
+    "closeness": 97.82,
+    "layodds": 60.0,
+    "liquidity": 14.43,
+    "marketId": "1.169322143",
+    "name": "Adanaspor v Umraniyespor",
+    "score": "2:3"
+},{
+    "backodds": "15.25",
+    "closeness": 97.79,
+    "layodds": 23.0,
+    "liquidity": 25.98,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "1:3"
+},{
+    "backodds": "24.75",
+    "closeness": 97.78,
+    "layodds": 55.0,
+    "liquidity": 2.38,
+    "marketId": "1.169340312",
+    "name": "Al Markhiya v Al Mesaimeer",
+    "score": "0:3"
+},{
+    "backodds": "24.75",
+    "closeness": 97.78,
+    "layodds": 55.0,
+    "liquidity": 0,
+    "marketId": "1.169341486",
+    "name": "Al-Ettifaq v Malkiya",
+    "score": "3:0"
+},{
+    "backodds": "17.25",
+    "closeness": 97.77,
+    "layodds": 28.0,
+    "liquidity": 14.43,
+    "marketId": "1.169320717",
+    "name": "Altinordu v Erzurum BB",
+    "score": "1:3"
+},{
+    "backodds": "41.50",
+    "closeness": 97.76,
+    "layodds": 600.0,
+    "liquidity": 6.06,
+    "marketId": "1.169314634",
+    "name": "Macva Sabac v FK Backa Topola",
+    "score": "3:0"
+},{
+    "backodds": "14.25",
+    "closeness": 97.74,
+    "layodds": 21.0,
+    "liquidity": 18.17,
+    "marketId": "1.169320626",
+    "name": "Akhisar Belediye v Giresunspor",
+    "score": "1:2"
+},{
+    "backodds": "16.75",
+    "closeness": 97.73,
+    "layodds": 27.0,
+    "liquidity": 16.6,
+    "marketId": "1.169322143",
+    "name": "Adanaspor v Umraniyespor",
+    "score": "0:3"
+},{
+    "backodds": "40.25",
+    "closeness": 97.72,
+    "layodds": 500.0,
+    "liquidity": 12.0,
+    "marketId": "1.169320626",
+    "name": "Akhisar Belediye v Giresunspor",
+    "score": "2:3"
+},{
+    "backodds": "12.25",
+    "closeness": 97.72,
+    "layodds": 17.0,
+    "liquidity": 25.13,
     "marketId": "1.169320717",
     "name": "Altinordu v Erzurum BB",
     "score": "2:1"
 },{
-    "backodds": "8.75",
-    "closeness": 96.57,
-    "layodds": 12.5,
-    "liquidity": 47.91,
-    "marketId": "1.169320626",
-    "name": "Akhisar Belediye v Giresunspor",
-    "score": "0:1"
+    "backodds": "12.25",
+    "closeness": 97.72,
+    "layodds": 17.0,
+    "liquidity": 7.74,
+    "marketId": "1.169341670",
+    "name": "Capitalinos v Deportivo Mictlan",
+    "score": "2:0"
 },{
-    "backodds": "11.50",
-    "closeness": 96.57,
-    "layodds": 19.0,
-    "liquidity": 15.28,
+    "backodds": "10.00",
+    "closeness": 97.69,
+    "layodds": 13.0,
+    "liquidity": 19.02,
+    "marketId": "1.169320717",
+    "name": "Altinordu v Erzurum BB",
+    "score": "1:0"
+},{
+    "backodds": "17.00",
+    "closeness": 97.69,
+    "layodds": 28.0,
+    "liquidity": 16.28,
     "marketId": "1.169320717",
     "name": "Altinordu v Erzurum BB",
     "score": "2:0"
 },{
-    "backodds": "6.95",
-    "closeness": 96.48,
-    "layodds": 9.2,
-    "liquidity": 21.79,
-    "marketId": "1.169320626",
-    "name": "Akhisar Belediye v Giresunspor",
-    "score": "0:0"
+    "backodds": "10.00",
+    "closeness": 97.69,
+    "layodds": 13.0,
+    "liquidity": 10.31,
+    "marketId": "1.169340221",
+    "name": "Al Kharitiyath v Al Bidda",
+    "score": "2:1"
 },{
-    "backodds": "9.75",
-    "closeness": 96.41,
-    "layodds": 15.0,
-    "liquidity": 12.89,
+    "backodds": "30.25",
+    "closeness": 97.69,
+    "layodds": 100.0,
+    "liquidity": 3.03,
+    "marketId": "1.169341589",
+    "name": "Madrid (W) v Sevilla FC (W)",
+    "score": "2:3"
+},{
+    "backodds": "29.75",
+    "closeness": 97.69,
+    "layodds": 95.0,
+    "liquidity": 2.38,
+    "marketId": "1.169341670",
+    "name": "Capitalinos v Deportivo Mictlan",
+    "score": "3:2"
+},{
+    "backodds": "28.00",
+    "closeness": 97.68,
+    "layodds": 80.0,
+    "liquidity": 6.27,
+    "marketId": "1.169314543",
+    "name": "Vojvodina v Radnicki Nis",
+    "score": "3:2"
+},{
+    "backodds": "39.25",
+    "closeness": 97.65,
+    "layodds": 500.0,
+    "liquidity": 6.14,
+    "marketId": "1.169314543",
+    "name": "Vojvodina v Radnicki Nis",
+    "score": "2:3"
+},{
+    "backodds": "39.25",
+    "closeness": 97.62,
+    "layodds": 600.0,
+    "liquidity": 8.83,
     "marketId": "1.169322143",
     "name": "Adanaspor v Umraniyespor",
-    "score": "0:0"
+    "score": "3:0"
 },{
-    "backodds": "26.25",
-    "closeness": 96.39,
-    "layodds": 500.0,
+    "backodds": "9.00",
+    "closeness": 97.58,
+    "layodds": 11.5,
+    "liquidity": 21.25,
+    "marketId": "1.169314270",
+    "name": "Partizan Belgrade v FK Proleter",
+    "score": "1:0"
+},{
+    "backodds": "12.50",
+    "closeness": 97.56,
+    "layodds": 18.0,
     "liquidity": 7.28,
+    "marketId": "1.169340312",
+    "name": "Al Markhiya v Al Mesaimeer",
+    "score": "2:2"
+},{
+    "backodds": "20.75",
+    "closeness": 97.56,
+    "layodds": 42.0,
+    "liquidity": 3.02,
+    "marketId": "1.169340130",
+    "name": "Al Mu Aidar SC v Al Shamal",
+    "score": "1:3"
+},{
+    "backodds": "11.75",
+    "closeness": 97.55,
+    "layodds": 16.5,
+    "liquidity": 32.39,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "1:0"
+},{
+    "backodds": "18.50",
+    "closeness": 97.54,
+    "layodds": 34.0,
+    "liquidity": 15.99,
+    "marketId": "1.169320717",
+    "name": "Altinordu v Erzurum BB",
+    "score": "0:3"
+},{
+    "backodds": "16.50",
+    "closeness": 97.51,
+    "layodds": 28.0,
+    "liquidity": 11.42,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "3:0"
+},{
+    "backodds": "15.00",
+    "closeness": 97.5,
+    "layodds": 24.0,
+    "liquidity": 18.29,
+    "marketId": "1.169320535",
+    "name": "Samut Prakan v Bangkok Utd",
+    "score": "1:3"
+},{
+    "backodds": "20.00",
+    "closeness": 97.5,
+    "layodds": 40.0,
+    "liquidity": 15.34,
+    "marketId": "1.169320626",
+    "name": "Akhisar Belediye v Giresunspor",
+    "score": "0:2"
+},{
+    "backodds": "17.75",
+    "closeness": 97.49,
+    "layodds": 32.0,
+    "liquidity": 90.92,
+    "marketId": "1.169314452",
+    "name": "Cukaricki v Vozdovac",
+    "score": "2:2"
+},{
+    "backodds": "29.75",
+    "closeness": 97.47,
+    "layodds": 120.0,
+    "liquidity": 2.38,
+    "marketId": "1.169341670",
+    "name": "Capitalinos v Deportivo Mictlan",
+    "score": "2:3"
+},{
+    "backodds": "18.25",
+    "closeness": 97.46,
+    "layodds": 34.0,
+    "liquidity": 12.1,
+    "marketId": "1.169320535",
+    "name": "Samut Prakan v Bangkok Utd",
+    "score": "0:3"
+},{
+    "backodds": "13.00",
+    "closeness": 97.44,
+    "layodds": 19.5,
+    "liquidity": 15.22,
+    "marketId": "1.169314727",
+    "name": "FK Spartak v Mladost Lucani",
+    "score": "3:0"
+},{
+    "backodds": "19.25",
+    "closeness": 97.44,
+    "layodds": 38.0,
+    "liquidity": 13.61,
+    "marketId": "1.169322143",
+    "name": "Adanaspor v Umraniyespor",
+    "score": "2:0"
+},{
+    "backodds": "36.25",
+    "closeness": 97.44,
+    "layodds": 500.0,
+    "liquidity": 15.33,
+    "marketId": "1.169322143",
+    "name": "Adanaspor v Umraniyespor",
+    "score": "3:2"
+},{
+    "backodds": "29.75",
+    "closeness": 97.41,
+    "layodds": 130.0,
+    "liquidity": 4.55,
+    "marketId": "1.169320808",
+    "name": "Bengaluru FC v Maziya S & RC",
+    "score": "2:3"
+},{
+    "backodds": "12.50",
+    "closeness": 97.41,
+    "layodds": 18.5,
+    "liquidity": 7.07,
+    "marketId": "1.169340130",
+    "name": "Al Mu Aidar SC v Al Shamal",
+    "score": "2:2"
+},{
+    "backodds": "12.50",
+    "closeness": 97.41,
+    "layodds": 18.5,
+    "liquidity": 7.07,
+    "marketId": "1.169340221",
+    "name": "Al Kharitiyath v Al Bidda",
+    "score": "2:2"
+},{
+    "backodds": "24.75",
+    "closeness": 97.39,
+    "layodds": 70.0,
+    "liquidity": 0,
+    "marketId": "1.169335585",
+    "name": "Tallinna FC Flora v Sogndal",
+    "score": "0:3"
+},{
+    "backodds": "24.75",
+    "closeness": 97.39,
+    "layodds": 70.0,
+    "liquidity": 2.38,
+    "marketId": "1.169340130",
+    "name": "Al Mu Aidar SC v Al Shamal",
+    "score": "0:3"
+},{
+    "backodds": "11.25",
+    "closeness": 97.36,
+    "layodds": 16.0,
+    "liquidity": 38.11,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "2:1"
+},{
+    "backodds": "11.00",
+    "closeness": 97.36,
+    "layodds": 15.5,
+    "liquidity": 28.94,
+    "marketId": "1.169322143",
+    "name": "Adanaspor v Umraniyespor",
+    "score": "1:0"
+},{
+    "backodds": "20.75",
+    "closeness": 97.35,
+    "layodds": 46.0,
+    "liquidity": 2.74,
+    "marketId": "1.169341670",
+    "name": "Capitalinos v Deportivo Mictlan",
+    "score": "3:1"
+},{
+    "backodds": "15.00",
+    "closeness": 97.33,
+    "layodds": 25.0,
+    "liquidity": 36.79,
+    "marketId": "1.169320626",
+    "name": "Akhisar Belediye v Giresunspor",
+    "score": "3:0"
+},{
+    "backodds": "35.25",
+    "closeness": 97.33,
+    "layodds": 600.0,
+    "liquidity": 12.99,
+    "marketId": "1.169320717",
+    "name": "Altinordu v Erzurum BB",
+    "score": "3:0"
+},{
+    "backodds": "29.75",
+    "closeness": 97.31,
+    "layodds": 150.0,
+    "liquidity": 0,
+    "marketId": "1.169340039",
+    "name": "Lusail v Al Waab Sports Club",
+    "score": "3:2"
+},{
+    "backodds": "29.75",
+    "closeness": 97.31,
+    "layodds": 150.0,
+    "liquidity": 0,
+    "marketId": "1.169340039",
+    "name": "Lusail v Al Waab Sports Club",
+    "score": "2:3"
+},{
+    "backodds": "34.50",
+    "closeness": 97.3,
+    "layodds": 500.0,
+    "liquidity": 7.09,
+    "marketId": "1.169314634",
+    "name": "Macva Sabac v FK Backa Topola",
+    "score": "3:1"
+},{
+    "backodds": "16.25",
+    "closeness": 97.29,
+    "layodds": 29.0,
+    "liquidity": 13.0,
+    "marketId": "1.169314727",
+    "name": "FK Spartak v Mladost Lucani",
+    "score": "3:1"
+},{
+    "backodds": "34.75",
+    "closeness": 97.29,
+    "layodds": 600.0,
+    "liquidity": 14.05,
+    "marketId": "1.169320535",
+    "name": "Samut Prakan v Bangkok Utd",
+    "score": "3:0"
+},{
+    "backodds": "8.75",
+    "closeness": 97.27,
+    "layodds": 11.5,
+    "liquidity": 26.07,
+    "marketId": "1.169314727",
+    "name": "FK Spartak v Mladost Lucani",
+    "score": "2:1"
+},{
+    "backodds": "8.75",
+    "closeness": 97.27,
+    "layodds": 11.5,
+    "liquidity": 52.87,
+    "marketId": "1.169320626",
+    "name": "Akhisar Belediye v Giresunspor",
+    "score": "2:1"
+},{
+    "backodds": "8.75",
+    "closeness": 97.27,
+    "layodds": 11.5,
+    "liquidity": 36.11,
+    "marketId": "1.169322143",
+    "name": "Adanaspor v Umraniyespor",
+    "score": "1:2"
+},{
+    "backodds": "34.00",
+    "closeness": 97.26,
+    "layodds": 500.0,
+    "liquidity": 14.14,
+    "marketId": "1.169320626",
+    "name": "Akhisar Belediye v Giresunspor",
+    "score": "1:3"
+},{
+    "backodds": "19.50",
+    "closeness": 97.25,
+    "layodds": 42.0,
+    "liquidity": 5.87,
+    "marketId": "1.169341589",
+    "name": "Madrid (W) v Sevilla FC (W)",
+    "score": "3:0"
+},{
+    "backodds": "29.25",
+    "closeness": 97.25,
+    "layodds": 150.0,
+    "liquidity": 2.85,
+    "marketId": "1.169341589",
+    "name": "Madrid (W) v Sevilla FC (W)",
+    "score": "0:3"
+},{
+    "backodds": "26.50",
+    "closeness": 97.23,
+    "layodds": 100.0,
+    "liquidity": 10.1,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "2:3"
+},{
+    "backodds": "33.25",
+    "closeness": 97.19,
+    "layodds": 500.0,
+    "liquidity": 6.16,
+    "marketId": "1.169314543",
+    "name": "Vojvodina v Radnicki Nis",
+    "score": "1:3"
+},{
+    "backodds": "20.75",
+    "closeness": 97.18,
+    "layodds": 50.0,
+    "liquidity": 2.52,
+    "marketId": "1.169340221",
+    "name": "Al Kharitiyath v Al Bidda",
+    "score": "1:3"
+},{
+    "backodds": "32.50",
+    "closeness": 97.18,
+    "layodds": 390.0,
+    "liquidity": 2.64,
+    "marketId": "1.169314270",
+    "name": "Partizan Belgrade v FK Proleter",
+    "score": "2:3"
+},{
+    "backodds": "22.25",
+    "closeness": 97.17,
+    "layodds": 60.0,
+    "liquidity": 0,
+    "marketId": "1.169320444",
+    "name": "BG Pathumthani United v Police Tero",
+    "score": "0:2"
+},{
+    "backodds": "9.50",
+    "closeness": 97.17,
+    "layodds": 13.0,
+    "liquidity": 38.5,
+    "marketId": "1.169320535",
+    "name": "Samut Prakan v Bangkok Utd",
+    "score": "0:1"
+},{
+    "backodds": "28.50",
+    "closeness": 97.16,
+    "layodds": 150.0,
+    "liquidity": 12.98,
+    "marketId": "1.169320444",
+    "name": "BG Pathumthani United v Police Tero",
+    "score": "1:3"
+},{
+    "backodds": "13.50",
+    "closeness": 97.14,
+    "layodds": 22.0,
+    "liquidity": 12.95,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "3:1"
+},{
+    "backodds": "10.00",
+    "closeness": 97.14,
+    "layodds": 14.0,
+    "liquidity": 9.52,
+    "marketId": "1.169340130",
+    "name": "Al Mu Aidar SC v Al Shamal",
+    "score": "2:1"
+},{
+    "backodds": "24.75",
+    "closeness": 97.14,
+    "layodds": 85.0,
+    "liquidity": 2.38,
+    "marketId": "1.169341670",
+    "name": "Capitalinos v Deportivo Mictlan",
+    "score": "0:3"
+},{
+    "backodds": "12.25",
+    "closeness": 97.1,
+    "layodds": 19.0,
+    "liquidity": 6.88,
+    "marketId": "1.169340130",
+    "name": "Al Mu Aidar SC v Al Shamal",
+    "score": "2:0"
+},{
+    "backodds": "32.50",
+    "closeness": 97.09,
+    "layodds": 600.0,
+    "liquidity": 14.75,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "3:0"
+},{
+    "backodds": "13.75",
+    "closeness": 97.08,
+    "layodds": 23.0,
+    "liquidity": 12.86,
+    "marketId": "1.169320626",
+    "name": "Akhisar Belediye v Giresunspor",
+    "score": "2:2"
+},{
+    "backodds": "23.50",
+    "closeness": 97.08,
+    "layodds": 75.0,
+    "liquidity": 3.22,
+    "marketId": "1.169341589",
+    "name": "Madrid (W) v Sevilla FC (W)",
+    "score": "1:3"
+},{
+    "backodds": "7.00",
+    "closeness": 97.08,
+    "layodds": 8.8,
+    "liquidity": 496.61,
+    "marketId": "1.169114621",
+    "name": "Braga v Rangers",
+    "score": "1:1"
+},{
+    "backodds": "11.25",
+    "closeness": 96.99,
+    "layodds": 17.0,
+    "liquidity": 23.06,
+    "marketId": "1.169320535",
+    "name": "Samut Prakan v Bangkok Utd",
+    "score": "0:2"
+},{
+    "backodds": "11.25",
+    "closeness": 96.99,
+    "layodds": 17.0,
+    "liquidity": 13.52,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "2:2"
+},{
+    "backodds": "11.00",
+    "closeness": 96.97,
+    "layodds": 16.5,
+    "liquidity": 39.08,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "0:2"
+},{
+    "backodds": "24.75",
+    "closeness": 96.96,
+    "layodds": 100.0,
+    "liquidity": 2.38,
+    "marketId": "1.169340221",
+    "name": "Al Kharitiyath v Al Bidda",
+    "score": "0:3"
+},{
+    "backodds": "29.75",
+    "closeness": 96.93,
+    "layodds": 340.0,
+    "liquidity": 2.45,
+    "marketId": "1.169341486",
+    "name": "Al-Ettifaq v Malkiya",
+    "score": "3:2"
+},{
+    "backodds": "8.75",
+    "closeness": 96.9,
+    "layodds": 12.0,
+    "liquidity": 54.12,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "1:2"
+},{
+    "backodds": "10.00",
+    "closeness": 96.9,
+    "layodds": 14.5,
+    "liquidity": 9.17,
+    "marketId": "1.169340312",
+    "name": "Al Markhiya v Al Mesaimeer",
+    "score": "2:1"
+},{
+    "backodds": "21.50",
+    "closeness": 96.89,
+    "layodds": 65.0,
+    "liquidity": 10.38,
+    "marketId": "1.169314727",
+    "name": "FK Spartak v Mladost Lucani",
+    "score": "0:2"
+},{
+    "backodds": "9.00",
+    "closeness": 96.89,
+    "layodds": 12.5,
+    "liquidity": 58.48,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "0:1"
+},{
+    "backodds": "9.00",
+    "closeness": 96.89,
+    "layodds": 12.5,
+    "liquidity": 41.51,
+    "marketId": "1.169320717",
+    "name": "Altinordu v Erzurum BB",
+    "score": "1:2"
+},{
+    "backodds": "9.25",
+    "closeness": 96.88,
+    "layodds": 13.0,
+    "liquidity": 100.3,
+    "marketId": "1.169314452",
+    "name": "Cukaricki v Vozdovac",
+    "score": "3:0"
+},{
+    "backodds": "7.25",
+    "closeness": 96.85,
+    "layodds": 9.4,
+    "liquidity": 40.98,
+    "marketId": "1.169322143",
+    "name": "Adanaspor v Umraniyespor",
+    "score": "0:1"
+},{
+    "backodds": "20.00",
+    "closeness": 96.82,
+    "layodds": 55.0,
+    "liquidity": 12.13,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "3:2"
+},{
+    "backodds": "12.00",
+    "closeness": 96.79,
+    "layodds": 19.5,
+    "liquidity": 13.8,
+    "marketId": "1.169338400",
+    "name": "KFUM Oslo v Ham-Kam",
+    "score": "2:2"
+},{
+    "backodds": "17.50",
+    "closeness": 96.79,
+    "layodds": 40.0,
+    "liquidity": 5.61,
+    "marketId": "1.169341589",
+    "name": "Madrid (W) v Sevilla FC (W)",
+    "score": "3:1"
+},{
+    "backodds": "10.75",
+    "closeness": 96.76,
+    "layodds": 16.5,
+    "liquidity": 15.79,
+    "marketId": "1.169320626",
+    "name": "Akhisar Belediye v Giresunspor",
+    "score": "0:1"
+},{
+    "backodds": "12.50",
+    "closeness": 96.76,
+    "layodds": 21.0,
+    "liquidity": 13.51,
+    "marketId": "1.169320717",
+    "name": "Altinordu v Erzurum BB",
+    "score": "2:2"
+},{
+    "backodds": "20.75",
+    "closeness": 96.72,
+    "layodds": 65.0,
+    "liquidity": 2.38,
+    "marketId": "1.169341670",
+    "name": "Capitalinos v Deportivo Mictlan",
+    "score": "1:3"
+},{
+    "backodds": "10.00",
+    "closeness": 96.67,
+    "layodds": 15.0,
+    "liquidity": 26.36,
+    "marketId": "1.169320717",
+    "name": "Altinordu v Erzurum BB",
+    "score": "0:2"
+},{
+    "backodds": "10.00",
+    "closeness": 96.67,
+    "layodds": 15.0,
+    "liquidity": 8.84,
+    "marketId": "1.169340312",
+    "name": "Al Markhiya v Al Mesaimeer",
+    "score": "1:2"
+},{
+    "backodds": "24.75",
+    "closeness": 96.63,
+    "layodds": 150.0,
+    "liquidity": 0,
+    "marketId": "1.169340039",
+    "name": "Lusail v Al Waab Sports Club",
+    "score": "3:0"
+},{
+    "backodds": "24.75",
+    "closeness": 96.63,
+    "layodds": 150.0,
+    "liquidity": 0,
+    "marketId": "1.169340039",
+    "name": "Lusail v Al Waab Sports Club",
+    "score": "0:3"
+},{
+    "backodds": "6.90",
+    "closeness": 96.62,
+    "layodds": 9.0,
+    "liquidity": 22.49,
+    "marketId": "1.169314727",
+    "name": "FK Spartak v Mladost Lucani",
+    "score": "2:0"
+},{
+    "backodds": "12.25",
+    "closeness": 96.6,
+    "layodds": 21.0,
+    "liquidity": 23.91,
     "marketId": "1.169322143",
     "name": "Adanaspor v Umraniyespor",
     "score": "2:2"
 },{
-    "backodds": "9.50",
-    "closeness": 96.37,
-    "layodds": 14.5,
-    "liquidity": 13.21,
-    "marketId": "1.169320626",
-    "name": "Akhisar Belediye v Giresunspor",
-    "score": "1:1"
+    "backodds": "9.25",
+    "closeness": 96.6,
+    "layodds": 13.5,
+    "liquidity": 30.56,
+    "marketId": "1.169322143",
+    "name": "Adanaspor v Umraniyespor",
+    "score": "0:2"
 },{
-    "backodds": "5.70",
-    "closeness": 96.35,
-    "layodds": 7.2,
-    "liquidity": 297.26,
-    "marketId": "1.168899119",
-    "name": "Blackburn v Stoke",
+    "backodds": "5.25",
+    "closeness": 96.58,
+    "layodds": 6.4,
+    "liquidity": 38.96,
+    "marketId": "1.169314727",
+    "name": "FK Spartak v Mladost Lucani",
     "score": "1:0"
 },{
-    "backodds": "20.25",
-    "closeness": 96.31,
-    "layodds": 80.0,
-    "liquidity": 8.74,
-    "marketId": "1.169215167",
-    "name": "Havant and W v Slough Town",
-    "score": "2:1"
-},{
-    "backodds": "25.50",
-    "closeness": 96.28,
-    "layodds": 500.0,
-    "liquidity": 7.41,
-    "marketId": "1.169215167",
-    "name": "Havant and W v Slough Town",
+    "backodds": "8.75",
+    "closeness": 96.57,
+    "layodds": 12.5,
+    "liquidity": 40.01,
+    "marketId": "1.169320535",
+    "name": "Samut Prakan v Bangkok Utd",
     "score": "1:2"
 },{
-    "backodds": "8.75",
-    "closeness": 96.26,
-    "layodds": 13.0,
-    "liquidity": 13.84,
-    "marketId": "1.169215167",
-    "name": "Havant and W v Slough Town",
-    "score": "1:1"
+    "backodds": "10.50",
+    "closeness": 96.54,
+    "layodds": 16.5,
+    "liquidity": 25.19,
+    "marketId": "1.169320444",
+    "name": "BG Pathumthani United v Police Tero",
+    "score": "2:2"
 },{
-    "backodds": "14.50",
-    "closeness": 96.23,
-    "layodds": 32.0,
-    "liquidity": 12.77,
-    "marketId": "1.169222744",
-    "name": "Brechin v Queens Park",
-    "score": "3:2"
+    "backodds": "21.25",
+    "closeness": 96.54,
+    "layodds": 80.0,
+    "liquidity": 7.58,
+    "marketId": "1.169320535",
+    "name": "Samut Prakan v Bangkok Utd",
+    "score": "2:3"
+},{
+    "backodds": "27.25",
+    "closeness": 96.53,
+    "layodds": 500.0,
+    "liquidity": 12.37,
+    "marketId": "1.169320717",
+    "name": "Altinordu v Erzurum BB",
+    "score": "3:1"
+},{
+    "backodds": "6.50",
+    "closeness": 96.52,
+    "layodds": 8.4,
+    "liquidity": 24.71,
+    "marketId": "1.169314543",
+    "name": "Vojvodina v Radnicki Nis",
+    "score": "1:0"
+},{
+    "backodds": "10.00",
+    "closeness": 96.45,
+    "layodds": 15.5,
+    "liquidity": 8.53,
+    "marketId": "1.169341670",
+    "name": "Capitalinos v Deportivo Mictlan",
+    "score": "2:1"
 },{
     "backodds": "7.25",
+    "closeness": 96.41,
+    "layodds": 9.8,
+    "liquidity": 43.93,
+    "marketId": "1.169320717",
+    "name": "Altinordu v Erzurum BB",
+    "score": "0:1"
+},{
+    "backodds": "12.25",
+    "closeness": 96.38,
+    "layodds": 22.0,
+    "liquidity": 5.89,
+    "marketId": "1.169340312",
+    "name": "Al Markhiya v Al Mesaimeer",
+    "score": "2:0"
+},{
+    "backodds": "6.20",
+    "closeness": 96.37,
+    "layodds": 8.0,
+    "liquidity": 95.06,
+    "marketId": "1.169314452",
+    "name": "Cukaricki v Vozdovac",
+    "score": "2:0"
+},{
+    "backodds": "9.00",
+    "closeness": 96.3,
+    "layodds": 13.5,
+    "liquidity": 24.41,
+    "marketId": "1.169320444",
+    "name": "BG Pathumthani United v Police Tero",
+    "score": "1:0"
+},{
+    "backodds": "13.75",
+    "closeness": 96.3,
+    "layodds": 28.0,
+    "liquidity": 52.06,
+    "marketId": "1.169320444",
+    "name": "BG Pathumthani United v Police Tero",
+    "score": "1:2"
+},{
+    "backodds": "10.00",
+    "closeness": 96.25,
+    "layodds": 16.0,
+    "liquidity": 8.26,
+    "marketId": "1.169340130",
+    "name": "Al Mu Aidar SC v Al Shamal",
+    "score": "1:2"
+},{
+    "backodds": "10.75",
+    "closeness": 96.25,
+    "layodds": 18.0,
+    "liquidity": 9.61,
+    "marketId": "1.169341589",
+    "name": "Madrid (W) v Sevilla FC (W)",
+    "score": "1:2"
+},{
+    "backodds": "8.25",
     "closeness": 96.21,
-    "layodds": 10.0,
-    "liquidity": 22.06,
-    "marketId": "1.169222744",
-    "name": "Brechin v Queens Park",
+    "layodds": 12.0,
+    "liquidity": 15.73,
+    "marketId": "1.169314543",
+    "name": "Vojvodina v Radnicki Nis",
+    "score": "2:0"
+},{
+    "backodds": "24.75",
+    "closeness": 96.2,
+    "layodds": 410.0,
+    "liquidity": 2.65,
+    "marketId": "1.169320808",
+    "name": "Bengaluru FC v Maziya S & RC",
+    "score": "0:3"
+},{
+    "backodds": "10.50",
+    "closeness": 96.19,
+    "layodds": 17.5,
+    "liquidity": 16.95,
+    "marketId": "1.169320535",
+    "name": "Samut Prakan v Bangkok Utd",
+    "score": "2:2"
+},{
+    "backodds": "7.50",
+    "closeness": 96.19,
+    "layodds": 10.5,
+    "liquidity": 13.04,
+    "marketId": "1.169341589",
+    "name": "Madrid (W) v Sevilla FC (W)",
     "score": "1:0"
 },{
     "backodds": "7.50",
     "closeness": 96.19,
     "layodds": 10.5,
-    "liquidity": 17.26,
-    "marketId": "1.169322143",
-    "name": "Adanaspor v Umraniyespor",
+    "liquidity": 46.97,
+    "marketId": "1.169314452",
+    "name": "Cukaricki v Vozdovac",
     "score": "1:1"
 },{
-    "backodds": "13.25",
-    "closeness": 96.16,
-    "layodds": 27.0,
-    "liquidity": 11.8,
-    "marketId": "1.169222744",
-    "name": "Brechin v Queens Park",
-    "score": "0:1"
-},{
-    "backodds": "14.75",
-    "closeness": 96.16,
-    "layodds": 34.0,
-    "liquidity": 12.46,
-    "marketId": "1.169222744",
-    "name": "Brechin v Queens Park",
-    "score": "2:0"
-},{
-    "backodds": "24.00",
-    "closeness": 96.03,
-    "layodds": 500.0,
-    "liquidity": 12.7,
-    "marketId": "1.169320717",
-    "name": "Altinordu v Erzurum BB",
-    "score": "0:2"
-},{
-    "backodds": "9.00",
-    "closeness": 96.03,
-    "layodds": 14.0,
-    "liquidity": 14.1,
-    "marketId": "1.169322143",
-    "name": "Adanaspor v Umraniyespor",
-    "score": "2:0"
-},{
-    "backodds": "18.75",
-    "closeness": 95.92,
-    "layodds": 80.0,
-    "liquidity": 8.85,
-    "marketId": "1.169322143",
-    "name": "Adanaspor v Umraniyespor",
-    "score": "3:2"
-},{
-    "backodds": "18.75",
-    "closeness": 95.92,
-    "layodds": 80.0,
-    "liquidity": 8.19,
-    "marketId": "1.169215167",
-    "name": "Havant and W v Slough Town",
-    "score": "2:0"
-},{
-    "backodds": "8.00",
-    "closeness": 95.83,
-    "layodds": 12.0,
-    "liquidity": 25.19,
-    "marketId": "1.169320717",
-    "name": "Altinordu v Erzurum BB",
-    "score": "1:0"
-},{
-    "backodds": "22.25",
-    "closeness": 95.71,
-    "layodds": 500.0,
-    "liquidity": 7.86,
-    "marketId": "1.169215167",
-    "name": "Havant and W v Slough Town",
-    "score": "0:2"
-},{
-    "backodds": "17.00",
-    "closeness": 95.55,
-    "layodds": 70.0,
-    "liquidity": 10.86,
-    "marketId": "1.169320626",
-    "name": "Akhisar Belediye v Giresunspor",
-    "score": "2:2"
-},{
-    "backodds": "17.50",
-    "closeness": 95.54,
-    "layodds": 80.0,
-    "liquidity": 9.71,
-    "marketId": "1.169320626",
-    "name": "Akhisar Belediye v Giresunspor",
+    "backodds": "7.75",
+    "closeness": 96.19,
+    "layodds": 11.0,
+    "liquidity": 73.89,
+    "marketId": "1.169314452",
+    "name": "Cukaricki v Vozdovac",
     "score": "2:1"
 },{
-    "backodds": "10.00",
-    "closeness": 95.41,
+    "backodds": "6.55",
+    "closeness": 96.1,
+    "layodds": 8.8,
+    "liquidity": 43.83,
+    "marketId": "1.169320626",
+    "name": "Akhisar Belediye v Giresunspor",
+    "score": "1:0"
+},{
+    "backodds": "14.75",
+    "closeness": 96.0,
+    "layodds": 36.0,
+    "liquidity": 6.1,
+    "marketId": "1.169341589",
+    "name": "Madrid (W) v Sevilla FC (W)",
+    "score": "0:2"
+},{
+    "backodds": "8.75",
+    "closeness": 95.98,
+    "layodds": 13.5,
+    "liquidity": 11.98,
+    "marketId": "1.169314543",
+    "name": "Vojvodina v Radnicki Nis",
+    "score": "2:1"
+},{
+    "backodds": "18.25",
+    "closeness": 95.95,
+    "layodds": 70.0,
+    "liquidity": 8.18,
+    "marketId": "1.169314634",
+    "name": "Macva Sabac v FK Backa Topola",
+    "score": "1:3"
+},{
+    "backodds": "8.25",
+    "closeness": 95.88,
+    "layodds": 12.5,
+    "liquidity": 47.15,
+    "marketId": "1.169320626",
+    "name": "Akhisar Belediye v Giresunspor",
+    "score": "2:0"
+},{
+    "backodds": "10.50",
+    "closeness": 95.88,
     "layodds": 18.5,
-    "liquidity": 116.0,
-    "marketId": "1.168897244",
-    "name": "Hull v Barnsley",
-    "score": "0:0"
+    "liquidity": 11.94,
+    "marketId": "1.169341589",
+    "name": "Madrid (W) v Sevilla FC (W)",
+    "score": "2:0"
+},{
+    "backodds": "20.75",
+    "closeness": 95.85,
+    "layodds": 150.0,
+    "liquidity": 3.23,
+    "marketId": "1.169320808",
+    "name": "Bengaluru FC v Maziya S & RC",
+    "score": "1:3"
+},{
+    "backodds": "20.75",
+    "closeness": 95.85,
+    "layodds": 150.0,
+    "liquidity": 0,
+    "marketId": "1.169340039",
+    "name": "Lusail v Al Waab Sports Club",
+    "score": "3:1"
+},{
+    "backodds": "20.75",
+    "closeness": 95.85,
+    "layodds": 150.0,
+    "liquidity": 0,
+    "marketId": "1.169340039",
+    "name": "Lusail v Al Waab Sports Club",
+    "score": "1:3"
+},{
+    "backodds": "12.25",
+    "closeness": 95.84,
+    "layodds": 25.0,
+    "liquidity": 5.16,
+    "marketId": "1.169340312",
+    "name": "Al Markhiya v Al Mesaimeer",
+    "score": "0:2"
+},{
+    "backodds": "12.25",
+    "closeness": 95.84,
+    "layodds": 25.0,
+    "liquidity": 5.16,
+    "marketId": "1.169341670",
+    "name": "Capitalinos v Deportivo Mictlan",
+    "score": "0:2"
+},{
+    "backodds": "12.00",
+    "closeness": 95.83,
+    "layodds": 24.0,
+    "liquidity": 7.9,
+    "marketId": "1.169341589",
+    "name": "Madrid (W) v Sevilla FC (W)",
+    "score": "2:2"
 },{
     "backodds": "9.00",
-    "closeness": 95.34,
-    "layodds": 15.5,
-    "liquidity": 20.28,
+    "closeness": 95.79,
+    "layodds": 14.5,
+    "liquidity": 12.8,
+    "marketId": "1.169341589",
+    "name": "Madrid (W) v Sevilla FC (W)",
+    "score": "2:1"
+},{
+    "backodds": "9.50",
+    "closeness": 95.72,
+    "layodds": 16.0,
+    "liquidity": 13.6,
+    "marketId": "1.169314727",
+    "name": "FK Spartak v Mladost Lucani",
+    "score": "0:1"
+},{
+    "backodds": "10.00",
+    "closeness": 95.71,
+    "layodds": 17.5,
+    "liquidity": 7.5,
+    "marketId": "1.169340221",
+    "name": "Al Kharitiyath v Al Bidda",
+    "score": "1:2"
+},{
+    "backodds": "10.00",
+    "closeness": 95.71,
+    "layodds": 17.5,
+    "liquidity": 9.02,
+    "marketId": "1.169341486",
+    "name": "Al-Ettifaq v Malkiya",
+    "score": "1:2"
+},{
+    "backodds": "10.00",
+    "closeness": 95.71,
+    "layodds": 17.5,
+    "liquidity": 7.5,
+    "marketId": "1.169341670",
+    "name": "Capitalinos v Deportivo Mictlan",
+    "score": "1:2"
+},{
+    "backodds": "19.75",
+    "closeness": 95.71,
+    "layodds": 130.0,
+    "liquidity": 7.03,
+    "marketId": "1.169314543",
+    "name": "Vojvodina v Radnicki Nis",
+    "score": "0:2"
+},{
+    "backodds": "10.25",
+    "closeness": 95.65,
+    "layodds": 18.5,
+    "liquidity": 94.9,
     "marketId": "1.169114621",
     "name": "Braga v Rangers",
     "score": "0:0"
 },{
-    "backodds": "9.00",
-    "closeness": 95.34,
-    "layodds": 15.5,
-    "liquidity": 124.29,
-    "marketId": "1.168898643",
-    "name": "Middlesbrough v Leeds",
-    "score": "0:0"
+    "backodds": "6.35",
+    "closeness": 95.62,
+    "layodds": 8.8,
+    "liquidity": 38.23,
+    "marketId": "1.169270803",
+    "name": "Tabor Sezana v Domzale",
+    "score": "1:1"
 },{
-    "backodds": "11.50",
-    "closeness": 95.3,
-    "layodds": 25.0,
-    "liquidity": 11.89,
-    "marketId": "1.169215167",
-    "name": "Havant and W v Slough Town",
+    "backodds": "12.50",
+    "closeness": 95.57,
+    "layodds": 28.0,
+    "liquidity": 4.59,
+    "marketId": "1.169341670",
+    "name": "Capitalinos v Deportivo Mictlan",
+    "score": "2:2"
+},{
+    "backodds": "9.00",
+    "closeness": 95.56,
+    "layodds": 15.0,
+    "liquidity": 16.54,
+    "marketId": "1.169314634",
+    "name": "Macva Sabac v FK Backa Topola",
     "score": "1:0"
 },{
-    "backodds": "18.25",
-    "closeness": 95.29,
-    "layodds": 130.0,
-    "liquidity": 10.63,
+    "backodds": "8.00",
+    "closeness": 95.5,
+    "layodds": 12.5,
+    "liquidity": 10.77,
+    "marketId": "1.169341670",
+    "name": "Capitalinos v Deportivo Mictlan",
+    "score": "0:1"
+},{
+    "backodds": "6.20",
+    "closeness": 95.5,
+    "layodds": 8.6,
+    "liquidity": 25.69,
+    "marketId": "1.169314543",
+    "name": "Vojvodina v Radnicki Nis",
+    "score": "1:1"
+},{
+    "backodds": "12.25",
+    "closeness": 95.41,
+    "layodds": 28.0,
+    "liquidity": 4.59,
+    "marketId": "1.169340130",
+    "name": "Al Mu Aidar SC v Al Shamal",
+    "score": "0:2"
+},{
+    "backodds": "20.75",
+    "closeness": 95.34,
+    "layodds": 620.0,
+    "liquidity": 2.41,
+    "marketId": "1.169341486",
+    "name": "Al-Ettifaq v Malkiya",
+    "score": "3:1"
+},{
+    "backodds": "15.75",
+    "closeness": 95.32,
+    "layodds": 60.0,
+    "liquidity": 0,
+    "marketId": "1.169320444",
+    "name": "BG Pathumthani United v Police Tero",
+    "score": "3:0"
+},{
+    "backodds": "9.25",
+    "closeness": 95.25,
+    "layodds": 16.5,
+    "liquidity": 11.17,
+    "marketId": "1.169341589",
+    "name": "Madrid (W) v Sevilla FC (W)",
+    "score": "0:1"
+},{
+    "backodds": "5.90",
+    "closeness": 95.25,
+    "layodds": 8.2,
+    "liquidity": 15.1,
+    "marketId": "1.169314634",
+    "name": "Macva Sabac v FK Backa Topola",
+    "score": "0:1"
+},{
+    "backodds": "6.00",
+    "closeness": 95.24,
+    "layodds": 8.4,
+    "liquidity": 34.03,
     "marketId": "1.169320626",
     "name": "Akhisar Belediye v Giresunspor",
-    "score": "2:0"
+    "score": "1:1"
 },{
     "backodds": "18.00",
     "closeness": 95.21,
     "layodds": 130.0,
-    "liquidity": 8.93,
-    "marketId": "1.169215167",
-    "name": "Havant and W v Slough Town",
-    "score": "0:1"
+    "liquidity": 9.51,
+    "marketId": "1.169314634",
+    "name": "Macva Sabac v FK Backa Topola",
+    "score": "2:0"
 },{
-    "backodds": "6.55",
-    "closeness": 95.15,
-    "layodds": 9.6,
-    "liquidity": 15.33,
-    "marketId": "1.169215167",
-    "name": "Havant and W v Slough Town",
-    "score": "0:0"
-},{
-    "backodds": "5.95",
-    "closeness": 95.1,
-    "layodds": 8.4,
-    "liquidity": 24.17,
-    "marketId": "1.169322143",
-    "name": "Adanaspor v Umraniyespor",
+    "backodds": "8.00",
+    "closeness": 95.19,
+    "layodds": 13.0,
+    "liquidity": 10.31,
+    "marketId": "1.169340221",
+    "name": "Al Kharitiyath v Al Bidda",
     "score": "1:0"
 },{
-    "backodds": "9.25",
-    "closeness": 95.07,
-    "layodds": 17.0,
-    "liquidity": 91.57,
-    "marketId": "1.168898258",
-    "name": "Fulham v Swansea",
-    "score": "0:0"
+    "backodds": "16.50",
+    "closeness": 95.19,
+    "layodds": 80.0,
+    "liquidity": 8.33,
+    "marketId": "1.169314634",
+    "name": "Macva Sabac v FK Backa Topola",
+    "score": "0:3"
+},{
+    "backodds": "5.75",
+    "closeness": 95.11,
+    "layodds": 8.0,
+    "liquidity": 46.66,
+    "marketId": "1.169320717",
+    "name": "Altinordu v Erzurum BB",
+    "score": "1:1"
+},{
+    "backodds": "15.75",
+    "closeness": 95.08,
+    "layodds": 70.0,
+    "liquidity": 9.01,
+    "marketId": "1.169314543",
+    "name": "Vojvodina v Radnicki Nis",
+    "score": "3:1"
+},{
+    "backodds": "14.75",
+    "closeness": 95.04,
+    "layodds": 55.0,
+    "liquidity": 8.97,
+    "marketId": "1.169314634",
+    "name": "Macva Sabac v FK Backa Topola",
+    "score": "2:2"
 }]

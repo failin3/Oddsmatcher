@@ -54,15 +54,15 @@ def getOutcomeFromNumber(good_runners):
 
 def checkOdds(bfgame, ssgame):
     runner_list = []
-    counter = 1
+    counter = 0
     print(ssgame["odds"])
     try:
         for bfodds, ssodds, liquidity in zip(bfgame["odds"], ssgame["odds"], bfgame["liquidity"]):
+            counter += 1
             closeness = (1/float(bfodds) - 1/float(ssodds))*100 + 100
             if closeness > 95:
                 runner = Runner(counter, bfgame["name"], ssodds, bfodds, round(closeness,2), liquidity, bfgame["marketId"])
                 runner_list.append(runner)
-                counter += 1
         return runner_list
     except:
         pass
