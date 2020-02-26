@@ -109,7 +109,7 @@ def getMatchUrls(url, driver):
 url = "/en/sports/soccer/germany-1-bundesliga/20200224/eintracht-frankfurt-vs-union-berlin/"
 match_url = "https://spinsportsmga.spinpalace.com/en/sports/soccer/"
 
-driver = webdriver.Chrome()
+driver = webdriver.Chrome("bin/chromedriver")
 
 url_list = getMatchUrls(match_url, driver)
 
