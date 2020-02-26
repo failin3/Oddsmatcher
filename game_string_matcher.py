@@ -85,22 +85,24 @@ while True:
             second_word = second_word.replace("-", " ")
             second_word = second_word.strip()
             second_word = second_word.split(" ")[0]
-
-            if betfair_name.lower().startswith('fc') or betfair_name.lower().startswith('al') or betfair_name.lower().startswith('fk') or betfair_name.lower().split("v")[1].strip().startswith('fc') or betfair_name.lower().split("v")[1].strip().startswith('al') or betfair_name.lower().split("v")[1].strip().startswith('fk'):
-                if betfair_name.split(" ")[1].lower().startswith(game_string.split("-")[1].lower()) and betfair_name.split("v", 1)[1].strip().split(" ")[1].lower().startswith(game_string.split('vs-', 1)[1].split("-")[1].lower()):
+            try:
+                if betfair_name.lower().startswith('fc') or betfair_name.lower().startswith('al') or betfair_name.lower().startswith('fk') or betfair_name.lower().split("v")[1].strip().startswith('fc') or betfair_name.lower().split("v")[1].strip().startswith('al') or betfair_name.lower().split("v")[1].strip().startswith('fk'):
+                    if betfair_name.split(" ")[1].lower().startswith(game_string.split("-")[1].lower()) and betfair_name.split("v", 1)[1].strip().split(" ")[1].lower().startswith(game_string.split('vs-', 1)[1].split("-")[1].lower()):
+                        print("{} -> {}".format(betfair_name, game_string))
+                        next_one = True
+                        new_runners = checkOdds(bfgame, ssgame)
+                        if new_runners:
+                            good_runners = good_runners + new_runners
+                        break
+                elif betfair_name.lower().startswith(first_word.lower()) and betfair_name.lower().split("v")[1].strip().startswith(second_word.lower()) or (first_word.lower().startswith(betfair_name.split(" ")[0].strip().lower()) and second_word.startswith(betfair_name.split('v')[1].strip().lower())):          
                     print("{} -> {}".format(betfair_name, game_string))
                     next_one = True
                     new_runners = checkOdds(bfgame, ssgame)
                     if new_runners:
                         good_runners = good_runners + new_runners
                     break
-            elif betfair_name.lower().startswith(first_word.lower()) and betfair_name.lower().split("v")[1].strip().startswith(second_word.lower()) or (first_word.lower().startswith(betfair_name.split(" ")[0].strip().lower()) and second_word.startswith(betfair_name.split('v')[1].strip().lower())):          
-                print("{} -> {}".format(betfair_name, game_string))
-                next_one = True
-                new_runners = checkOdds(bfgame, ssgame)
-                if new_runners:
-                    good_runners = good_runners + new_runners
-                break
+            except IndexError:
+                pass
         if next_one == False:
             print("Could not find a match for: {}".format(betfair_name))
 
