@@ -1,0 +1,18 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'oddsmatcher/login.css' %}" />
+    </head>
+    <body>
+        <form class="login-form" action="{{request.path}}" method="post">
+            <div class="container">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Username">
+                <br>
+                <input type="password" name="password" placeholder="Password">
+                <br>
+                <button type="submit" value="Login">Login</button>
+            </div>
+        </form>
+    </body>
+</html>
