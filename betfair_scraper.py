@@ -142,7 +142,7 @@ while True:
 
         with open("betfair_output.json", "w") as file:
             file.write(json_s)
-        sleep(5*60)
+        sleep(2*60)
     except ValueError:
         print("No JSON, retrying")
         sleep(60)

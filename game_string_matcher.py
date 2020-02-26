@@ -109,4 +109,4 @@ while True:
 
     with open("OM_site/site_input.json", "w") as file:
         file.write(json_s)
-    sleep(5*60)
+    sleep(60)
