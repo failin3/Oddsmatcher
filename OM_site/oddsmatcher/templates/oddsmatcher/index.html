@@ -15,8 +15,8 @@
         <th>Back Odds</th>
         <th>Lay Odds</th>
         <th>Liquidity</th>
-        <th>Closeness</th>
         <th>Date</th>
+        <th>Closeness</th>
         <th>link</th>
     </tr>
     {% for runner in runner_data %}
@@ -26,7 +26,7 @@
           <td>{{runner.backodds}}</td>
           <td>{{runner.layodds}}</td>
           <td>€{{runner.liquidity}}</td>
-          <td>{{runner.date }} {{runner.time}}</td>
+          <td>{{runner.day }} {{runner.time}}</td>
           <td>{{runner.closeness}}%</td>
           <td><a href="https://www.betfair.com/exchange/plus/football/market/{{runner.marketId}}" target="_blank" rel="noopener noreferrer">link</a></th>
         </tr>
