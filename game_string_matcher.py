@@ -86,7 +86,7 @@ while True:
             second_word = second_word.strip()
             second_word = second_word.split(" ")[0]
 
-            if betfair_name.lower().startswith(first_word) and betfair_name.lower().split("v")[1].strip():
+            if betfair_name.lower().startswith(first_word) and betfair_name.lower().split("v")[1].strip().startswith(second_word) or (first_word.lower().startswith(betfair_name) and second_word.startswith(betfair_name)):
                 print("{} -> {}".format(betfair_name, game_string))
                 next_one = True
                 new_runners = checkOdds(bfgame, ssgame)
