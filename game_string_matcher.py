@@ -89,14 +89,14 @@ while True:
             if first_word in betfair_name.lower() and second_word in betfair_name.lower():
                 if first_word == "al" or first_word == "fk" or second_word == "al" or second_word == "fk":
                     break
-                print("SUCCESS: {}".format(game_string))
+                print("{} -> {}".format(betfair_name, game_string))
                 next_one = True
                 new_runners = checkOdds(bfgame, ssgame)
                 if new_runners:
                     good_runners = good_runners + new_runners
                 break
         if next_one == False:
-            print("Failure")
+            print("Could not find a match for: {}".format(betfair_name))
 
     good_runners = sorted(good_runners, key=operator.attrgetter('closeness'), reverse=True)
     good_runners = getOutcomeFromNumber(good_runners)
