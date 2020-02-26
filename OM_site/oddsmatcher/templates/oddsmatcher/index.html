@@ -7,7 +7,6 @@
 </head>
 
 <body>
-{% if runner_data %}
 <table id="oddsmatcher" align="center" >
     <tr>
         <th>Competition</th>
@@ -19,6 +18,7 @@
         <th>Closeness</th>
         <th>link</th>
     </tr>
+    {% if runner_data %}
     {% for runner in runner_data %}
         <tr>
           <td>{{runner.name}}</td>
@@ -32,8 +32,5 @@
         </tr>
     {% endfor %}
 </table>
-{% else %}
-    <p>No matches are available.</p>
-{% endif %}
 </body>
 </html>
