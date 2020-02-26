@@ -60,7 +60,7 @@ def checkOdds(bfgame, ssgame):
         for bfodds, ssodds, liquidity in zip(bfgame["odds"], ssgame["odds"], bfgame["liquidity"]):
             counter += 1
             closeness = (1/float(bfodds) - 1/float(ssodds))*100 + 100
-            if closeness > 95:
+            if closeness > 95 and liquidity > 0:
                 runner = Runner(counter, bfgame["name"], ssodds, bfodds, round(closeness,2), liquidity, bfgame["marketId"])
                 runner_list.append(runner)
         return runner_list
