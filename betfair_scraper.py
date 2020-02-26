@@ -7,11 +7,13 @@ import datetime
 from time import sleep
 
 class Game:
-    def __init__(self, name, odds, marketid, liquidity):
+    def __init__(self, name, odds, marketid, liquidity, day_, time_):
         self.name = name
         self.odds = odds
         self.marketId = marketid
         self.liquidity = liquidity
+        self.day_ = day_
+        self.time_ = time_
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, 
             sort_keys=True, indent=4)
@@ -75,6 +77,15 @@ def getMarkets(game_list, url, header):
             counter += 1
         return total_list
 
+def parseApiDatetime(date_time):
+    year = date_time.split("-")[0]
+    month = date_time.split("-")[1]
+    day = date_time.split("-")[2][:2]
+    time = date_time.split("T")[1][:5]
+    time = datetime.datetime.strptime(time, "%H:%M")+datetime.timedelta(hours=1)
+    return "{}-{}-{}".format(day, month, year), datetime.datetime.strftime(time, "%H:%M")
+    
+
 def getBestMatches(date, application_key, session_key):
     url="https://api.betfair.com/exchange/betting/json-rpc/v1"
     header = { 'X-Application' : application_key, 'X-Authentication' : session_key ,'content-type' : 'application/json' }
@@ -89,7 +100,6 @@ def getBestMatches(date, application_key, session_key):
     json_req = '[{{"jsonrpc": "2.0","method": "SportsAPING/v1.0/listEvents","params": {{"filter": {{"eventTypeIds": ["1"],"marketStartTime": {{"from": "{}T{}:00Z","to": "{}T{}:00Z"}}}}}},"id": 1}}]'.format(date[0], date[1], date[0], date[2])
     response = requests.post(url, data=json_req, headers=header)
     games = response.json()
-    print(games)
 
     for event in games[0]["result"]:
         #event_title = event["event"]["name"]
@@ -101,7 +111,8 @@ def getBestMatches(date, application_key, session_key):
     json_req = '[{{"jsonrpc":"2.0","method":"SportsAPING/v1.0/listMarketCatalogue","params":{{"filter":{{"textQuery":"CORRECT_SCORE","eventIds":[{}]}},"marketProjection": ["EVENT"],"maxResults":"200"}},"id":1}}]'.format(css)
     response = requests.post(url, data=json_req, headers=header).json()
     for event in response[0]["result"]:
-        game = Game(event["event"]["name"], None, event["marketId"], None)
+        date_, time_ = parseApiDatetime(event["event"]["openDate"])
+        game = Game(event["event"]["name"], None, event["marketId"], None, date_, time_)
         game_classes.append(game)
         # list_of_market_ids.append(event["marketId"])
         # list_of_names.append(event["event"]["name"])
@@ -141,10 +152,6 @@ while True:
         sentKeepAlive(application_key, session_key)
     try:
         final_list = getBestMatches([DATE_OF_MATCHES, START_TIME, END_TIME], application_key, session_key)
-        for game in final_list:
-            print("{}: {}".format(game.marketId, game.liquidity))
-
-
         json_s = '['
         for item in final_list:
             json_s += item.toJSON()

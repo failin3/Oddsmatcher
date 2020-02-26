@@ -3,7 +3,7 @@ import operator
 from time import sleep
 
 class Runner:
-    def __init__(self, score, name, backodds, layodds, closeness, liquidity, marketId):
+    def __init__(self, score, name, backodds, layodds, closeness, liquidity, marketId, day, time):
         self.name = name
         self.score = score
         self.backodds = backodds
@@ -11,6 +11,8 @@ class Runner:
         self.closeness = closeness
         self.liquidity = liquidity
         self.marketId = marketId
+        self.day = day
+        self.time = time
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, 
@@ -61,7 +63,7 @@ def checkOdds(bfgame, ssgame):
             counter += 1
             closeness = (1/float(bfodds) - 1/float(ssodds))*100 + 100
             if closeness > 95 and liquidity > 0:
-                runner = Runner(counter, bfgame["name"], ssodds, bfodds, round(closeness,2), liquidity, bfgame["marketId"])
+                runner = Runner(counter, bfgame["name"], ssodds, bfodds, round(closeness,2), liquidity, bfgame["marketId"], bfgame["day_"], bfgame["time_"])
                 runner_list.append(runner)
         return runner_list
     except:
