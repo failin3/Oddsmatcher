@@ -4,7 +4,11 @@ from time import sleep
 import re
 import json
 
+import time
+
 from bs4 import BeautifulSoup
+
+start_time = time.time()
 
 class Game:
     def __init__(self, name, odds):
@@ -17,7 +21,6 @@ class Game:
 def sortOdds(odds, scores):
     odds_sorted = [None]*16
     for odd, score  in zip(odds, scores):
-        #print(score)
         if score == "0:0":
             odds_sorted[0] = odd
         if score == "1:0":
@@ -57,6 +60,8 @@ def parseMatch(url, driver):
     game_name = url.rsplit("/", 2)[-2]
     driver.get(url)
     sleep(4)
+    attempt_counter = 0
+    failure_counter = 0
     while True:
         try:
             soup = BeautifulSoup(driver.page_source, features="html.parser")
@@ -73,10 +78,20 @@ def parseMatch(url, driver):
                             score_list.append(score)
                             odds_list.append(odds)
                     game = Game(game_name, sortOdds(odds_list, score_list))
+                    failure_counter = 0
+                    attempt_counter = 0
             return game
         except (AttributeError, UnboundLocalError, IndexError):
             sleep(1)
-            pass
+            #Give 5 attempts to find the buttons, if this fails 5 times stop giving these tries and immediately fail
+            if failure_counter > 5:
+                return None
+            attempt_counter += 1
+            if attempt_counter > 5:
+                return None
+            else:
+                failure_counter += 1
+                continue
 
 def getMatchUrls(url, driver):
     url_list = []
@@ -101,12 +116,16 @@ url_list = getMatchUrls(match_url, driver)
 json_s = "["
 for url in url_list:
     game = parseMatch(url, driver)
-    json_s += game.toJSON()
+    if game != None:
+        json_s += game.toJSON()
 json_s = json_s.replace("}{", "},{")
 json_s += "]"
 
 with open("ss_output.json", "w") as file:
     file.write(json_s)
+
+print("--- %s seconds ---" % (time.time() - start_time))
+
 
 
 

@@ -1,0 +1,37 @@
+{% load static %}
+
+<html>
+<head>
+<link rel="stylesheet" href="{% static 'oddsmatcher/style.css' %}" />
+<meta http-equiv="refresh" content="120; URL=http://127.0.0.1:8000/oddsmatcher/">
+</head>
+
+<body>
+{% if runner_data %}
+<table id="oddsmatcher" align="center" >
+    <tr>
+        <th>Competition</th>
+        <th>Outcome</th>
+        <th>Back Odds</th>
+        <th>Lay Odds</th>
+        <th>Liquidity</th>
+        <th>Closeness</th>
+        <th>link</th>
+    </tr>
+    {% for runner in runner_data %}
+        <tr>
+          <td>{{runner.name}}</td>
+          <td>{{runner.score}}</td>
+          <td>{{runner.backodds}}</td>
+          <td>{{runner.layodds}}</td>
+          <td>€{{runner.liquidity}}</td>
+          <td>{{runner.closeness}}%</td>
+          <td><a href="https://www.betfair.com/exchange/plus/football/market/{{runner.marketId}}" target="_blank" rel="noopener noreferrer">link</a></th>
+        </tr>
+    {% endfor %}
+</table>
+{% else %}
+    <p>No matches are available.</p>
+{% endif %}
+</body>
+</html>

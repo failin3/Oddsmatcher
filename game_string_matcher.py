@@ -2,13 +2,54 @@ import json
 import operator
 
 class Runner:
-    def __init__(self, score, name, backodds, layodds, closeness, liquidity):
+    def __init__(self, score, name, backodds, layodds, closeness, liquidity, marketId):
         self.name = name
         self.score = score
         self.backodds = backodds
         self.layodds = layodds
         self.closeness = closeness
         self.liquidity = liquidity
+        self.marketId = marketId
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__, 
+            sort_keys=True, indent=4)
+
+def getOutcomeFromNumber(good_runners):
+    for runner in good_runners:
+        if runner.score == 1:
+            runner.score = "0:0"
+        if runner.score == 2:
+            runner.score = "1:0"
+        if runner.score == 3:
+            runner.score = "1:1"
+        if runner.score == 4:
+            runner.score = "0:1"
+        if runner.score == 5:
+            runner.score = "2:0"
+        if runner.score == 6:
+            runner.score = "2:1"
+        if runner.score == 7:
+            runner.score = "2:2"
+        if runner.score == 8:
+            runner.score = "1:2"
+        if runner.score == 9:
+            runner.score = "0:2"
+        if runner.score == 10:
+            runner.score = "3:0"
+        if runner.score == 11:
+            runner.score = "3:1"
+        if runner.score == 12:
+            runner.score = "3:2"
+        if runner.score == 13:
+            runner.score = "3:3"
+        if runner.score == 14:
+            runner.score = "2:3"
+        if runner.score == 15:
+            runner.score = "1:3"
+        if runner.score == 16:
+            runner.score = "0:3"
+    return good_runners
 
 def checkOdds(bfgame, ssgame):
     runner_list = []
@@ -18,9 +59,8 @@ def checkOdds(bfgame, ssgame):
         for bfodds, ssodds, liquidity in zip(bfgame["odds"], ssgame["odds"], bfgame["liquidity"]):
             closeness = (1/float(bfodds) - 1/float(ssodds))*100 + 100
             if closeness > 95:
-                runner = Runner(counter, bfgame["name"], ssodds, bfodds, closeness, liquidity)
+                runner = Runner(counter, bfgame["name"], ssodds, bfodds, round(closeness,2), liquidity, bfgame["marketId"])
                 runner_list.append(runner)
-            else:
                 counter += 1
         return runner_list
     except:
@@ -54,7 +94,14 @@ for bfgame in betfair_output:
     if next_one == False:
         print("Failure")
 
-good_runners = sorted(good_runners, key=operator.attrgetter('closeness'))
-for runner in good_runners:
-    print("{}: {} - {}      {}%     Liquidity: {}".format(runner.name, runner.backodds, runner.layodds, runner.closeness, runner.liquidity))
+good_runners = sorted(good_runners, key=operator.attrgetter('closeness'), reverse=True)
+good_runners = getOutcomeFromNumber(good_runners)
 
+json_s = "["
+for runner in good_runners:
+    json_s += runner.toJSON()
+json_s = json_s.replace("}{", "},{")
+json_s += "]"
+
+with open("OM_site/site_input.json", "w") as file:
+    file.write(json_s)
