@@ -111,20 +111,21 @@ match_url = "https://spinsportsmga.spinpalace.com/en/sports/soccer/"
 
 driver = webdriver.Chrome("bin/chromedriver")
 
-url_list = getMatchUrls(match_url, driver)
+while True:
+    url_list = getMatchUrls(match_url, driver)
 
-json_s = "["
-for url in url_list:
-    game = parseMatch(url, driver)
-    if game != None:
-        json_s += game.toJSON()
-json_s = json_s.replace("}{", "},{")
-json_s += "]"
+    json_s = "["
+    for url in url_list:
+        game = parseMatch(url, driver)
+        if game != None:
+            json_s += game.toJSON()
+    json_s = json_s.replace("}{", "},{")
+    json_s += "]"
 
-with open("ss_output.json", "w") as file:
-    file.write(json_s)
+    with open("ss_output.json", "w") as file:
+        file.write(json_s)
 
-print("--- %s seconds ---" % (time.time() - start_time))
+    sleep(5*60)    
 
 
 

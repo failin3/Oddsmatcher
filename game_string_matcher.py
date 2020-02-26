@@ -1,5 +1,6 @@
 import json
 import operator
+from time import sleep
 
 class Runner:
     def __init__(self, score, name, backodds, layodds, closeness, liquidity, marketId):
@@ -66,42 +67,44 @@ def checkOdds(bfgame, ssgame):
     except:
         pass
 
-with open("betfair_output.json") as file:
-    betfair_output = json.load(file)
+while True:
+    with open("betfair_output.json") as file:
+        betfair_output = json.load(file)
 
-with open("ss_output.json") as file:
-    ss_output = json.load(file)
-    
-next_one = False
-good_runners = []
-for bfgame in betfair_output:
-    betfair_name = bfgame["name"]
-    for ssgame in ss_output:
-        game_string = ssgame["name"]
-        first_word = game_string.split("-")[0]
-        second_word = game_string.split("vs")[1]
-        second_word = second_word.replace("-", " ")
-        second_word = second_word.strip()
-        second_word = second_word.split(" ")[0]
+    with open("ss_output.json") as file:
+        ss_output = json.load(file)
+        
+    next_one = False
+    good_runners = []
+    for bfgame in betfair_output:
+        betfair_name = bfgame["name"]
+        for ssgame in ss_output:
+            game_string = ssgame["name"]
+            first_word = game_string.split("-")[0]
+            second_word = game_string.split("vs")[1]
+            second_word = second_word.replace("-", " ")
+            second_word = second_word.strip()
+            second_word = second_word.split(" ")[0]
 
-        if first_word in betfair_name.lower() and second_word in betfair_name.lower():
-            print("SUCCESS: {}".format(game_string))
-            next_one = True
-            new_runners = checkOdds(bfgame, ssgame)
-            if new_runners:
-                good_runners = good_runners + new_runners
-            break
-    if next_one == False:
-        print("Failure")
+            if first_word in betfair_name.lower() and second_word in betfair_name.lower():
+                print("SUCCESS: {}".format(game_string))
+                next_one = True
+                new_runners = checkOdds(bfgame, ssgame)
+                if new_runners:
+                    good_runners = good_runners + new_runners
+                break
+        if next_one == False:
+            print("Failure")
 
-good_runners = sorted(good_runners, key=operator.attrgetter('closeness'), reverse=True)
-good_runners = getOutcomeFromNumber(good_runners)
+    good_runners = sorted(good_runners, key=operator.attrgetter('closeness'), reverse=True)
+    good_runners = getOutcomeFromNumber(good_runners)
 
-json_s = "["
-for runner in good_runners:
-    json_s += runner.toJSON()
-json_s = json_s.replace("}{", "},{")
-json_s += "]"
+    json_s = "["
+    for runner in good_runners:
+        json_s += runner.toJSON()
+    json_s = json_s.replace("}{", "},{")
+    json_s += "]"
 
-with open("OM_site/site_input.json", "w") as file:
-    file.write(json_s)
+    with open("OM_site/site_input.json", "w") as file:
+        file.write(json_s)
+    sleep(5*60)
