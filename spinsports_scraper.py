@@ -112,6 +112,7 @@ def getMatchUrls(url, driver):
     selection.click()
     sleep(1)
     soup = BeautifulSoup(driver.page_source, features="html.parser")
+    sleep(1)
     for game in soup.find_all("a", class_="event-details event-details-upcomming"):
         url = game["href"]
         if "/en/sports/soccer/" in url and url not in url_list:
@@ -128,7 +129,7 @@ driver = webdriver.Chrome("bin/chromedriver")
 
 while True:
     url_list = getMatchUrls(browse_url, driver)
-
+    url_list = url_list[::-1]
     json_s = "["
     for url in url_list:
         game = parseMatch(url, driver)

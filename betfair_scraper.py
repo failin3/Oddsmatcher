@@ -18,9 +18,8 @@ class Game:
         return json.dumps(self, default=lambda o: o.__dict__, 
             sort_keys=True, indent=4)
 
-DATE_OF_MATCHES = datetime.datetime.now().strftime("%Y-%m-%d")
-if datetime.datetime.now().hour >= 21:
-    DATE_OF_MATCHES = (datetime.datetime.now()+datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+START_DATE = DATE_OF_MATCHES = datetime.datetime.now().strftime("%Y-%m-%d")
+END_DATE = DATE_OF_MATCHES = (datetime.datetime.now()+datetime.timedelta(days=1)).strftime("%Y-%m-%d")
 START_TIME = "00:00"
 END_TIME = "23:59"
 
@@ -83,7 +82,7 @@ def parseApiDatetime(date_time):
     day = date_time.split("-")[2][:2]
     time = date_time.split("T")[1][:5]
     time = datetime.datetime.strptime(time, "%H:%M")+datetime.timedelta(hours=1)
-    return "{}-{}-{}".format(day, month, year), datetime.datetime.strftime(time, "%H:%M")
+    return "{}/{}".format(day, month), datetime.datetime.strftime(time, "%H:%M")
     
 
 def getBestMatches(date, application_key, session_key):
@@ -97,7 +96,7 @@ def getBestMatches(date, application_key, session_key):
     game_classes = []
 
     #Get football events in date range
-    json_req = '[{{"jsonrpc": "2.0","method": "SportsAPING/v1.0/listEvents","params": {{"filter": {{"eventTypeIds": ["1"],"marketStartTime": {{"from": "{}T{}:00Z","to": "{}T{}:00Z"}}}}}},"id": 1}}]'.format(date[0], date[1], date[0], date[2])
+    json_req = '[{{"jsonrpc": "2.0","method": "SportsAPING/v1.0/listEvents","params": {{"filter": {{"eventTypeIds": ["1"],"marketStartTime": {{"from": "{}T{}:00Z","to": "{}T{}:00Z"}}}}}},"id": 1}}]'.format(date[0], date[1], date[3], date[2])
     response = requests.post(url, data=json_req, headers=header)
     games = response.json()
 
@@ -151,7 +150,7 @@ while True:
     if keepAliveCounter > 30:
         sentKeepAlive(application_key, session_key)
     try:
-        final_list = getBestMatches([DATE_OF_MATCHES, START_TIME, END_TIME], application_key, session_key)
+        final_list = getBestMatches([START_DATE, START_TIME, END_TIME, END_DATE], application_key, session_key)
         json_s = '['
         for item in final_list:
             json_s += item.toJSON()
