@@ -71,6 +71,7 @@ def getMarkets(game_list, url, header):
                     price = float(runner["ex"]["availableToLay"][0]["price"])
                 except IndexError:
                     available_to_lay = 0
+                    price = 0
                 size_list.append([available_to_lay, selectionId, price])
             total_list.append([market_id, sorted(size_list, reverse=True)])
             counter += 1
