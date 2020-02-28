@@ -121,7 +121,7 @@ def getBestMatches(date, application_key, session_key):
         total_list = []
         for i in range(0,100):
             total_list = total_list + getMarkets(game_classes[0+40*i:40+40*i], url, header)
-            if(len(list_of_market_ids)-40*i < 40):
+            if(len(game_classes)-40*i < 40):
                 break
         total_list = total_list + getMarkets(list_of_market_ids[40*i:], url, header)
     else:
