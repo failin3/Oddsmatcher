@@ -17,6 +17,7 @@
         <th>Date</th>
         <th>Closeness</th>
         <th>link</th>
+        <th>Lay loses</th>
     </tr>
     {% if runner_data %}
     {% for runner in runner_data %}
@@ -28,7 +29,8 @@
           <td>€{{runner.liquidity}}</td>
           <td>{{runner.day }} {{runner.time}}</td>
           <td>{{runner.closeness}}%</td>
-          <td><a href="https://www.betfair.com/exchange/plus/football/market/{{runner.marketId}}" target="_blank" rel="noopener noreferrer">link</a></th>
+          <td><a href="https://www.betfair.com/exchange/plus/football/market/{{runner.marketId}}" target="_blank" rel="noopener noreferrer">link</a></td>
+          <td>€{{runner.wins}}</td>
         </tr>
     {% endfor %}
     {% endif %}
