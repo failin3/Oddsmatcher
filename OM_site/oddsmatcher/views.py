@@ -15,6 +15,8 @@ def index(request):
     exchange_lay_wins = []
     for runner in runner_data:
         runner["wins"] = (oddsMatcher(float(runner["backodds"]), float(runner["layodds"]), 700))
+    #Sorty based on lay losses (wins)
+    runner_data = sorted(runner_data, key=lambda x : x["wins"], reverse=True)
     context = {
         "runner_data" : runner_data,
         "lay_wins" : exchange_lay_wins
