@@ -85,7 +85,6 @@ def parseApiDatetime(date_time):
     time = datetime.datetime.strptime(time, "%H:%M")+datetime.timedelta(hours=1)
     return "{}/{}".format(day, month), datetime.datetime.strftime(time, "%H:%M")
     
-
 def getBestMatches(date, application_key, session_key):
     url="https://api.betfair.com/exchange/betting/json-rpc/v1"
     header = { 'X-Application' : application_key, 'X-Authentication' : session_key ,'content-type' : 'application/json' }
@@ -97,10 +96,9 @@ def getBestMatches(date, application_key, session_key):
     game_classes = []
 
     #Get football events in date range
-    json_req = '[{{"jsonrpc": "2.0","method": "SportsAPING/v1.0/listEvents","params": {{"filter": {{"eventTypeIds": ["1"],"marketStartTime": {{"from": "{}T{}:00Z","to": "{}T{}:00Z"}}}}}},"id": 1}}]'.format(date[0], date[1], date[3], date[2])
+    json_req = '[{{"jsonrpc": "2.0","method": "SportsAPING/v1.0/listEvents","params": {{"filter": {{"eventTypeIds": ["1"], "turnInPlayEnabled" : "false","marketStartTime": {{"from": "{}T{}:00Z","to": "{}T{}:00Z"}}}}}},"id": 1}}]'.format(date[0], date[1], date[3], date[2])
     response = requests.post(url, data=json_req, headers=header)
     games = response.json()
-
     for event in games[0]["result"]:
         #event_title = event["event"]["name"]
         list_of_games.append(event["event"]["id"])
@@ -123,9 +121,9 @@ def getBestMatches(date, application_key, session_key):
             total_list = total_list + getMarkets(game_classes[0+40*i:40+40*i], url, header)
             if(len(game_classes)-40*i < 40):
                 break
-        total_list = total_list + getMarkets(list_of_market_ids[40*i:], url, header)
+        total_list = total_list + getMarkets(game_classes[40*i:], url, header)
     else:
-        total_list = getMarkets(list_of_market_ids, url, header)
+        total_list = getMarkets(game_classes, url, header)
 
     for game_element in total_list:
         odds_list, liquidity_list = sortRunnerLists(game_element[1])
