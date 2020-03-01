@@ -1,39 +1,67 @@
 {% load static %}
-
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="{% static 'oddsmatcher/style.css' %}" />
-<meta http-equiv="refresh" content="120; URL=http://35.204.236.169:8000">
+<meta http-equiv="refresh" content="120; URL={{request.path}}">
 </head>
-
 <body>
-<table id="oddsmatcher" align="center" >
-    <tr>
-        <th>Competition</th>
-        <th>Outcome</th>
-        <th>Back Odds</th>
-        <th>Lay Odds</th>
-        <th>Liquidity</th>
-        <th>Date</th>
-        <th>Closeness</th>
-        <th>link</th>
-        <th>Lay loses</th>
-    </tr>
-    {% if runner_data %}
-    {% for runner in runner_data %}
-        <tr>
-          <td>{{runner.name}}</td>
-          <td>{{runner.score}}</td>
-          <td>{{runner.backodds}}</td>
-          <td>{{runner.layodds}}</td>
-          <td>€{{runner.liquidity}}</td>
-          <td>{{runner.day }} {{runner.time}}</td>
-          <td>{{runner.closeness}}%</td>
-          <td><a href="https://www.betfair.com/exchange/plus/football/market/{{runner.marketId}}" target="_blank" rel="noopener noreferrer">link</a></td>
-          <td>€{{runner.wins}}</td>
-        </tr>
-    {% endfor %}
-    {% endif %}
-</table>
+<div class="container">
+    <div class="filter">
+        <form method="post">
+            <span class="lay_odds">
+                Lay odds: <span id="current_lay_odds">20</span>
+                <input type="range" min="1" max="50" value="20" class="slider" id="lay_odds">
+            </span>
+            <span class="liquidity">
+                Liquidity: <span id="current_liquidity">20</span>
+                <input type="range" min="1" max="50" value="20" class="slider" id="liquidity">
+            </span>
+            <input type="submit" value="Filter">
+        </form>
+    </div>
+    <div>
+        <table id="oddsmatcher" align="center" >
+            <tr>
+                <th>Competition</th>
+                <th>Outcome</th>
+                <th>Back Odds</th>
+                <th>Lay Odds</th>
+                <th>Liquidity</th>
+                <th>Date</th>
+                <th>Closeness</th>
+                <th>link</th>
+                <th>Lay loses</th>
+            </tr>
+            {% if runner_data %}
+            {% for runner in runner_data %}
+                <tr>
+                <td>{{runner.name}}</td>
+                <td>{{runner.score}}</td>
+                <td>{{runner.backodds}}</td>
+                <td>{{runner.layodds}}</td>
+                <td>€{{runner.liquidity}}</td>
+                <td>{{runner.day }} {{runner.time}}</td>
+                <td>{{runner.closeness}}%</td>
+                <td><a href="https://www.betfair.com/exchange/plus/football/market/{{runner.marketId}}" target="_blank" rel="noopener noreferrer">link</a></td>
+                <td>€{{runner.wins}}</td>
+                </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+</div>
+
+
+<script>
+    var slider = document.getElementById("lay_odds");
+    var output = document.getElementById("current_lay_odds");
+    output.innerHTML = slider.value; // Display the default slider value
+
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+    output.innerHTML = this.value;
+    }
+</script>
 </body>
 </html>
