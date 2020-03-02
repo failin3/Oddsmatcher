@@ -96,11 +96,12 @@ def getBestMatches(date, application_key, session_key):
     game_classes = []
 
     #Get football events in date range
-    json_req = '[{{"jsonrpc": "2.0","method": "SportsAPING/v1.0/listEvents","params": {{"filter": {{"eventTypeIds": ["1"], "turnInPlayEnabled" : "false","marketStartTime": {{"from": "{}T{}:00Z","to": "{}T{}:00Z"}}}}}},"id": 1}}]'.format(date[0], date[1], date[3], date[2])
+    #, "turnInPlayEnabled" : "true" doesnt work
+    json_req = '[{{"jsonrpc": "2.0","method": "SportsAPING/v1.0/listEvents","params": {{"filter": {{"eventTypeIds": ["1"], "marketStartTime": {{"from": "{}T{}:00Z","to": "{}T{}:00Z"}}}}}},"id": 1}}]'.format(date[0], date[1], date[3], date[2])
     response = requests.post(url, data=json_req, headers=header)
     games = response.json()
     for event in games[0]["result"]:
-        #event_title = event["event"]["name"]
+        print(event["event"]["name"])
         list_of_games.append(event["event"]["id"])
 
 
