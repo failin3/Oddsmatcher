@@ -145,7 +145,6 @@ application_key, session_key = getApiCredentials()
 #Dont call keepAlive too often (once an hour)
 while True:
     sentKeepAlive(application_key, session_key)
-    keepAliveCounter += 1
     try:
         final_list = getBestMatches([START_DATE, START_TIME, END_TIME, END_DATE], application_key, session_key)
         json_s = '['
