@@ -1,6 +1,8 @@
 import json
 import operator
 from time import sleep
+from fuzzywuzzy import fuzz
+
 
 class Runner:
     def __init__(self, score, name, backodds, layodds, closeness, liquidity, marketId, day, time):
@@ -82,27 +84,31 @@ while True:
         betfair_name = bfgame["name"]
         for ssgame in ss_output:
             game_string = ssgame["name"]
-            first_word = game_string.split("-")[0]
-            second_word = game_string.split("vs")[1]
-            second_word = second_word.replace("-", " ")
-            second_word = second_word.strip()
-            second_word = second_word.split(" ")[0]
+            Str1 = game_string
+            Str2 = betfair_name
+            Str1 = Str1.replace("-", " ").lower()
+            Str2  = Str2.lower()
+            Str1_first = Str1.split(' vs ')[0].strip()
+            Str1_second = Str1.split(' vs ')[1].strip()
+            Str2_first = Str2.split(' v ')[0].strip()
+            Str2_second = Str2.split(' v ')[1].strip()
             try:
-                if betfair_name.lower().startswith('fc') or betfair_name.lower().startswith('al') or betfair_name.lower().startswith('fk') or betfair_name.lower().split("v")[1].strip().startswith('fc') or betfair_name.lower().split("v")[1].strip().startswith('al') or betfair_name.lower().split("v")[1].strip().startswith('fk'):
-                    if betfair_name.split(" ")[1].lower().startswith(game_string.split("-")[1].lower()) and betfair_name.split("v", 1)[1].strip().split(" ")[1].lower().startswith(game_string.split('vs-', 1)[1].split("-")[1].lower()):
-                        print("{} -> {}".format(betfair_name, game_string))
-                        next_one = True
-                        new_runners = checkOdds(bfgame, ssgame)
-                        if new_runners:
-                            good_runners = good_runners + new_runners
-                        break
-                elif betfair_name.lower().startswith(first_word.lower()) and betfair_name.lower().split("v")[1].strip().startswith(second_word.lower()) or (first_word.lower().startswith(betfair_name.split(" ")[0].strip().lower()) and second_word.startswith(betfair_name.split('v')[1].strip().lower())):          
+                if (Str1_first in Str2_first or Str2_first in Str1_first) and (Str1_second in Str2_second or Str2_second in Str1_second):
                     print("{} -> {}".format(betfair_name, game_string))
                     next_one = True
                     new_runners = checkOdds(bfgame, ssgame)
                     if new_runners:
                         good_runners = good_runners + new_runners
                     break
+                else:
+                    Ratio = fuzz.ratio(Str1,Str2)
+                    if Ratio > 80:
+                        print("{} -> {}".format(betfair_name, game_string))
+                        next_one = True
+                        new_runners = checkOdds(bfgame, ssgame)
+                        if new_runners:
+                            good_runners = good_runners + new_runners
+                        break
             except IndexError:
                 break
         if next_one == False:
