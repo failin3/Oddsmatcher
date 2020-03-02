@@ -143,13 +143,8 @@ def sentKeepAlive(application_key, session_key):
 application_key, session_key = getApiCredentials()
 
 #Dont call keepAlive too often (once an hour)
-keepAliveCounter = 0
-max_keepAlive = 30
-sentKeepAlive(application_key, session_key)
 while True:
-    if keepAliveCounter > 30:
-        sentKeepAlive(application_key, session_key)
-        keepAliveCounter = 0
+    sentKeepAlive(application_key, session_key)
     keepAliveCounter += 1
     try:
         final_list = getBestMatches([START_DATE, START_TIME, END_TIME, END_DATE], application_key, session_key)
