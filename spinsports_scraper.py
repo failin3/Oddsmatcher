@@ -128,7 +128,7 @@ browse_url = "https://spinsportsmga.spinpalace.com/en/sports/"
 driver = webdriver.Chrome("bin/chromedriver")
 
 while True:
-    url_list = getMatchUrls(browse_url, driver)
+    url_list = getMatchUrls(browse_url, driver)[:40]
     url_list = url_list[::-1]
     json_s = "["
     for url in url_list:
