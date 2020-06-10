@@ -1,16 +1,18 @@
 from BetfairInformation import *
 from spinsports_scraper import *
+from scraper_888sport import *
 from fuzzywuzzy import fuzz
 import operator
 
 
 class OddsmatcherEntry:
-    def __init__(self, name, bkma_odds, exch_odds, exch_liquidity, runner_id):
+    def __init__(self, name, bookmaker_odds, exchange_odds, exchange_liquidity, runner_id, closeness):
         self.name = name
-        self.bkma_odds = bkma_odds
-        self.exch_odds = exch_odds
-        self.exch_liquidity = exch_liquidity
+        self.bkma_odds = bookmaker_odds
+        self.exch_odds = exchange_odds
+        self.exch_liquidity = exchange_liquidity
         self.runner_id = runner_id
+        self.closeness = closeness
 
 def getBetfairGames():
     bfInfo = BetfairInformation()
@@ -66,15 +68,22 @@ def compareSpinsports(ss_games, bookmaker_games, set_closeness=95):
                     if (bf_odds != None) and (ss_odds[1] != None):
                         closeness = getCloseness(bf_odds, ss_odds[1])
                         if closeness > set_closeness:
-                            good_odds.append(OddsmatcherEntry(bf_game.name, ss_odds[1], bf_odds, liquidity, score))
-
-    print(["{}: {} - {}".format(runner.name, runner.bkma_odds, runner.exch_odds) for runner in good_odds])
+                            good_odds.append(OddsmatcherEntry(bf_game.name, ss_odds[1], bf_odds, liquidity, score, closeness))
+    good_ss_odds = sorted(good_ss_odds, key=operator.attrgetter('closeness'))
     return good_odds
+
 
 spinsports_games = getSpinsportsGames(2)
 betfair_games = getBetfairGames()
+#good_ss_odds = compareSpinsports(spinsports_games, betfair_games)
+list888sport = get888sportData()
 
-good_ss_odds = compareSpinsports(spinsports_games, betfair_games)
+# for runner in good_ss_odds:
+#     print("{} {}: {} - {}".format(runner.name, runner.runner_id, runner.bkma_odds, runner.exch_odds))
+
+for game in list888sport:
+    print("{}: 1: {} X: {}: 2{}".format(game.name, game.r1, game.rX, game.r2))
+
 
 
 
