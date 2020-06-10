@@ -124,7 +124,7 @@ class BetfairInformation:
         game_list = self.createGameClasses(response)
         return [item.market_id for item in response], game_list
 
-    def processMarkets(self, market_ids):
+    def processMarkets(self, api, market_ids):
         market_book = api.betting.list_market_book(market_ids, price_projection={"priceData" : ["EX_BEST_OFFERS"]})
         processed_list = []
         for game in market_book:
@@ -152,9 +152,6 @@ class BetfairInformation:
                     game_class.insertRunner(runner_odds)
         return game_list
 
-
-
-
 if __name__ == "__main__": 
     bfInfo = BetfairInformation()
     app_key, username, password = bfInfo.getApiCredentials()
@@ -165,7 +162,7 @@ if __name__ == "__main__":
     events = events[40:80]
     market_ids, game_list = bfInfo.getMarketIds(api, events)
 
-    list_with_odds = bfInfo.processMarkets(market_ids)
+    list_with_odds = bfInfo.processMarkets(api, market_ids)
     game_list = bfInfo.updateGameClasses(list_with_odds, game_list)
 
     for game in game_list:

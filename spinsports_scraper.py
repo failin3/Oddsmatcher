@@ -8,12 +8,26 @@ import time
 
 from bs4 import BeautifulSoup
 
-start_time = time.time()
-
 class Game:
     def __init__(self, name, odds):
         self.name = name
-        self.odds = odds
+        self.s00 = odds[0]
+        self.s10 = odds[1]
+        self.s11 = odds[2] 
+        self.s01 = odds[3] 
+        self.s20 = odds[4] 
+        self.s21 = odds[5] 
+        self.s22 = odds[6] 
+        self.s12 = odds[7] 
+        self.s02 = odds[8] 
+        self.s30 = odds[9] 
+        self.s31 = odds[10] 
+        self.s32 = odds[11] 
+        self.s33 = odds[12] 
+        self.s23 = odds[13] 
+        self.s13 = odds[14] 
+        self.s03 = odds[15] 
+
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, 
             sort_keys=True, indent=4)
@@ -119,29 +133,31 @@ def getMatchUrls(url, driver):
             url_list.append(url)
     return url_list
 
+if __name__ == "__main__":
+
+    url = "/en/sports/soccer/germany-1-bundesliga/20200224/eintracht-frankfurt-vs-union-berlin/"
+    match_url = "https://spinsportsmga.spinpalace.com/en/sports/soccer/"
+    browse_url = "https://spinsportsmga.spinpalace.com/en/sports/"
+
+    driver = webdriver.Chrome("bin/chromedriver")
 
 
-url = "/en/sports/soccer/germany-1-bundesliga/20200224/eintracht-frankfurt-vs-union-berlin/"
-match_url = "https://spinsportsmga.spinpalace.com/en/sports/soccer/"
-browse_url = "https://spinsportsmga.spinpalace.com/en/sports/"
 
-driver = webdriver.Chrome("bin/chromedriver")
+    while True:
+        url_list = getMatchUrls(browse_url, driver)[:40]
+        #url_list = url_list[::-1]
+        json_s = "["
+        for url in url_list:
+            game = parseMatch(url, driver)
+            if game != None:
+                json_s += game.toJSON()
+        json_s = json_s.replace("}{", "},{")
+        json_s += "]"
 
-while True:
-    url_list = getMatchUrls(browse_url, driver)[:40]
-    url_list = url_list[::-1]
-    json_s = "["
-    for url in url_list:
-        game = parseMatch(url, driver)
-        if game != None:
-            json_s += game.toJSON()
-    json_s = json_s.replace("}{", "},{")
-    json_s += "]"
+        with open("ss_output.json", "w") as file:
+            file.write(json_s)
 
-    with open("ss_output.json", "w") as file:
-        file.write(json_s)
-
-    sleep(5*60)    
+        sleep(5*60)    
 
 
 
