@@ -3,6 +3,7 @@ from spinsports_scraper import *
 from scraper_888sport import *
 from fuzzywuzzy import fuzz
 import operator
+import pymysql.cursors
 
 
 class OddsmatcherEntry:
@@ -29,9 +30,9 @@ def getSpinsportsGames(nr_of_games):
     return spinsports_games
 
 def getCloseness(ss_odds, bf_odds):
-    return (1/float(bf_odds) - 1/float(ss_odds))*100 + 100
+    return (1/float(ss_odds) - 1/float(bf_odds))*100 + 100
 
-def compareSpinsports(ss_games, bookmaker_games, set_closeness=95, set_odds=30):
+def compareOdds(ss_games, bookmaker_games, set_closeness=95, set_odds=30):
     """Compares the odds of all spinsports games in the list ss_games
     To those of the bookmaker selected.
     First checks whether the names of the two teams are similar, then it calculates the closenss of the odds
@@ -57,20 +58,45 @@ def compareSpinsports(ss_games, bookmaker_games, set_closeness=95, set_odds=30):
     good_odds = sorted(good_odds, key=operator.attrgetter('closeness'))
     return good_odds
 
+def insertData(oddsmatcher_games):
+    connection = pymysql.connect(host='185.104.29.14',
+                             user='u80189p74860_oddsmatcher',
+                             password='Kq90*r%XXlEXaUIvoxwo',
+                             db='u80189p74860_oddsmatcher',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
+    try:
+        with connection.cursor() as cursor:
+            sql = "DELETE FROM Odds"
+            cursor.execute(sql)
+        with connection.cursor() as cursor:                        
+            for game in oddsmatcher_games:
+                back_stake = 300
+                commission = 4/100
+                gains_bookmaker = back_stake*float(game.bkma_odds)
+                lay_stake = (gains_bookmaker-800-back_stake)/(float(game.exch_odds)-1)
+                exchange_lay_wins = lay_stake*(1-commission)-back_stake
+                sql = "INSERT INTO Spinsports (MatchName, ExchangeOdds, BookmakerOdds, Closeness, Date, Liquidity, Loss) VALUES (%s,%s,%s,%s,%s,%s,%s)" 
+                cursor.execute(sql, (game.name, game.exch_odds, game.bkma_odds, game.closeness, 1, game.exch_liquidity, exchange_lay_wins))
+        connection.commit()
+    finally:
+        connection.close()
+
 spinsports_games = getSpinsportsGames(10)
-betfair_games = getGames()
 #list888sport = get888sportData()
-listSpinsports = compareSpinsports(spinsports_games, betfair_games)
-#list888sport = compareSpinsports(list888sport, betfair_games)
+betfair_games = getGames()
+listSpinsports = compareOdds(spinsports_games, betfair_games)
+#list888sport = compareOdds(list888sport, betfair_games)
+insertData(listSpinsports)
 
 
-for game in listSpinsports:
-    back_stake = 300
-    commission = 4/100
-    gains_bookmaker = back_stake*float(game.bkma_odds)
-    lay_stake = (gains_bookmaker-800-back_stake)/(float(game.exch_odds)-1)
-    exchange_lay_wins = lay_stake*(1-commission)-back_stake
-    print("{}: {} - {}  €{}".format(game.name, game.bkma_odds, game.exch_odds, exchange_lay_wins))
+# for game in list888sport:
+#     # back_stake = 300
+#     # commission = 4/100
+#     # gains_bookmaker = back_stake*float(game.bkma_odds)
+#     # lay_stake = (gains_bookmaker-800-back_stake)/(float(game.exch_odds)-1)
+#     # exchange_lay_wins = lay_stake*(1-commission)-back_stake
+#     print("{}: {} - {}".format(game.name, game.bkma_odds, game.exch_odds))
 
 
 

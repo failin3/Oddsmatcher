@@ -104,9 +104,10 @@ def getCorrectScore(game, markets):
 def getOutrights(game, markets):
     try:
         data = [runner.ex.available_to_lay[0] for runner in markets.runners]
+        #rX is the last one in the packet apparently
         r1 = [data[0].size, data[0].price]
-        rX = [data[1].size, data[1].price]
-        r2 = [data[2].size, data[2].price]
+        rX = [data[2].size, data[2].price]
+        r2 = [data[1].size, data[1].price]
     except IndexError:
         r1 = None
         rX = None
