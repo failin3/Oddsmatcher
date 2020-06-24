@@ -1,4 +1,4 @@
-from BetfairInformation import *
+from BetfairClass import *
 from spinsports_scraper import *
 from scraper_888sport import *
 from fuzzywuzzy import fuzz
@@ -13,21 +13,6 @@ class OddsmatcherEntry:
         self.exch_liquidity = exchange_liquidity
         self.runner_id = runner_id
         self.closeness = closeness
-
-def getBetfairGames():
-    bfInfo = BetfairInformation()
-    app_key, username, password = bfInfo.getApiCredentials()
-    api = betfairlightweight.APIClient(username, password , app_key)
-    api.login_interactive()
-    events = bfInfo.getEvents(api, START_DATE, START_TIME, END_DATE, END_TIME)
-    #Limit to the top 40
-    events = events[:40]
-    market_ids, game_list = bfInfo.getMarketIds(api, events)
-
-    list_with_odds = bfInfo.processMarkets(api, market_ids)
-    game_list = bfInfo.updateGameClasses(list_with_odds, game_list)
-
-    return game_list
 
 def getSpinsportsGames(nr_of_games):
     url = "/en/sports/soccer/germany-1-bundesliga/20200224/eintracht-frankfurt-vs-union-berlin/"
@@ -46,7 +31,7 @@ def getSpinsportsGames(nr_of_games):
 def getCloseness(ss_odds, bf_odds):
     return (1/float(bf_odds) - 1/float(ss_odds))*100 + 100
 
-def compareSpinsports(ss_games, bookmaker_games, set_closeness=95):
+def compareSpinsports(ss_games, bookmaker_games, set_closeness=95, set_odds=30):
     """Compares the odds of all spinsports games in the list ss_games
     To those of the bookmaker selected.
     First checks whether the names of the two teams are similar, then it calculates the closenss of the odds
@@ -56,7 +41,7 @@ def compareSpinsports(ss_games, bookmaker_games, set_closeness=95):
         for bf_game in bookmaker_games:
             if fuzz.ratio(ss_game.name, bf_game.name) > 50:
                 print("{} == {}".format(ss_game.name, bf_game.name))
-                bf_runner = bf_game.runner
+                bf_runner = bf_game.correct_score
                 
                 vars_in_bf = list(vars(bf_runner).items())
                 vars_in_ss = list(vars(ss_game).items())[1:]
@@ -67,22 +52,25 @@ def compareSpinsports(ss_games, bookmaker_games, set_closeness=95):
                     score = bf_data[0]
                     if (bf_odds != None) and (ss_odds[1] != None):
                         closeness = getCloseness(bf_odds, ss_odds[1])
-                        if closeness > set_closeness:
+                        if closeness > set_closeness and float(ss_odds[1]) < set_odds:
                             good_odds.append(OddsmatcherEntry(bf_game.name, ss_odds[1], bf_odds, liquidity, score, closeness))
-    good_ss_odds = sorted(good_ss_odds, key=operator.attrgetter('closeness'))
+    good_odds = sorted(good_odds, key=operator.attrgetter('closeness'))
     return good_odds
 
+spinsports_games = getSpinsportsGames(10)
+betfair_games = getGames()
+#list888sport = get888sportData()
+listSpinsports = compareSpinsports(spinsports_games, betfair_games)
+#list888sport = compareSpinsports(list888sport, betfair_games)
 
-spinsports_games = getSpinsportsGames(2)
-betfair_games = getBetfairGames()
-#good_ss_odds = compareSpinsports(spinsports_games, betfair_games)
-list888sport = get888sportData()
 
-# for runner in good_ss_odds:
-#     print("{} {}: {} - {}".format(runner.name, runner.runner_id, runner.bkma_odds, runner.exch_odds))
-
-for game in list888sport:
-    print("{}: 1: {} X: {}: 2{}".format(game.name, game.r1, game.rX, game.r2))
+for game in listSpinsports:
+    back_stake = 300
+    commission = 4/100
+    gains_bookmaker = back_stake*float(game.bkma_odds)
+    lay_stake = (gains_bookmaker-800-back_stake)/(float(game.exch_odds)-1)
+    exchange_lay_wins = lay_stake*(1-commission)-back_stake
+    print("{}: {} - {}  €{}".format(game.name, game.bkma_odds, game.exch_odds, exchange_lay_wins))
 
 
 
