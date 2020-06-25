@@ -18,7 +18,8 @@ class OutrightGame:
 def get888sportData():
     driver = webdriver.Chrome("bin/chromedriver")
     driver.get("https://www.888sport.com/#/filter/football")
-    sleep(5)
+    sleep(10)
+    webdriver.ActionChains(driver).key_down(u'\ue00d').perform()
     soup = BeautifulSoup(driver.page_source, features="html.parser")
     game_list = []
     for element in soup.find_all("a", class_="KambiBC-event-item__link"):

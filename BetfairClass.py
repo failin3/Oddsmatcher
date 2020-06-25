@@ -2,6 +2,7 @@ import betfairlightweight
 import json
 import datetime
 from time import sleep
+import pytz
 
 START_DATE = DATE_OF_MATCHES = datetime.datetime.now().strftime("%Y-%m-%d")
 END_DATE = DATE_OF_MATCHES = (datetime.datetime.now()+datetime.timedelta(days=1)).strftime("%Y-%m-%d")
@@ -72,7 +73,7 @@ class BetfairGame:
     def __init__(self, name, event_id, day_, time_):
         self.name = name
         self.event_id = event_id
-        self.day = day_
+        self.date = day_
         self.time = time_
         self.outrights = None
         self.correct_score = None
@@ -140,7 +141,12 @@ def getGames():
                 event_name = event.event.name
                 event_id = event.event.id
                 event_date = event.event.open_date
-                game = BetfairGame(event_name, event_id, event_date, None)
+                #Convert timezone
+                amsterdam = pytz.timezone('Europe/Amsterdam')
+                event_date = pytz.utc.localize(event_date).astimezone(amsterdam)
+                date_ = event_date.strftime("%d-%m")
+                time_ = event_date.strftime("%H:%M") 
+                game = BetfairGame(event_name, event_id, date_, time_)
                 #Get correct score markets
                 filter = {
                     #"textQuery" : "CORRECT_SCORE",

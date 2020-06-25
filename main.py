@@ -7,13 +7,16 @@ import pymysql.cursors
 
 
 class OddsmatcherEntry:
-    def __init__(self, name, bookmaker_odds, exchange_odds, exchange_liquidity, runner_id, closeness):
+    def __init__(self, name, bookmaker_odds, exchange_odds, exchange_liquidity, runner_id, closeness, date, time, bet):
         self.name = name
         self.bkma_odds = bookmaker_odds
         self.exch_odds = exchange_odds
         self.exch_liquidity = exchange_liquidity
         self.runner_id = runner_id
         self.closeness = closeness
+        self.date = date
+        self.time = time
+        self.bet = bet
 
 def getSpinsportsGames(nr_of_games):
     url = "/en/sports/soccer/germany-1-bundesliga/20200224/eintracht-frankfurt-vs-union-berlin/"
@@ -32,17 +35,49 @@ def getSpinsportsGames(nr_of_games):
 def getCloseness(ss_odds, bf_odds):
     return (1/float(ss_odds) - 1/float(bf_odds))*100 + 100
 
-def compareOdds(ss_games, bookmaker_games, set_closeness=95, set_odds=30):
+def compareNames(bookmaker_game, betfair_name):
+    try:
+        Str1 = bookmaker_game
+        Str2 = betfair_name
+        Str1 = Str1.replace("-", " ").lower()
+        Str2  = Str2.lower()
+        Str1_first = Str1.split(' vs ')[0].strip()
+        Str1_second = Str1.split(' vs ')[1].strip()
+        Str2_first = Str2.split(' v ')[0].strip()
+        Str2_second = Str2.split(' v ')[1].strip()
+        if (Str1_first in Str2_first or Str2_first in Str1_first) and (Str1_second in Str2_second or Str2_second in Str1_second):
+            return True
+        else:
+            Ratio = fuzz.ratio(Str1,Str2)
+            if Ratio > 80:
+                return True
+        return False
+    except IndexError:
+        return False
+
+def makeVarReadable(var, market):
+    if market == "correct_score":
+        score1 = var[1]
+        score2 = var[2]
+        return score1 + "-" + score2
+    if market == "outrights":
+        return var
+
+def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30):
     """Compares the odds of all spinsports games in the list ss_games
     To those of the bookmaker selected.
     First checks whether the names of the two teams are similar, then it calculates the closenss of the odds
     Returns a list of the OddsmatcherEntrys that are within a given closesness"""
+    assert(market == "correct_score" or market == "outrights")
     good_odds = []
     for ss_game in ss_games:
         for bf_game in bookmaker_games:
-            if fuzz.ratio(ss_game.name, bf_game.name) > 50:
-                print("{} == {}".format(ss_game.name, bf_game.name))
-                bf_runner = bf_game.correct_score
+            if compareNames(ss_game.name, bf_game.name) or fuzz.ratio(ss_game.name, bf_game.name) > 60:
+                print("{} == {} score: {}".format(ss_game.name, bf_game.name, fuzz.ratio(ss_game.name, bf_game.name)))
+                if market == "correct_score":
+                    bf_runner = bf_game.correct_score
+                elif market == "outrights":
+                    bf_runner = bf_game.outrights
                 
                 vars_in_bf = list(vars(bf_runner).items())
                 vars_in_ss = list(vars(ss_game).items())[1:]
@@ -53,12 +88,13 @@ def compareOdds(ss_games, bookmaker_games, set_closeness=95, set_odds=30):
                     score = bf_data[0]
                     if (bf_odds != None) and (ss_odds[1] != None):
                         closeness = getCloseness(bf_odds, ss_odds[1])
-                        if closeness > set_closeness and float(ss_odds[1]) < set_odds:
-                            good_odds.append(OddsmatcherEntry(bf_game.name, ss_odds[1], bf_odds, liquidity, score, closeness))
+                        bet = makeVarReadable(ss_odds[0], market)
+                        if closeness > set_closeness and float(bf_odds) < set_odds:
+                            good_odds.append(OddsmatcherEntry(bf_game.name, ss_odds[1], bf_odds, liquidity, score, closeness, bf_game.date, bf_game.time, bet))
     good_odds = sorted(good_odds, key=operator.attrgetter('closeness'))
     return good_odds
 
-def insertData(oddsmatcher_games):
+def insertData(oddsmatcher_games, table_name):
     connection = pymysql.connect(host='185.104.29.14',
                              user='u80189p74860_oddsmatcher',
                              password='Kq90*r%XXlEXaUIvoxwo',
@@ -67,7 +103,7 @@ def insertData(oddsmatcher_games):
                              cursorclass=pymysql.cursors.DictCursor)
     try:
         with connection.cursor() as cursor:
-            sql = "DELETE FROM Odds"
+            sql = "DELETE FROM {}".format(table_name)
             cursor.execute(sql)
         with connection.cursor() as cursor:                        
             for game in oddsmatcher_games:
@@ -76,18 +112,18 @@ def insertData(oddsmatcher_games):
                 gains_bookmaker = back_stake*float(game.bkma_odds)
                 lay_stake = (gains_bookmaker-800-back_stake)/(float(game.exch_odds)-1)
                 exchange_lay_wins = lay_stake*(1-commission)-back_stake
-                sql = "INSERT INTO Spinsports (MatchName, ExchangeOdds, BookmakerOdds, Closeness, Date, Liquidity, Loss) VALUES (%s,%s,%s,%s,%s,%s,%s)" 
-                cursor.execute(sql, (game.name, game.exch_odds, game.bkma_odds, game.closeness, 1, game.exch_liquidity, exchange_lay_wins))
+                sql = "INSERT INTO {} (MatchName, ExchangeOdds, BookmakerOdds, Closeness, Date, Time, Liquidity, Loss, Bet) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)" .format(table_name)
+                cursor.execute(sql, (game.name, game.exch_odds, game.bkma_odds, game.closeness, game.date, game.time, game.exch_liquidity, exchange_lay_wins, game.bet))
         connection.commit()
     finally:
         connection.close()
 
-spinsports_games = getSpinsportsGames(10)
-#list888sport = get888sportData()
+bookmaker_games = getSpinsportsGames(10)
+#bookmaker_games = get888sportData()
 betfair_games = getGames()
-listSpinsports = compareOdds(spinsports_games, betfair_games)
+compared_list = compareOdds(bookmaker_games, betfair_games, "correct_score")
 #list888sport = compareOdds(list888sport, betfair_games)
-insertData(listSpinsports)
+insertData(compared_list, "Spinsports")
 
 
 # for game in list888sport:
