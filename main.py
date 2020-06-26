@@ -32,7 +32,7 @@ def getSpinsportsGames(nr_of_games):
     match_url = "https://spinsportsmga.spinpalace.com/en/sports/soccer/"
     browse_url = "https://spinsportsmga.spinpalace.com/en/sports/"
     if argument.production:
-        display = Display(visible=1, size=(300, 400))
+        display = Display(visible=0, size=(800, 600))
         display.start()
     driver = webdriver.Chrome("bin/chromedriver")
 
