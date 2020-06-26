@@ -2,9 +2,17 @@ from BetfairClass import *
 from pyvirtualdisplay import Display
 from spinsports_scraper import *
 from scraper_888sport import *
+from time import sleep
 from fuzzywuzzy import fuzz
 import operator
 import pymysql.cursors
+import argparse
+
+
+#Parse command line arguments
+parser = argparse.ArgumentParser(description = "Description for my parser")
+parser.add_argument("-p", "--production", help = "Example: Help argument", action='store_true')
+argument = parser.parse_args()
 
 
 class OddsmatcherEntry:
@@ -23,8 +31,9 @@ def getSpinsportsGames(nr_of_games):
     url = "/en/sports/soccer/germany-1-bundesliga/20200224/eintracht-frankfurt-vs-union-berlin/"
     match_url = "https://spinsportsmga.spinpalace.com/en/sports/soccer/"
     browse_url = "https://spinsportsmga.spinpalace.com/en/sports/"
-    display = Display(visible=1, size=(300, 400))
-    display.start()
+    if argument.production:
+        display = Display(visible=1, size=(300, 400))
+        display.start()
     driver = webdriver.Chrome("bin/chromedriver")
 
     url_list = getMatchUrls(browse_url, driver)[:nr_of_games]
@@ -120,12 +129,15 @@ def insertData(oddsmatcher_games, table_name):
     finally:
         connection.close()
 
-bookmaker_games = getSpinsportsGames(10)
-#bookmaker_games = get888sportData()
-betfair_games = getGames()
-compared_list = compareOdds(bookmaker_games, betfair_games, "correct_score")
-#list888sport = compareOdds(list888sport, betfair_games)
-insertData(compared_list, "Spinsports")
+
+while True:
+    bookmaker_games = getSpinsportsGames(15)
+    #bookmaker_games = get888sportData()
+    betfair_games = getGames()
+    compared_list = compareOdds(bookmaker_games, betfair_games, "correct_score")
+    #list888sport = compareOdds(list888sport, betfair_games)
+    insertData(compared_list, "Spinsports")
+    sleep(120)
 
 
 # for game in list888sport:
