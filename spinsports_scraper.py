@@ -111,6 +111,9 @@ def getMatchUrls(url, driver):
     url_list = []
     driver.get(url)
     sleep(4)
+
+    driver.find_elements_by_class_name("page-header-dropdown-text")[1].click()
+    driver.find_element_by_id("odd_style_1").click()
     
     #Click to go to the page of all games next 24 hours
     elements = driver.find_elements_by_tag_name("li")
