@@ -12,6 +12,8 @@ import argparse
 #Parse command line arguments
 parser = argparse.ArgumentParser(description = "Description for my parser")
 parser.add_argument("-p", "--production", help = "Example: Help argument", action='store_true')
+parser.add_argument("-l", "--logs", help = "Example: Help argument", action='store_true')
+
 argument = parser.parse_args()
 
 
@@ -40,8 +42,11 @@ def getSpinsportsGames(nr_of_games):
     spinsports_games = []
     for url in url_list:
         game = parseMatch(url, driver)
+        if argument.logs:
+            print("Parsing {}".format(game.name))
         spinsports_games.append(game)
-    display.stop()
+    if argument.production:
+        display.stop()
     return spinsports_games
 
 def getCloseness(ss_odds, bf_odds):
