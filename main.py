@@ -41,7 +41,7 @@ def getSpinsportsGames(nr_of_games):
     url_list = getMatchUrls(browse_url, driver)[:nr_of_games]
     spinsports_games = []
     for url in url_list:
-        game = parseMatch(url, driver)
+        game = parseMatch(url, driver, argument.logs)
         if argument.logs:
             print("Parsing {}".format(game.name))
         spinsports_games.append(game)
@@ -90,7 +90,8 @@ def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30
     for ss_game in ss_games:
         for bf_game in bookmaker_games:
             if compareNames(ss_game.name, bf_game.name) or fuzz.ratio(ss_game.name, bf_game.name) > 60:
-                print("{} == {} score: {}".format(ss_game.name, bf_game.name, fuzz.ratio(ss_game.name, bf_game.name)))
+                if argument.logs:
+                    print("{} == {} score: {}".format(ss_game.name, bf_game.name, fuzz.ratio(ss_game.name, bf_game.name)))
                 if market == "correct_score":
                     bf_runner = bf_game.correct_score
                 elif market == "outrights":
@@ -137,12 +138,17 @@ def insertData(oddsmatcher_games, table_name):
 
 
 while True:
+    print("Collecting bookmaker info")
     bookmaker_games = getSpinsportsGames(15)
     #bookmaker_games = get888sportData()
+    print("Collecting exchange info")
     betfair_games = getGames()
+    print("Comparing odds")
     compared_list = compareOdds(bookmaker_games, betfair_games, "correct_score")
     #list888sport = compareOdds(list888sport, betfair_games)
+    print("Inserting into database")
     insertData(compared_list, "Spinsports")
+    print("Sleeping 120 seconds")
     sleep(120)
 
 

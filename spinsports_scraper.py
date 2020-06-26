@@ -69,7 +69,7 @@ def sortOdds(odds, scores):
             odds_sorted[15] = odd
     return odds_sorted
 
-def parseMatch(url, driver):
+def parseMatch(url, driver, logs=False):
     url = "https://spinsportsmga.spinpalace.com" + url
     game_name = url.rsplit("/", 2)[-2]
     driver.get(url)
@@ -79,6 +79,8 @@ def parseMatch(url, driver):
     while True:
         try:
             soup = BeautifulSoup(driver.page_source, features="html.parser")
+            if logs:
+                print("")
             for element in soup.find_all("li", class_="hoverable-event-container"):
                 span_class = element.find_all("span", class_="toggleableHeadline-text")[0]
                 market = span_class.text
@@ -99,9 +101,13 @@ def parseMatch(url, driver):
             sleep(1)
             #Give 5 attempts to find the buttons, if this fails 5 times stop giving these tries and immediately fail
             if failure_counter > 5:
+                if logs:
+                    print("5 failures, aborting this match")
                 return None
             attempt_counter += 1
             if attempt_counter > 5:
+                if logs:
+                    print("5 attempts, aborting this match")
                 return None
             else:
                 failure_counter += 1
