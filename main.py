@@ -43,10 +43,11 @@ def getSpinsportsGames(nr_of_games):
     for url in url_list:
         game = parseMatch(url, driver, argument.logs)
         if argument.logs:
-            print("Parsing {}".format(game.name))
+            print("Parsed {}".format(game.name))
         spinsports_games.append(game)
     if argument.production:
         display.stop()
+    driver.quit()
     return spinsports_games
 
 def getCloseness(ss_odds, bf_odds):

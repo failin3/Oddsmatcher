@@ -70,9 +70,13 @@ def sortOdds(odds, scores):
     return odds_sorted
 
 def parseMatch(url, driver, logs=False):
+    if logs:
+        print("Going  to Match URL")
     url = "https://spinsportsmga.spinpalace.com" + url
     game_name = url.rsplit("/", 2)[-2]
     driver.get(url)
+    if logs:
+        print("Sleeping 4 seconds")
     sleep(4)
     attempt_counter = 0
     failure_counter = 0
@@ -80,7 +84,7 @@ def parseMatch(url, driver, logs=False):
         try:
             soup = BeautifulSoup(driver.page_source, features="html.parser")
             if logs:
-                print("")
+                print("Converted to bs4")
             for element in soup.find_all("li", class_="hoverable-event-container"):
                 span_class = element.find_all("span", class_="toggleableHeadline-text")[0]
                 market = span_class.text
