@@ -1,0 +1,6 @@
+betfairlightweight
+pytz
+selenium
+fuzzywuzzy
+PyMySQL
+bs4
