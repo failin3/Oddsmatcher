@@ -10,9 +10,9 @@ import argparse
 
 
 #Parse command line arguments
-parser = argparse.ArgumentParser(description = "Description for my parser")
-parser.add_argument("-p", "--production", help = "Example: Help argument", action='store_true')
-parser.add_argument("-l", "--logs", help = "Example: Help argument", action='store_true')
+parser = argparse.ArgumentParser(description = "Oddsmatcher backend")
+parser.add_argument("-p", "--production", help = "Runs oddsmatcher without display", action='store_true')
+parser.add_argument("-l", "--logs", help = "Show more verbose logging", action='store_true')
 
 argument = parser.parse_args()
 
@@ -145,7 +145,10 @@ while True:
     print("Collecting exchange info")
     betfair_games = getGames()
     print("Comparing odds")
-    compared_list = compareOdds(bookmaker_games, betfair_games, "correct_score")
+    try:
+        compared_list = compareOdds(bookmaker_games, betfair_games, "correct_score")
+    except:
+        print("Probably float by zero error, trying again")
     #list888sport = compareOdds(list888sport, betfair_games)
     print("Inserting into database")
     insertData(compared_list, "Spinsports")
