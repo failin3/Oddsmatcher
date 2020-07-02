@@ -142,7 +142,7 @@ def getMatchUrls(url, driver):
     sleep(1)
     for game in soup.find_all("a", class_="event-details event-details-upcomming"):
         url = game["href"]
-        if "/en/sports/soccer/" in url and url not in url_list:
+        if "/en/sports/soccer/" in url and url not in url_list and not "esports" in url:
             url_list.append(url)
     return url_list
 
