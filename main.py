@@ -2,6 +2,7 @@ from BetfairClass import *
 from pyvirtualdisplay import Display
 from spinsports_scraper import *
 from scraper_888sport import *
+from selenium.common.exceptions import WebDriverException
 from time import sleep
 from fuzzywuzzy import fuzz
 import operator
@@ -29,14 +30,17 @@ class OddsmatcherEntry:
         self.time = time
         self.bet = bet
 
-def getSpinsportsGames(nr_of_games):
-    url = "/en/sports/soccer/germany-1-bundesliga/20200224/eintracht-frankfurt-vs-union-berlin/"
-    match_url = "https://spinsportsmga.spinpalace.com/en/sports/soccer/"
-    browse_url = "https://spinsportsmga.spinpalace.com/en/sports/"
+def startChromeDriver():
     if argument.production:
         display = Display(visible=0, size=(800, 600))
         display.start()
     driver = webdriver.Chrome("bin/chromedriver")
+    return driver
+
+def getSpinsportsGames(nr_of_games, driver):
+    url = "/en/sports/soccer/germany-1-bundesliga/20200224/eintracht-frankfurt-vs-union-berlin/"
+    match_url = "https://spinsportsmga.spinpalace.com/en/sports/soccer/"
+    browse_url = "https://spinsportsmga.spinpalace.com/en/sports/"
 
     url_list = getMatchUrls(browse_url, driver)[:nr_of_games]
     spinsports_games = []
@@ -45,9 +49,6 @@ def getSpinsportsGames(nr_of_games):
         if argument.logs:
             print("Parsed {}".format(game.name))
         spinsports_games.append(game)
-    if argument.production:
-        display.stop()
-    driver.quit()
     return spinsports_games
 
 def getCloseness(ss_odds, bf_odds):
@@ -138,9 +139,17 @@ def insertData(oddsmatcher_games, table_name):
         connection.close()
 
 
+print("Starting driver")
+driver = startChromeDriver()
+
 while True:
     print("Collecting bookmaker info")
-    bookmaker_games = getSpinsportsGames(15)
+    try:
+        bookmaker_games = getSpinsportsGames(15, driver)
+    except WebDriverException:
+        print("Chrome has crashed, reopening")
+        driver = startChromeDriver()
+        bookmaker_games = getSpinsportsGames(15, driver)
     #bookmaker_games = get888sportData()
     print("Collecting exchange info")
     betfair_games = getGames()
@@ -149,11 +158,12 @@ while True:
         compared_list = compareOdds(bookmaker_games, betfair_games, "correct_score")
     except:
         print("Probably float by zero error, trying again")
+        continue
     #list888sport = compareOdds(list888sport, betfair_games)
     print("Inserting into database")
     insertData(compared_list, "Spinsports")
-    print("Sleeping 120 seconds")
-    sleep(120)
+    print("Sleeping 5 minutes")
+    sleep(60*5)
 
 
 # for game in list888sport:
