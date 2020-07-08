@@ -4,7 +4,7 @@ from time import sleep
 
 betsson_url = "https://www.betsson.com/en/sportsbook/football?tab=competitionsAndLeagues"
 betsafe_url = "https://www.betsafe.com/en/sportsbook/football?tab=competitionsAndLeagues"
-
+casinowinner_url = "https://sb.bpsgameserver.com/?token=00000000-0000-0000-0000-000000000000&sid=1101&lc=en&tz=GMT+Standard+Time&dc=EUR&c=nl-NL&pagemenuheaderurl=https%3a%2f%2fwww.casinowinner.com%2fen%2fsport%2fPageMenuHeader.aspx&mainpromourl=https%3a%2f%2fwww.casinowinner.com%2fen%2fsport%2fMainPromo.aspx&articleurl=https%3a%2f%2fwww.casinowinner.com%2fen%2fsport%2f&sidebarpromourl=https%3a%2f%2fwww.casinowinner.com%2fen%2fsport%2fSidebarPromo.aspx&proxyurl=https%3a%2f%2fwww.casinowinner.com%2fsport%2fScript%2fCross-frame%2fproxy.html&minigamesurl=https%3a%2f%2fwww.casinowinner.com%2fen%2fsport%2fMiniGame.aspx&mc=%7B%22marketing%22%3A1%7D"
 
 class OutrightGame:
     def __init__(self, name, r1, rX, r2):
@@ -65,10 +65,32 @@ def parseBetsafe(driver):
             game_list.append(game)
     return game_list
 
+def parseCasinowinner(driver):
+    driver.get(casinowinner_url)
+    #Piece of shit website
+    sleep(10)
+    element = driver.find_element_by_id("leftmenuitem1")
+    #This thing has 95!!! Why!?!? We just choose the first one LOL
+    element.find_elements_by_tag_name("material-checkbox")[0].click()
+    sleep(1)
+    driver.find_elements_by_xpath("//*[contains(text(), 'Show')]")[0].click()
+    sleep(5)
+    soup = BeautifulSoup(driver.page_source, features="html.parser")
+    game_list = []
+    for bet in soup.find_all("div", class_="market-mw ng-scope"):
+        game_name = bet.find_all("div", class_="eventNameTruncate")[0].text
+        selection_buttons = bet.find_all("material-button")
+        r1 = selection_buttons[0].text
+        rX = selection_buttons[1].text
+        r2 = selection_buttons[2].text
+        #print("{}: {} - {} - {}".format(game_name, r1, rX, r2))
+        game = OutrightGame(game_name, r1, rX, r2)
+        game_list.append(game)
+    return game_list
 
 if __name__ == "__main__":
     driver = webdriver.Chrome("bin/chromedriver")
-    game_list = parseBetsafe(driver)
+    game_list = parseCasinowinner(driver)
     for game in game_list:
         print("{}: {} - {} - {}".format(game.name, game.r1, game.rX, game.r2))
     
