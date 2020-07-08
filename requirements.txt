@@ -4,3 +4,4 @@ selenium
 fuzzywuzzy
 PyMySQL
 bs4
+pyvirtualdisplay
