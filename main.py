@@ -49,7 +49,8 @@ def getSpinsportsGames(nr_of_games, driver):
         game = parseMatch(url, driver, argument.logs)
         if argument.logs:
             print("Parsed {}".format(game.name))
-        spinsports_games.append(game)
+        if game != None:
+            spinsports_games.append(game)
     return spinsports_games
 
 def getCloseness(ss_odds, bf_odds):
@@ -157,9 +158,8 @@ while True:
     print("Comparing odds")
     try:
         compared_list = compareOdds(bookmaker_games, betfair_games, "correct_score")
-    except:
-        print("Probably float by zero error, trying again")
-        continue
+    except Exception as e:
+        print(e)
     print("Inserting into database")
     insertData(compared_list, "Spinsports")
     print("Collecting Betsson group data")
