@@ -162,34 +162,34 @@ while True:
         print(e)
     print("Inserting into database")
     insertData(compared_list, "Spinsports")
-    print("Collecting Betsson group data")
-    try:
-        betsson_games = parseBetsson(driver)
-        betsafe_games = parseBetsafe(driver)
-        casinowinner_games = parseCasinowinner(driver)
-    except WebDriverException:
-        print("Chrome has crashed, reopening")
-        driver = startChromeDriver()
-        betsson_games = parseBetsson(driver)
-        betsafe_games = parseBetsafe(driver)
-        casinowinner_games = parseCasinowinner(driver)
-    try:
-        betsson_games = compareOdds(betsson_games, betfair_games, "outrights")
-        insertData(compared_list, "Betsson")
-    except:
-        print("Probably float by zero error, skipping for now")
-    try:
-        betsafe_games = compareOdds(betsafe_games, betfair_games, "outrights")
-        insertData(compared_list, "Betsafe")
-    except:
-        print("Probably float by zero error, skipping for now")
-    try:
-        casinowinner_games = compareOdds(casinowinner_games, betfair_games, "outrights")
-        insertData(compared_list, "Casinowinner")
-    except:
-        print("Probably float by zero error, skipping for now")
-    print("Sleeping for 1 minute")
-    sleep(60*1)
+    # print("Collecting Betsson group data")
+    # try:
+    #     betsson_games = parseBetsson(driver)
+    #     betsafe_games = parseBetsafe(driver)
+    #     casinowinner_games = parseCasinowinner(driver)
+    # except WebDriverException:
+    #     print("Chrome has crashed, reopening")
+    #     driver = startChromeDriver()
+    #     betsson_games = parseBetsson(driver)
+    #     betsafe_games = parseBetsafe(driver)
+    #     casinowinner_games = parseCasinowinner(driver)
+    # try:
+    #     betsson_games = compareOdds(betsson_games, betfair_games, "outrights")
+    #     insertData(compared_list, "Betsson")
+    # except:
+    #     print("Probably float by zero error, skipping for now")
+    # try:
+    #     betsafe_games = compareOdds(betsafe_games, betfair_games, "outrights")
+    #     insertData(compared_list, "Betsafe")
+    # except:
+    #     print("Probably float by zero error, skipping for now")
+    # try:
+    #     casinowinner_games = compareOdds(casinowinner_games, betfair_games, "outrights")
+    #     insertData(compared_list, "Casinowinner")
+    # except:
+    #     print("Probably float by zero error, skipping for now")
+    print("Sleeping for 5 minute")
+    sleep(60*5)
 
 
 
