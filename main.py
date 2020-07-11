@@ -204,8 +204,8 @@ driver = startChromeDriver()
 
 while True:
     #first spinsports
-    #betfair_games, driver = runSpinsports(driver)
-    betfair_games = getGames()
+    betfair_games, driver = runSpinsports(driver)
+    #betfair_games = getGames()
     driver = runBetsson(driver, betfair_games)
     
     print("Sleeping for 3 minutes")
