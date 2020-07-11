@@ -146,7 +146,7 @@ def insertData(oddsmatcher_games, table_name):
         connection.close()
 
 def runSpinsports(driver):
-    print("Collecting spinsports info")
+    print("Collecting spinsports data")
     try:
         bookmaker_games = getSpinsportsGames(15, driver)
     except WebDriverException:
@@ -197,6 +197,25 @@ def runBetsson(driver, betfair_games):
         print("Probably float by zero error, skipping for now")
     return driver
 
+def run888sport(driver, betfair_games):
+    print("Collecting 888sport data")
+    try:
+        bookmaker_games = get888sportData(driver)
+    except WebDriverException:
+        print("Chrome has crashed, reopening")
+        driver = startChromeDriver()
+        bookmaker_games = get888sportData(driver)
+    except:
+        print("Some problem with 888sport again")
+        return driver
+    print("Comparing games, and uploading")
+    try:
+        compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
+    except Exception as e:
+        print(e)
+    print("Inserting into database")
+    insertData(compared_list, "888sport")
+    return driver
 
 print("Starting driver")
 driver = startChromeDriver()
@@ -204,9 +223,10 @@ driver = startChromeDriver()
 
 while True:
     #first spinsports
-    betfair_games, driver = runSpinsports(driver)
-    #betfair_games = getGames()
-    driver = runBetsson(driver, betfair_games)
+    #betfair_games, driver = runSpinsports(driver)
+    betfair_games = getGames()
+    #driver = runBetsson(driver, betfair_games)
+    driver = run888sport(driver, betfair_games)
     
     print("Sleeping for 3 minutes")
     sleep(60*3)
