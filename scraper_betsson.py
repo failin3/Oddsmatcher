@@ -75,24 +75,25 @@ def parseCasinowinner(driver):
     sleep(1)
     driver.find_elements_by_xpath("//*[contains(text(), 'Show')]")[0].click()
     sleep(5)
-    soup = BeautifulSoup(driver.page_source, features="html.parser")
     game_list = []
-    for bet in soup.find_all("div", class_="market-mw ng-scope"):
-        game_name = bet.find_all("div", class_="eventNameTruncate")[0].text
-        game_name = "{} vs {}".format(game_name.split("-")[0].strip(), game_name.split("-")[1].strip())
-        selection_buttons = bet.find_all("material-button")
-        r1 = selection_buttons[0].text
-        rX = selection_buttons[1].text
-        r2 = selection_buttons[2].text
-        #print("{}: {} - {} - {}".format(game_name, r1, rX, r2))
-        game = OutrightGame(game_name, r1, rX, r2)
-        game_list.append(game)
+    for _ in range(3):
+        soup = BeautifulSoup(driver.page_source, features="html.parser")
+        for bet in soup.find_all("div", class_="market-mw ng-scope"):
+            game_name = bet.find_all("div", class_="eventNameTruncate")[0].text
+            game_name = "{} vs {}".format(game_name.split("-")[0].strip(), game_name.split("-")[1].strip())
+            selection_buttons = bet.find_all("material-button")
+            r1 = selection_buttons[0].text
+            rX = selection_buttons[1].text
+            r2 = selection_buttons[2].text
+            #print("{}: {} - {} - {}".format(game_name, r1, rX, r2))
+            game = OutrightGame(game_name, r1, rX, r2)
+            game_list.append(game)
+        driver.find_elements_by_xpath("//*[contains(text(), 'Next')]")[0].click()
+        sleep(2)
     return game_list
 
 if __name__ == "__main__":
     driver = webdriver.Chrome("bin/chromedriver")
-    game_list = parseBetsafe(driver)
-    game_list = parseBetsafe(driver)
     game_list = parseCasinowinner(driver)
     for game in game_list:
         print("{}: {} - {} - {}".format(game.name, game.r1, game.rX, game.r2))
