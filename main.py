@@ -111,6 +111,12 @@ def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30
                         closeness = getCloseness(bf_odds, ss_odds[1])
                         bet = makeVarReadable(ss_odds[0], market)
                         if closeness > set_closeness and float(bf_odds) < set_odds:
+                            if bet == "r1":
+                                bet = bf_game.name.split("v")[0].strip()
+                            elif bet == "rX":
+                                bet = "Draw"
+                            elif bet == "r2":
+                                bet = bf_game.name.split("v")[1].strip()
                             good_odds.append(OddsmatcherEntry(bf_game.name, ss_odds[1], bf_odds, liquidity, score, closeness, bf_game.date, bf_game.time, bet))
     good_odds = sorted(good_odds, key=operator.attrgetter('closeness'))
     return good_odds
@@ -198,8 +204,8 @@ driver = startChromeDriver()
 
 while True:
     #first spinsports
-    betfair_games, driver = runSpinsports(driver)
-    #betfair_games = getGames()
+    #betfair_games, driver = runSpinsports(driver)
+    betfair_games = getGames()
     driver = runBetsson(driver, betfair_games)
     
     print("Sleeping for 3 minutes")
