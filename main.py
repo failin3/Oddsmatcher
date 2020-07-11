@@ -168,14 +168,30 @@ def runBetsson(driver, betfair_games):
     print("Collecting Betsson group data")
     try:
         betsson_games = parseBetsson(driver)
-        betsafe_games = parseBetsafe(driver)
         casinowinner_games = parseCasinowinner(driver)
     except WebDriverException:
         print("Chrome has crashed, reopening")
         driver = startChromeDriver()
         betsson_games = parseBetsson(driver)
-        betsafe_games = parseBetsafe(driver)
         casinowinner_games = parseCasinowinner(driver)
+    except:
+        print("Some other error with Betsson")
+    try:
+        betsafe_games = parseBetsafe(driver)
+    except WebDriverException:
+        print("Chrome has crashed, reopening")
+        driver = startChromeDriver()
+        betsafe_games = parseBetsafe(driver)
+    except:
+        print("Some other error with Betsafe")
+    try:
+        casinowinner_games = parseCasinowinner(driver)
+    except WebDriverException:
+        print("Chrome has crashed, reopening")
+        driver = startChromeDriver()
+        casinowinner_games = parseCasinowinner(driver)
+    except:
+        print("Some other error with Casinowinner")
     print("Comparing games, and uploading")
     print("Betsson")
     try:
@@ -226,7 +242,7 @@ while True:
     betfair_games, driver = runSpinsports(driver)
     #betfair_games = getGames()
     driver = runBetsson(driver, betfair_games)
-    driver = run888sport(driver, betfair_games)
+    #driver = run888sport(driver, betfair_games)
     
     print("Sleeping for 3 minutes")
     sleep(60*3)
