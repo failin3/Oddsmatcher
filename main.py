@@ -18,6 +18,12 @@ parser.add_argument("-l", "--logs", help = "Show more verbose logging", action='
 
 argument = parser.parse_args()
 
+def startChromeDriver():
+    if argument.production:
+        display = Display(visible=0, size=(800, 600))
+        display.start()
+    driver = webdriver.Chrome("bin/chromedriver")
+    return driver
 
 class OddsmatcherEntry:
     def __init__(self, name, bookmaker_odds, exchange_odds, exchange_liquidity, runner_id, closeness, date, time, bet):
@@ -30,13 +36,6 @@ class OddsmatcherEntry:
         self.date = date
         self.time = time
         self.bet = bet
-
-def startChromeDriver():
-    if argument.production:
-        display = Display(visible=0, size=(800, 600))
-        display.start()
-    driver = webdriver.Chrome("bin/chromedriver")
-    return driver
 
 def getSpinsportsGames(nr_of_games, driver):
     url = "/en/sports/soccer/germany-1-bundesliga/20200224/eintracht-frankfurt-vs-union-berlin/"
@@ -140,12 +139,7 @@ def insertData(oddsmatcher_games, table_name):
     finally:
         connection.close()
 
-
-print("Starting driver")
-driver = startChromeDriver()
-
-while True:
-    #first spinsports
+def runSpinsports(driver):
     print("Collecting spinsports info")
     try:
         bookmaker_games = getSpinsportsGames(15, driver)
@@ -162,34 +156,57 @@ while True:
         print(e)
     print("Inserting into database")
     insertData(compared_list, "Spinsports")
-    # print("Collecting Betsson group data")
-    # try:
-    #     betsson_games = parseBetsson(driver)
-    #     betsafe_games = parseBetsafe(driver)
-    #     casinowinner_games = parseCasinowinner(driver)
-    # except WebDriverException:
-    #     print("Chrome has crashed, reopening")
-    #     driver = startChromeDriver()
-    #     betsson_games = parseBetsson(driver)
-    #     betsafe_games = parseBetsafe(driver)
-    #     casinowinner_games = parseCasinowinner(driver)
-    # try:
-    #     betsson_games = compareOdds(betsson_games, betfair_games, "outrights")
-    #     insertData(compared_list, "Betsson")
-    # except:
-    #     print("Probably float by zero error, skipping for now")
-    # try:
-    #     betsafe_games = compareOdds(betsafe_games, betfair_games, "outrights")
-    #     insertData(compared_list, "Betsafe")
-    # except:
-    #     print("Probably float by zero error, skipping for now")
-    # try:
-    #     casinowinner_games = compareOdds(casinowinner_games, betfair_games, "outrights")
-    #     insertData(compared_list, "Casinowinner")
-    # except:
-    #     print("Probably float by zero error, skipping for now")
-    print("Sleeping for 5 minute")
-    sleep(60*5)
+    return betfair_games, driver
+
+def runBetsson(driver, betfair_games):
+    print("Collecting Betsson group data")
+    try:
+        betsson_games = parseBetsson(driver)
+        betsafe_games = parseBetsafe(driver)
+        casinowinner_games = parseCasinowinner(driver)
+    except WebDriverException:
+        print("Chrome has crashed, reopening")
+        driver = startChromeDriver()
+        betsson_games = parseBetsson(driver)
+        betsafe_games = parseBetsafe(driver)
+        casinowinner_games = parseCasinowinner(driver)
+    print("Comparing games, and uploading")
+    print("Betsson")
+    try:
+        betsson_games = compareOdds(betsson_games, betfair_games, "outrights")
+        insertData(betsson_games, "Betsson")
+    except:
+        print("Probably float by zero error, skipping for now")
+    print("Betsafe")
+    try:
+        betsafe_games = compareOdds(betsafe_games, betfair_games, "outrights")
+        insertData(betsafe_games, "Betsafe")
+    except:
+        print("Probably float by zero error, skipping for now")
+    print("Casinowinner")
+    try:
+        casinowinner_games = compareOdds(casinowinner_games, betfair_games, "outrights")
+        insertData(casinowinner_games, "Casinowinner")
+    except:
+        print("Probably float by zero error, skipping for now")
+    return driver
+
+
+print("Starting driver")
+driver = startChromeDriver()
+
+
+while True:
+    #first spinsports
+    betfair_games, driver = runSpinsports(driver)
+    #betfair_games = getGames()
+    driver = runBetsson(driver, betfair_games)
+    
+    
+    
+    
+    print("Sleeping for 3 minute")
+    sleep(60*3)
 
 
 
