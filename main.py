@@ -92,7 +92,7 @@ def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30
     good_odds = []
     for ss_game in ss_games:
         for bf_game in bookmaker_games:
-            if compareNames(ss_game.name, bf_game.name) or fuzz.ratio(ss_game.name, bf_game.name) > 60:
+            if compareNames(ss_game.name, bf_game.name):
                 if argument.logs:
                     print("{} == {} score: {}".format(ss_game.name, bf_game.name, fuzz.ratio(ss_game.name, bf_game.name)))
                 if market == "correct_score":
@@ -202,10 +202,7 @@ while True:
     #betfair_games = getGames()
     driver = runBetsson(driver, betfair_games)
     
-    
-    
-    
-    print("Sleeping for 3 minute")
+    print("Sleeping for 3 minutes")
     sleep(60*3)
 
 

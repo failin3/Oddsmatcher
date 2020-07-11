@@ -15,7 +15,7 @@ class OutrightGame:
 
 def parseBetsson(driver):
     driver.get(betsson_url)
-    sleep(5)
+    sleep(7)
     league_element = driver.find_elements_by_class_name("obg-m-events-master-detail-header-title")
     #Click on top 6 leagues
     for i in range(6):
@@ -34,14 +34,14 @@ def parseBetsson(driver):
             rX = result[1].text
             r2 = result[2].text
             #print("{}: {} | {}: {} | {}: {}".format(team1, r1, "Draw", rX, team2, r2))
-            game_name = team1 + " v " + team2 
+            game_name = team1 + " vs " + team2 
             game = OutrightGame(game_name, r1, rX, r2)
             game_list.append(game)
     return game_list
 
 def parseBetsafe(driver):
     driver.get(betsafe_url)
-    sleep(5)
+    sleep(7)
     league_element = driver.find_elements_by_class_name("obg-m-events-master-detail-header-title")
     #Click on top 6 leagues
     for i in range(6):
@@ -60,7 +60,7 @@ def parseBetsafe(driver):
             rX = result[1].text
             r2 = result[2].text
             #print("{}: {} | {}: {} | {}: {}".format(team1, r1, "Draw", rX, team2, r2))
-            game_name = team1 + " v " + team2 
+            game_name = team1 + " vs " + team2 
             game = OutrightGame(game_name, r1, rX, r2)
             game_list.append(game)
     return game_list
@@ -79,6 +79,7 @@ def parseCasinowinner(driver):
     game_list = []
     for bet in soup.find_all("div", class_="market-mw ng-scope"):
         game_name = bet.find_all("div", class_="eventNameTruncate")[0].text
+        game_name = "{} vs {}".format(game_name.split("-")[0].strip(), game_name.split("-")[1].strip())
         selection_buttons = bet.find_all("material-button")
         r1 = selection_buttons[0].text
         rX = selection_buttons[1].text
@@ -90,6 +91,8 @@ def parseCasinowinner(driver):
 
 if __name__ == "__main__":
     driver = webdriver.Chrome("bin/chromedriver")
+    game_list = parseBetsafe(driver)
+    game_list = parseBetsafe(driver)
     game_list = parseCasinowinner(driver)
     for game in game_list:
         print("{}: {} - {} - {}".format(game.name, game.r1, game.rX, game.r2))
