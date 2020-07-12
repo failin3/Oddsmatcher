@@ -18,7 +18,7 @@ def parseBetrebels(driver):
     #print(driver.find_elements_by_class_name("events-tree-table-node-CH-name"))
     soup = BeautifulSoup(driver.page_source, features="html.parser")
     game_list = []
-    for bet in soup.find_all("div", class_="flex-col cut pos-wide events-table-row"):
+    for bet in soup.find_all("div", class_="events-table-row"):
         if bet.find("div", class_="live-indicator"):
             continue
         team1 = bet.find_all("div", class_="events-table-row-competitor-name")[0].text.strip()
