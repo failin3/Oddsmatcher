@@ -133,6 +133,7 @@ def getGames():
             events =  api.betting.list_events(filter)
             events = [event for event in events if event.market_count > 25]
             game_list = []
+            break
         except:
             pass
     
