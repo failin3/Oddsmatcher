@@ -119,18 +119,22 @@ def getOutrights(game, markets):
     
 
 def getGames():
-    api = getApiCredentials()
-    football_event_id = [item.event_type.id for item in api.betting.list_event_types() if item.event_type.name == "Soccer"][0]
-    filter = {
-        "eventTypeIds": [football_event_id],
-        "marketStartTime": {
-            "from": "{}T{}:00Z".format(START_DATE, START_TIME),
-            "to": "{}T{}:00Z".format(END_DATE, END_TIME)
-        }      
-    }
-    events =  api.betting.list_events(filter)
-    events = [event for event in events if event.market_count > 25]
-    game_list = []
+    while True:
+        try:
+            api = getApiCredentials()
+            football_event_id = [item.event_type.id for item in api.betting.list_event_types() if item.event_type.name == "Soccer"][0]
+            filter = {
+                "eventTypeIds": [football_event_id],
+                "marketStartTime": {
+                    "from": "{}T{}:00Z".format(START_DATE, START_TIME),
+                    "to": "{}T{}:00Z".format(END_DATE, END_TIME)
+                }      
+            }
+            events =  api.betting.list_events(filter)
+            events = [event for event in events if event.market_count > 25]
+            game_list = []
+        except:
+            pass
     
 
     for i, event in enumerate(events):
