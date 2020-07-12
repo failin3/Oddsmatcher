@@ -3,6 +3,7 @@ from pyvirtualdisplay import Display
 from spinsports_scraper import *
 from scraper_888sport import *
 from scraper_betsson import *
+from scraper_betrebels import *
 from selenium.common.exceptions import WebDriverException
 from time import sleep
 from fuzzywuzzy import fuzz
@@ -233,6 +234,25 @@ def run888sport(driver, betfair_games):
     insertData(compared_list, "888sport")
     return driver
 
+def runBetrebels(driver, betfair_games):
+    print("Collecting betrebels data")
+    try:
+        bookmaker_games = parseBetrebels(driver)
+    except WebDriverException:
+        print("Chrome has crashed, reopening")
+        driver = startChromeDriver()
+        bookmaker_games = parseBetrebels(driver)
+    except:
+        print("Some other error with Betsson")
+    print("Comparing odds")
+    try:
+        compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
+    except Exception as e:
+        print(e)
+    print("Inserting into database")
+    insertData(compared_list, "Betrebels")
+    return betfair_games, driver
+
 print("Starting driver")
 driver = startChromeDriver()
 
@@ -243,6 +263,7 @@ while True:
     #betfair_games = getGames()
     driver = runBetsson(driver, betfair_games)
     #driver = run888sport(driver, betfair_games)
+    driver = runBetrebels(driver, betfair_games)
     
     print("Sleeping for 3 minutes")
     sleep(60*3)
