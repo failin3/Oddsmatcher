@@ -265,8 +265,8 @@ while True:
     #driver = run888sport(driver, betfair_games)
     driver = runBetrebels(driver, betfair_games)
     
-    print("Sleeping for 3 minutes")
-    sleep(60*3)
+    print("Sleeping for 2 minutes")
+    sleep(60*2)
 
 
 
