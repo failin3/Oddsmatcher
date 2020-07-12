@@ -11,7 +11,6 @@ class OutrightGame:
 
 def parseBetrebels(driver):
     url = "https://sb1client-altenar.biahosted.com/?origin=https://sb1client-altenar.biahosted.com/static/&token=&fixedbottom=60&walletcode=508729&skinid=betrebels&lang=en-GB&hasplacebetplatformerrorcallback=false#/tree/all/0/100192,100607,100608,100193,100214,100221,100291,100230,100219,100198/0/odds/bytime"
-    driver = webdriver.Chrome("bin/chromedriver")
     driver.get(url)
     sleep(5)
 
@@ -23,9 +22,9 @@ def parseBetrebels(driver):
             continue
         team1 = bet.find_all("div", class_="events-table-row-competitor-name")[0].text.strip()
         team2 = bet.find_all("div", class_="events-table-row-competitor-name")[1].text.strip()
-        r1 = bet.find_all("div", class_="prices-markets--price-block price-block")[0].text.strip()
-        rX = bet.find_all("div", class_="prices-markets--price-block price-block")[1].text.strip()
-        r2 = bet.find_all("div", class_="prices-markets--price-block price-block")[2].text.strip()
+        r1 = bet.find_all("div", class_="prices-markets--price-block")[0].text.strip()
+        rX = bet.find_all("div", class_="prices-markets--price-block")[1].text.strip()
+        r2 = bet.find_all("div", class_="prices-markets--price-block")[2].text.strip()
         game_list.append(OutrightGame("{} vs {}".format(team1, team2), r1, rX, r2))
     return game_list
 

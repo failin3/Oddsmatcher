@@ -172,30 +172,31 @@ def runBetsson(driver, betfair_games):
     print("Collecting Betsson group data")
     try:
         betsson_games = parseBetsson(driver)
-        casinowinner_games = parseCasinowinner(driver)
     except WebDriverException:
         print("Chrome has crashed, reopening")
         driver = startChromeDriver()
         betsson_games = parseBetsson(driver)
-        casinowinner_games = parseCasinowinner(driver)
-    except:
-        print("Some other error with Betsson")
+    except Exception as e:
+        print("Betsson:")
+        print(e)
     try:
         betsafe_games = parseBetsafe(driver)
     except WebDriverException:
         print("Chrome has crashed, reopening")
         driver = startChromeDriver()
         betsafe_games = parseBetsafe(driver)
-    except:
-        print("Some other error with Betsafe")
+    except Exception as e:
+        print("Betsafe:")
+        print(e)
     try:
         casinowinner_games = parseCasinowinner(driver)
     except WebDriverException:
         print("Chrome has crashed, reopening")
         driver = startChromeDriver()
         casinowinner_games = parseCasinowinner(driver)
-    except:
-        print("Some other error with Casinowinner")
+    except Exception as e:
+        print("Casinowinner:")
+        print(e)
     print("Comparing games, and uploading")
     print("Betsson")
     try:
@@ -245,8 +246,8 @@ def runBetrebels(driver, betfair_games):
         print("Chrome has crashed, reopening")
         driver = startChromeDriver()
         bookmaker_games = parseBetrebels(driver)
-    except:
-        print("Some other error with Betsson")
+    except Exception as e:
+        print(e)
     print("Comparing odds")
     try:
         compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
