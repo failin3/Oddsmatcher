@@ -154,6 +154,9 @@ def runSpinsports(driver):
         print("Chrome has crashed, reopening")
         driver = startChromeDriver()
         bookmaker_games = getSpinsportsGames(15, driver)
+    except:
+        print("Some other error with spinsports")
+        return driver
     print("Collecting exchange info")
     betfair_games = getGames()
     print("Comparing odds")
@@ -259,9 +262,9 @@ driver = startChromeDriver()
 
 while True:
     #first spinsports
-    betfair_games, driver = runSpinsports(driver)
-    #betfair_games = getGames()
-    driver = runBetsson(driver, betfair_games)
+    #betfair_games, driver = runSpinsports(driver)
+    betfair_games = getGames()
+    #driver = runBetsson(driver, betfair_games)
     #driver = run888sport(driver, betfair_games)
     driver = runBetrebels(driver, betfair_games)
     
