@@ -167,6 +167,7 @@ def runSpinsports(driver):
         compared_list = compareOdds(bookmaker_games, betfair_games, "correct_score")
     except Exception as e:
         print(e)
+        return betfair_games, driver
     print("Inserting into database")
     insertData(compared_list, "Spinsports")
     return betfair_games, driver
