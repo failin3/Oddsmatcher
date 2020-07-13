@@ -173,36 +173,40 @@ def runSpinsports(driver):
 
 def runBetsson(driver, betfair_games):
     print("Collecting Betsson group data")
-    betsson_games = []
-    betsafe_games = []
-    casinowinner_games = []
-    try:
-        betsson_games = parseBetsson(driver)
-    except WebDriverException:
-        print("Chrome has crashed, reopening")
-        driver = startChromeDriver()
-        betsson_games = parseBetsson(driver)
-    except Exception as e:
-        print("Betsson:")
-        print(e)
-    try:
-        betsafe_games = parseBetsafe(driver)
-    except WebDriverException:
-        print("Chrome has crashed, reopening")
-        driver = startChromeDriver()
-        betsafe_games = parseBetsafe(driver)
-    except Exception as e:
-        print("Betsafe:")
-        print(e)
-    try:
-        casinowinner_games = parseCasinowinner(driver)
-    except WebDriverException:
-        print("Chrome has crashed, reopening")
-        driver = startChromeDriver()
-        casinowinner_games = parseCasinowinner(driver)
-    except Exception as e:
-        print("Casinowinner:")
-        print(e)
+    #Try 3 times
+    for _ in range(3):
+        betsson_games = []
+        try:
+            betsson_games = parseBetsson(driver)
+            break
+        except WebDriverException:
+            print("Chrome has crashed, reopening")
+            driver = startChromeDriver()
+        except Exception as e:
+            print("Betsson:")
+            print(e)
+    for _ in range(3):
+        betsafe_games = []
+        try:
+            betsafe_games = parseBetsafe(driver)
+            break
+        except WebDriverException:
+            print("Chrome has crashed, reopening")
+            driver = startChromeDriver()
+        except Exception as e:
+            print("Betsafe:")
+            print(e)
+    for _ in range(3):
+        casinowinner_games = []
+        try:
+            casinowinner_games = parseCasinowinner(driver)
+            break
+        except WebDriverException:
+            print("Chrome has crashed, reopening")
+            driver = startChromeDriver()
+        except Exception as e:
+            print("Casinowinner:")
+            print(e)
     print("Comparing games, and uploading")
     print("Betsson")
     try:
@@ -226,16 +230,17 @@ def runBetsson(driver, betfair_games):
 
 def run888sport(driver, betfair_games):
     print("Collecting 888sport data")
-    bookmaker_games = []
-    try:
-        bookmaker_games = get888sportData(driver)
-    except WebDriverException:
-        print("Chrome has crashed, reopening")
-        driver = startChromeDriver()
-        bookmaker_games = get888sportData(driver)
-    except:
-        print("Some problem with 888sport again")
-        return driver
+    for _ in range(3):
+        bookmaker_games = []
+        try:
+            bookmaker_games = get888sportData(driver)
+            break
+        except WebDriverException:
+            print("Chrome has crashed, reopening")
+            driver = startChromeDriver()
+        except:
+            print("Some problem with 888sport again")
+            return driver
     print("Comparing games, and uploading")
     try:
         compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
@@ -247,15 +252,16 @@ def run888sport(driver, betfair_games):
 
 def runBetrebels(driver, betfair_games):
     print("Collecting betrebels data")
-    bookmaker_games = []
-    try:
-        bookmaker_games = parseBetrebels(driver)
-    except WebDriverException:
-        print("Chrome has crashed, reopening")
-        driver = startChromeDriver()
-        bookmaker_games = parseBetrebels(driver)
-    except Exception as e:
-        print(e)
+    for _ in range(3):
+        bookmaker_games = []
+        try:
+            bookmaker_games = parseBetrebels(driver)
+            break
+        except WebDriverException:
+            print("Chrome has crashed, reopening")
+            driver = startChromeDriver()
+        except Exception as e:
+            print(e)
     print("Comparing odds")
     try:
         compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
@@ -267,15 +273,16 @@ def runBetrebels(driver, betfair_games):
 
 def runNeobet(driver, betfair_games):
     print("Collecting neobet data")
-    bookmaker_games = []
-    try:
-        bookmaker_games = parseNeobet(driver)
-    except WebDriverException:
-        print("Chrome has crashed, reopening")
-        driver = startChromeDriver()
-        bookmaker_games = parseNeobet(driver)
-    except Exception as e:
-        print(e)
+    for _ in range(3):
+        bookmaker_games = []
+        try:
+            bookmaker_games = parseNeobet(driver)
+            break
+        except WebDriverException:
+            print("Chrome has crashed, reopening")
+            driver = startChromeDriver()
+        except Exception as e:
+            print(e)
     print("Comparing odds")
     try:
         compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
