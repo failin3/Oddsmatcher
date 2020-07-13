@@ -159,7 +159,7 @@ def runSpinsports(driver):
         bookmaker_games = getSpinsportsGames(15, driver)
     except:
         print("Some other error with spinsports")
-        return driver
+        return getGames(), driver
     print("Collecting exchange info")
     betfair_games = getGames()
     print("Comparing odds")
