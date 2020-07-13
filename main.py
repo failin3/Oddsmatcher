@@ -1,15 +1,18 @@
-from BetfairClass import *
 from pyvirtualdisplay import Display
-from spinsports_scraper import *
-from scraper_888sport import *
-from scraper_betsson import *
-from scraper_betrebels import *
 from selenium.common.exceptions import WebDriverException
 from time import sleep
 from fuzzywuzzy import fuzz
 import operator
 import pymysql.cursors
 import argparse
+
+from BetfairClass import *
+from spinsports_scraper import *
+from scraper_888sport import *
+from scraper_betsson import *
+from scraper_betrebels import *
+from scraper_neobet import *
+
 
 
 #Parse command line arguments
@@ -170,6 +173,9 @@ def runSpinsports(driver):
 
 def runBetsson(driver, betfair_games):
     print("Collecting Betsson group data")
+    betsson_games = []
+    betsafe_games = []
+    casinowinner_games = []
     try:
         betsson_games = parseBetsson(driver)
     except WebDriverException:
@@ -220,6 +226,7 @@ def runBetsson(driver, betfair_games):
 
 def run888sport(driver, betfair_games):
     print("Collecting 888sport data")
+    bookmaker_games = []
     try:
         bookmaker_games = get888sportData(driver)
     except WebDriverException:
@@ -240,6 +247,7 @@ def run888sport(driver, betfair_games):
 
 def runBetrebels(driver, betfair_games):
     print("Collecting betrebels data")
+    bookmaker_games = []
     try:
         bookmaker_games = parseBetrebels(driver)
     except WebDriverException:
@@ -255,7 +263,27 @@ def runBetrebels(driver, betfair_games):
         print(e)
     print("Inserting into database")
     insertData(compared_list, "Betrebels")
-    return betfair_games, driver
+    return driver
+
+def runNeobet(driver, betfair_games):
+    print("Collecting neobet data")
+    bookmaker_games = []
+    try:
+        bookmaker_games = parseNeobet(driver)
+    except WebDriverException:
+        print("Chrome has crashed, reopening")
+        driver = startChromeDriver()
+        bookmaker_games = parseNeobet(driver)
+    except Exception as e:
+        print(e)
+    print("Comparing odds")
+    try:
+        compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
+    except Exception as e:
+        print(e)
+    print("Inserting into database")
+    insertData(compared_list, "Neobet")
+    return driver
 
 print("Starting driver")
 driver = startChromeDriver()
@@ -263,14 +291,15 @@ driver = startChromeDriver()
 
 while True:
     #first spinsports
-    betfair_games, driver = runSpinsports(driver)
-    #betfair_games = getGames()
-    driver = runBetsson(driver, betfair_games)
+    #betfair_games, driver = runSpinsports(driver)
+    betfair_games = getGames()
+    #driver = runBetsson(driver, betfair_games)
     #driver = run888sport(driver, betfair_games)
-    driver = runBetrebels(driver, betfair_games)
+    #driver = runBetrebels(driver, betfair_games)
+    driver = runNeobet(driver, betfair_games)
     
-    print("Sleeping for 2 minutes")
-    sleep(60*2)
+    print("Sleeping for 1 minute")
+    sleep(60*1)
 
 
 
