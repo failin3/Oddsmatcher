@@ -246,6 +246,7 @@ def run888sport(driver, betfair_games):
     try:
         compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
     except Exception as e:
+        compared_list = []
         print(e)
     print("Inserting into database")
     insertData(compared_list, "888sport")
@@ -267,6 +268,7 @@ def runBetrebels(driver, betfair_games):
     try:
         compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
     except Exception as e:
+        compared_list = []
         print(e)
     print("Inserting into database")
     insertData(compared_list, "Betrebels")
@@ -288,6 +290,7 @@ def runNeobet(driver, betfair_games):
     try:
         compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
     except Exception as e:
+        compared_list = []
         print(e)
     print("Inserting into database")
     insertData(compared_list, "Neobet")
