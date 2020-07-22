@@ -1,6 +1,7 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from time import sleep
+import re
 
 class OutrightGame:
     def __init__(self, name, r1, rX, r2):
@@ -35,14 +36,16 @@ def parseNeobet(driver):
     soup = BeautifulSoup(driver.page_source, features="html.parser")
     game_list = []
     for bet in soup.find_all("div", class_="matchRow"):
+        #TODO: implement live indicator, to dismiss that game.
         # if bet.find("div", class_="live-indicator"):
         #     continue
-        if len(bet.find_all("div", class_="s1x_betmarket")[0].find_all("div", class_="s1w_center")) == 3:
-            team1 = bet.find_all("div", class_="s1v_team")[0].text.strip()
-            team2 = bet.find_all("div", class_="s1v_team")[1].text.strip()
-            r1 = bet.find_all("span", class_="s1w_decimal")[0].text.strip()
-            rX = bet.find_all("span", class_="s1w_decimal")[1].text.strip()
-            r2 = bet.find_all("span", class_="s1w_decimal")[2].text.strip()
+        #Now using \w in regex because s1*_betmarket etc keeps changing
+        if len(bet.find_all("div", class_=re.compile("s1\w_betmarket"))[1].find_all("div", class_=re.compile("s1\w_center"))) == 3:
+            team1 = bet.find_all("div", class_=re.compile("s1\w_team"))[0].text.strip()
+            team2 = bet.find_all("div", class_=re.compile("s1\w_team"))[2].text.strip()
+            r1 = bet.find_all("span", class_=re.compile("s1\w_decimal"))[0].text.strip()
+            rX = bet.find_all("span", class_=re.compile("s1\w_decimal"))[1].text.strip()
+            r2 = bet.find_all("span", class_=re.compile("s1\w_decimal"))[2].text.strip()
             game_list.append(OutrightGame("{} vs {}".format(team1, team2), r1, rX, r2))
         else:
             break
