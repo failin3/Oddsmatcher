@@ -99,15 +99,17 @@ def parseMatch(url, driver):
                     failure_counter = 0
                     attempt_counter = 0
             return game
-        except (AttributeError, UnboundLocalError, IndexError):
+        except (AttributeError, UnboundLocalError, IndexError) as e:
             sleep(1)
             #Give 5 attempts to find the buttons, if this fails 5 times stop giving these tries and immediately fail
             if failure_counter > 5:
                 logger.debug("5 failures, aborting this match")
+                logger.debug(e)
                 return None
             attempt_counter += 1
             if attempt_counter > 5:
                 logger.debug("5 attempts, aborting this match")
+                logger.debug(e)
                 return None
             else:
                 failure_counter += 1
