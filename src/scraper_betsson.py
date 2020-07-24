@@ -26,17 +26,20 @@ def parseBetsson(driver):
     for bet in soup.find_all("obg-event-row-market-container"):
         #Check if this match is live, we dont want live matches
         if len(bet.find_all("div", class_="live")) == 0:
-            team_names = bet.find_all("span", class_="obg-selection-content-label")
-            team1 = team_names[0].text
-            team2 = team_names[2].text
-            result = bet.find_all("obg-numeric-change", class_="obg-numeric-change")
-            r1 = result[0].text
-            rX = result[1].text
-            r2 = result[2].text
-            #print("{}: {} | {}: {} | {}: {}".format(team1, r1, "Draw", rX, team2, r2))
-            game_name = team1 + " vs " + team2 
-            game = OutrightGame(game_name, r1, rX, r2)
-            game_list.append(game)
+            try:
+                team_names = bet.find_all("span", class_="obg-selection-content-label")
+                team1 = team_names[0].text
+                team2 = team_names[2].text
+                result = bet.find_all("obg-numeric-change", class_="obg-numeric-change")
+                r1 = result[0].text
+                rX = result[1].text
+                r2 = result[2].text
+                #print("{}: {} | {}: {} | {}: {}".format(team1, r1, "Draw", rX, team2, r2))
+                game_name = team1 + " vs " + team2 
+                game = OutrightGame(game_name, r1, rX, r2)
+                game_list.append(game)
+            except:
+                pass
     return game_list
 
 def parseBetsafe(driver):
@@ -52,17 +55,20 @@ def parseBetsafe(driver):
     for bet in soup.find_all("obg-event-row-market-container"):
         #Check if this match is live, we dont want live matches
         if len(bet.find_all("div", class_="live")) == 0:
-            team_names = bet.find_all("span", class_="obg-selection-content-label")
-            team1 = team_names[0].text
-            team2 = team_names[2].text
-            result = bet.find_all("obg-numeric-change", class_="obg-numeric-change")
-            r1 = result[0].text
-            rX = result[1].text
-            r2 = result[2].text
-            #print("{}: {} | {}: {} | {}: {}".format(team1, r1, "Draw", rX, team2, r2))
-            game_name = team1 + " vs " + team2 
-            game = OutrightGame(game_name, r1, rX, r2)
-            game_list.append(game)
+            try:
+                team_names = bet.find_all("span", class_="obg-selection-content-label")
+                team1 = team_names[0].text
+                team2 = team_names[2].text
+                result = bet.find_all("obg-numeric-change", class_="obg-numeric-change")
+                r1 = result[0].text
+                rX = result[1].text
+                r2 = result[2].text
+                #print("{}: {} | {}: {} | {}: {}".format(team1, r1, "Draw", rX, team2, r2))
+                game_name = team1 + " vs " + team2 
+                game = OutrightGame(game_name, r1, rX, r2)
+                game_list.append(game)
+            except:
+                pass
     return game_list
 
 def parseCasinowinner(driver):
@@ -94,7 +100,7 @@ def parseCasinowinner(driver):
 
 if __name__ == "__main__":
     driver = webdriver.Chrome("bin/chromedriver")
-    game_list = parseCasinowinner(driver)
+    game_list = parseBetsson(driver)
     for game in game_list:
         print("{:<40} {:>7} {:>7}  {:>7}".format(game.name, game.r1, game.rX, game.r2))
     
