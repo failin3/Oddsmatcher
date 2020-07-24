@@ -145,7 +145,7 @@ def getGames():
     for i, event in enumerate(events):
         while True:
             try:
-                logging.debug("{}/{}".format(i+1, len(events)))
+                logger.debug("{}/{}".format(i+1, len(events)))
                 #Loop over event, create class then save info
                 event_name = event.event.name
                 event_id = event.event.id
