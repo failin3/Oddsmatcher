@@ -53,8 +53,8 @@ def getSpinsportsGames(nr_of_games, driver):
     spinsports_games = []
     for url in url_list:
         game = parseMatch(url, driver)
-        logger.debug("Parsed {}".format(game.name))
         if game != None:
+            logger.debug("Parsed {}".format(game.name))
             spinsports_games.append(game)
     return spinsports_games
 
@@ -158,8 +158,8 @@ def runSpinsports(driver):
         logger.warning("Chrome has crashed, reopening")
         driver = startChromeDriver()
         bookmaker_games = getSpinsportsGames(15, driver)
-    except:
-        logger.error("Some other error with spinsports")
+    except Exception as e:
+        logger.error("Some other error with spinsports: {}".format(e))
         return getGames(), driver
     logger.info("Collecting exchange info")
     betfair_games = getGames()

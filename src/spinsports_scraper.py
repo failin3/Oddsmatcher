@@ -104,12 +104,12 @@ def parseMatch(url, driver):
             #Give 5 attempts to find the buttons, if this fails 5 times stop giving these tries and immediately fail
             if failure_counter > 5:
                 logger.debug("5 failures, aborting this match")
-                logger.debug(e)
+                logger.error("The error was: {}".format(e))
                 return None
             attempt_counter += 1
             if attempt_counter > 5:
                 logger.debug("5 attempts, aborting this match")
-                logger.debug(e)
+                logger.debug("The error was: {}".format(e))
                 return None
             else:
                 failure_counter += 1
@@ -154,21 +154,7 @@ if __name__ == "__main__":
 
 
 
-    while True:
-        url_list = getMatchUrls(browse_url, driver)[:40]
-        #url_list = url_list[::-1]
-        json_s = "["
-        for url in url_list:
-            game = parseMatch(url, driver)
-            if game != None:
-                json_s += game.toJSON()
-        json_s = json_s.replace("}{", "},{")
-        json_s += "]"
-
-        with open("ss_output.json", "w") as file:
-            file.write(json_s)
-
-        sleep(5*60)    
+    game = parseMatch("/en/sports/soccer/turkey-super-ligi/20200726/denizlispor-vs-ankaragucu/", driver)
 
 
 
