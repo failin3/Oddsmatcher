@@ -1,7 +1,7 @@
 import logging
 
 logger = logging.getLogger("Server Logger")
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 # create file handler which logs even debug messages
 fh = logging.FileHandler("application.log")
 fh.setLevel(logging.DEBUG)
