@@ -109,6 +109,9 @@ def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30
                 vars_in_ss = list(vars(ss_game).items())[1:]
 
                 for bf_data, ss_odds in zip(vars_in_bf, vars_in_ss):
+                    #Sometimes there is 0 available on betfair
+                    if bf_data[1] == None:
+                        continue
                     bf_odds = bf_data[1][1]
                     liquidity = bf_data[1][0]
                     score = bf_data[0]
