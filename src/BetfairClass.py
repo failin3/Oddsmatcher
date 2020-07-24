@@ -3,11 +3,18 @@ import json
 import datetime
 from time import sleep
 import pytz
+import logging
 
 START_DATE = DATE_OF_MATCHES = datetime.datetime.now().strftime("%Y-%m-%d")
 END_DATE = DATE_OF_MATCHES = (datetime.datetime.now()+datetime.timedelta(days=1)).strftime("%Y-%m-%d")
 START_TIME = "00:00"
 END_TIME = "23:59"
+
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    level=logging.INFO,
+    datefmt='%Y-%m-%d %H:%M:%S')
+
 
 class CorrectScoreRunner:
     def __init__(self):
@@ -134,14 +141,15 @@ def getGames():
             events = [event for event in events if event.market_count > 25]
             game_list = []
             break
-        except:
+        except Exception as e:
+            logging.info(e)
             pass
     
 
     for i, event in enumerate(events):
         while True:
             try:
-                print("{}/{}".format(i+1, len(events)))
+                logging.info("{}/{}".format(i+1, len(events)))
                 #Loop over event, create class then save info
                 event_name = event.event.name
                 event_id = event.event.id
@@ -179,7 +187,7 @@ def getGames():
 
                 game_list.append(game)
             except Exception as e:
-                print(e)
+                logging.info(e)
                 continue
             break
     return game_list
