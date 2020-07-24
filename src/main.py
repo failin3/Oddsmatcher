@@ -52,7 +52,7 @@ def getSpinsportsGames(nr_of_games, driver):
     url_list = getMatchUrls(browse_url, driver)[:nr_of_games]
     spinsports_games = []
     for url in url_list:
-        game = parseMatch(url, driver, argument.logs)
+        game = parseMatch(url, driver)
         logger.debug("Parsed {}".format(game.name))
         if game != None:
             spinsports_games.append(game)

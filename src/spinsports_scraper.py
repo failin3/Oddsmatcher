@@ -1,12 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
+from bs4 import BeautifulSoup
 from time import sleep
 import re
 import json
-
 import time
 
-from bs4 import BeautifulSoup
+from logger_manager import *
+
 
 class Game:
     def __init__(self, name, odds):
@@ -69,22 +70,19 @@ def sortOdds(odds, scores):
             odds_sorted[15] = odd
     return odds_sorted
 
-def parseMatch(url, driver, logs=False):
-    if logs:
-        print("Going  to Match URL")
+def parseMatch(url, driver):
+    logging.debug("Going  to Match URL")
     url = "https://spinsportsmga.spinpalace.com" + url
     game_name = url.rsplit("/", 2)[-2]
     driver.get(url)
-    if logs:
-        print("Sleeping 4 seconds")
+    logging.debug("Sleeping 4 seconds")
     sleep(4)
     attempt_counter = 0
     failure_counter = 0
     while True:
         try:
             soup = BeautifulSoup(driver.page_source, features="html.parser")
-            if logs:
-                print("Converted to bs4")
+            logging.debug("Converted to bs4")
             for element in soup.find_all("li", class_="hoverable-event-container"):
                 span_class = element.find_all("span", class_="toggleableHeadline-text")[0]
                 market = span_class.text
@@ -105,13 +103,11 @@ def parseMatch(url, driver, logs=False):
             sleep(1)
             #Give 5 attempts to find the buttons, if this fails 5 times stop giving these tries and immediately fail
             if failure_counter > 5:
-                if logs:
-                    print("5 failures, aborting this match")
+                logging.debug("5 failures, aborting this match")
                 return None
             attempt_counter += 1
             if attempt_counter > 5:
-                if logs:
-                    print("5 attempts, aborting this match")
+                logging.debug("5 attempts, aborting this match")
                 return None
             else:
                 failure_counter += 1
