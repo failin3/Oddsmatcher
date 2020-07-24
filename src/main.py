@@ -5,7 +5,8 @@ from fuzzywuzzy import fuzz
 import operator
 import pymysql.cursors
 import argparse
-import logging
+
+from logger_manager import *
 
 from BetfairClass import *
 from spinsports_scraper import *
@@ -22,11 +23,6 @@ parser.add_argument("-p", "--production", help = "Runs oddsmatcher without displ
 parser.add_argument("-l", "--logs", help = "Show more verbose logging", action='store_true')
 
 argument = parser.parse_args()
-
-logging.basicConfig(
-    format='%(asctime)s %(levelname)-8s %(message)s',
-    level=logging.INFO,
-    datefmt='%Y-%m-%d %H:%M:%S')
 
 
 def startChromeDriver():
@@ -57,8 +53,7 @@ def getSpinsportsGames(nr_of_games, driver):
     spinsports_games = []
     for url in url_list:
         game = parseMatch(url, driver, argument.logs)
-        if argument.logs:
-            logging.info("Parsed {}".format(game.name))
+        logger.debug("Parsed {}".format(game.name))
         if game != None:
             spinsports_games.append(game)
     return spinsports_games
@@ -104,8 +99,7 @@ def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30
     for ss_game in ss_games:
         for bf_game in bookmaker_games:
             if compareNames(ss_game.name, bf_game.name):
-                if argument.logs:
-                    logging.info("{} == {} score: {}".format(ss_game.name, bf_game.name, fuzz.ratio(ss_game.name, bf_game.name)))
+                logger.debug("{} == {} score: {}".format(ss_game.name, bf_game.name, fuzz.ratio(ss_game.name, bf_game.name)))
                 if market == "correct_score":
                     bf_runner = bf_game.correct_score
                 elif market == "outrights":
@@ -157,30 +151,30 @@ def insertData(oddsmatcher_games, table_name):
         connection.close()
 
 def runSpinsports(driver):
-    logging.info("Collecting spinsports data")
+    logger.info("Collecting spinsports data")
     try:
         bookmaker_games = getSpinsportsGames(15, driver)
     except WebDriverException:
-        logging.info("Chrome has crashed, reopening")
+        logger.warning("Chrome has crashed, reopening")
         driver = startChromeDriver()
         bookmaker_games = getSpinsportsGames(15, driver)
     except:
-        logging.info("Some other error with spinsports")
+        logger.error("Some other error with spinsports")
         return getGames(), driver
-    logging.info("Collecting exchange info")
+    logger.info("Collecting exchange info")
     betfair_games = getGames()
-    logging.info("Comparing odds")
+    logger.info("Comparing odds")
     try:
         compared_list = compareOdds(bookmaker_games, betfair_games, "correct_score")
     except Exception as e:
-        logging.info(e)
+        logger.error(e)
         return betfair_games, driver
-    logging.info("Inserting into database")
+    logger.info("Inserting into database")
     insertData(compared_list, "Spinsports")
     return betfair_games, driver
 
 def runBetsson(driver, betfair_games):
-    logging.info("Collecting Betsson group data")
+    logger.info("Collecting Betsson group data")
     #Try 3 times
     for _ in range(3):
         betsson_games = []
@@ -188,122 +182,122 @@ def runBetsson(driver, betfair_games):
             betsson_games = parseBetsson(driver)
             break
         except WebDriverException:
-            logging.info("Chrome has crashed, reopening")
+            logger.warning("Chrome has crashed, reopening")
             driver = startChromeDriver()
         except Exception as e:
-            logging.info("Betsson:")
-            logging.info(e)
+            logger.error("Betsson:")
+            logger.error(e)
     for _ in range(3):
         betsafe_games = []
         try:
             betsafe_games = parseBetsafe(driver)
             break
         except WebDriverException:
-            logging.info("Chrome has crashed, reopening")
+            logger.warning("Chrome has crashed, reopening")
             driver = startChromeDriver()
         except Exception as e:
-            logging.info("Betsafe:")
-            logging.info(e)
+            logger.error("Betsafe:")
+            logger.error(e)
     for _ in range(3):
         casinowinner_games = []
         try:
             casinowinner_games = parseCasinowinner(driver)
             break
         except WebDriverException:
-            logging.info("Chrome has crashed, reopening")
+            logger.warning("Chrome has crashed, reopening")
             driver = startChromeDriver()
         except Exception as e:
-            logging.info("Casinowinner:")
-            logging.info(e)
-    logging.info("Comparing games, and uploading")
-    logging.info("Betsson")
+            logger.error("Casinowinner:")
+            logger.error(e)
+    logger.info("Comparing games, and uploading")
+    logger.info("Betsson")
     try:
         betsson_games = compareOdds(betsson_games, betfair_games, "outrights")
         insertData(betsson_games, "Betsson")
     except:
-        logging.info("Probably float by zero error, skipping for now")
-    logging.info("Betsafe")
+        logger.error("Probably float by zero error, skipping for now")
+    logger.info("Betsafe")
     try:
         betsafe_games = compareOdds(betsafe_games, betfair_games, "outrights")
         insertData(betsafe_games, "Betsafe")
     except:
-        logging.info("Probably float by zero error, skipping for now")
-    logging.info("Casinowinner")
+        logger.error("Probably float by zero error, skipping for now")
+    logger.info("Casinowinner")
     try:
         casinowinner_games = compareOdds(casinowinner_games, betfair_games, "outrights")
         insertData(casinowinner_games, "Casinowinner")
     except:
-        logging.info("Probably float by zero error, skipping for now")
+        logger.error("Probably float by zero error, skipping for now")
     return driver
 
 def run888sport(driver, betfair_games):
-    logging.info("Collecting 888sport data")
+    logger.info("Collecting 888sport data")
     for _ in range(3):
         bookmaker_games = []
         try:
             bookmaker_games = get888sportData(driver)
             break
         except WebDriverException:
-            logging.info("Chrome has crashed, reopening")
+            logger.warning("Chrome has crashed, reopening")
             driver = startChromeDriver()
         except:
-            logging.info("Some problem with 888sport again")
+            logger.error("Some problem with 888sport again")
             return driver
-    logging.info("Comparing games, and uploading")
+    logger.info("Comparing games, and uploading")
     try:
         compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
     except Exception as e:
         compared_list = []
-        logging.info(e)
-    logging.info("Inserting into database")
+        logger.error(e)
+    logger.info("Inserting into database")
     insertData(compared_list, "888sport")
     return driver
 
 def runBetrebels(driver, betfair_games):
-    logging.info("Collecting betrebels data")
+    logger.info("Collecting betrebels data")
     for _ in range(3):
         bookmaker_games = []
         try:
             bookmaker_games = parseBetrebels(driver)
             break
         except WebDriverException:
-            logging.info("Chrome has crashed, reopening")
+            logger.warning("Chrome has crashed, reopening")
             driver = startChromeDriver()
         except Exception as e:
-            logging.info(e)
-    logging.info("Comparing odds")
+            logger.error(e)
+    logger.info("Comparing odds")
     try:
         compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
     except Exception as e:
         compared_list = []
-        logging.info(e)
-    logging.info("Inserting into database")
+        logger.error(e)
+    logger.info("Inserting into database")
     insertData(compared_list, "Betrebels")
     return driver
 
 def runNeobet(driver, betfair_games):
-    logging.info("Collecting neobet data")
+    logger.info("Collecting neobet data")
     for _ in range(3):
         bookmaker_games = []
         try:
             bookmaker_games = parseNeobet(driver)
             break
         except WebDriverException:
-            logging.info("Chrome has crashed, reopening")
+            logger.warning("Chrome has crashed, reopening")
             driver = startChromeDriver()
         except Exception as e:
-            logging.info(e)
-    logging.info("Comparing odds")
+            logger.error(e)
+    logger.info("Comparing odds")
     try:
         compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
     except Exception as e:
         compared_list = []
-        logging.info(e)
-    logging.info("Inserting into database")
+        logger.error(e)
+    logger.info("Inserting into database")
     insertData(compared_list, "Neobet")
     return driver
 
-logging.info("Starting driver")
+logger.info("Starting driver")
 driver = startChromeDriver()
 
 
@@ -316,7 +310,7 @@ while True:
     driver = runBetrebels(driver, betfair_games)
     driver = runNeobet(driver, betfair_games)
     
-    logging.info("Sleeping for 1 minute")
+    logger.info("Sleeping for 1 minute")
     sleep(60*1)
 
 
