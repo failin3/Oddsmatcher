@@ -6,8 +6,7 @@ import pytz
 
 from logger_manager import *
 
-START_DATE = DATE_OF_MATCHES = datetime.datetime.now().strftime("%Y-%m-%d")
-END_DATE = DATE_OF_MATCHES = (datetime.datetime.now()+datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+GAME_DATE_RANGE = 1
 START_TIME = "00:00"
 END_TIME = "23:59"
 
@@ -66,11 +65,13 @@ class CorrectScoreRunner:
             if selection_id == 16:
                 self.s03 = data
 
+
 class OutrightRunner:
     def __init__(self, r1, rX, r2):
         self.r1 = r1
         self.rX = rX
         self.r2 = r2
+
 
 class BetfairGame:
     def __init__(self, name, event_id, day_, time_):
@@ -81,6 +82,7 @@ class BetfairGame:
         self.outrights = None
         self.correct_score = None
 
+
 def getApiCredentials():
     with open("betfair_api_credentials.txt") as f:
         app_key = f.readline().strip()
@@ -89,6 +91,7 @@ def getApiCredentials():
         api = betfairlightweight.APIClient(username, password , app_key)
         api.login_interactive()
         return api
+
 
 def getCorrectScore(game, markets):
     correct_score_runner = CorrectScoreRunner()
@@ -104,6 +107,7 @@ def getCorrectScore(game, markets):
         correct_score_runner.updateRunner(selection_id, available_to_lay, price)
     game.correct_score = correct_score_runner
     return game
+
 
 def getOutrights(game, markets):
     try:
@@ -122,6 +126,9 @@ def getOutrights(game, markets):
     
 
 def getGames():
+    #Calculate new date every time this function is called
+    START_DATE = datetime.datetime.now().strftime("%Y-%m-%d")
+    END_DATE = (datetime.datetime.now()+datetime.timedelta(days=GAME_DATE_RANGE)).strftime("%Y-%m-%d")
     while True:
         try:
             api = getApiCredentials()
