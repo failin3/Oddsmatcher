@@ -130,13 +130,13 @@ def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30
     return good_odds
 
 def insertData(oddsmatcher_games, table_name):
-    connection = pymysql.connect(host='185.104.29.14',
+    try:
+        connection = pymysql.connect(host='185.104.29.14',
                              user='u80189p74860_oddsmatcher',
                              password='Kq90*r%XXlEXaUIvoxwo',
                              db='u80189p74860_oddsmatcher',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
-    try:
         with connection.cursor() as cursor:
             sql = "DELETE FROM {}".format(table_name)
             cursor.execute(sql)
@@ -150,6 +150,8 @@ def insertData(oddsmatcher_games, table_name):
                 sql = "INSERT INTO {} (MatchName, ExchangeOdds, BookmakerOdds, Closeness, Date, Time, Liquidity, Loss, Bet) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)" .format(table_name)
                 cursor.execute(sql, (game.name, game.exch_odds, game.bkma_odds, game.closeness, game.date, game.time, game.exch_liquidity, exchange_lay_wins, game.bet))
         connection.commit()
+    except Exception as e:
+        logger.error("MySQL error: {}".format(e))
     finally:
         connection.close()
 
