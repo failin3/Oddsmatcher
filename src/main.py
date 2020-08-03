@@ -98,34 +98,40 @@ def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30
     good_odds = []
     for ss_game in ss_games:
         for bf_game in bookmaker_games:
-            if compareNames(ss_game.name, bf_game.name):
-                logger.debug("{} == {} score: {}".format(ss_game.name, bf_game.name, fuzz.ratio(ss_game.name, bf_game.name)))
-                if market == "correct_score":
-                    bf_runner = bf_game.correct_score
-                elif market == "outrights":
-                    bf_runner = bf_game.outrights
-                
-                vars_in_bf = list(vars(bf_runner).items())
-                vars_in_ss = list(vars(ss_game).items())[1:]
+            try:
+                if compareNames(ss_game.name, bf_game.name):
+                    logger.debug("{} == {} score: {}".format(ss_game.name, bf_game.name, fuzz.ratio(ss_game.name, bf_game.name)))
+                    if market == "correct_score":
+                        bf_runner = bf_game.correct_score
+                    elif market == "outrights":
+                        bf_runner = bf_game.outrights
+                    
+                    vars_in_bf = list(vars(bf_runner).items())
+                    vars_in_ss = list(vars(ss_game).items())[1:]
 
-                for bf_data, ss_odds in zip(vars_in_bf, vars_in_ss):
-                    #Sometimes there is 0 available on betfair
-                    if bf_data[1] == None:
-                        continue
-                    bf_odds = bf_data[1][1]
-                    liquidity = bf_data[1][0]
-                    score = bf_data[0]
-                    if (bf_odds != None) and (ss_odds[1] != None):
-                        closeness = getCloseness(bf_odds, ss_odds[1])
-                        bet = makeVarReadable(ss_odds[0], market)
-                        if closeness > set_closeness and float(bf_odds) < set_odds:
-                            if bet == "r1":
-                                bet = bf_game.name.split(" v ")[0]
-                            elif bet == "rX":
-                                bet = "Draw"
-                            elif bet == "r2":
-                                bet = bf_game.name.split(" v ")[1]
-                            good_odds.append(OddsmatcherEntry(bf_game.name, ss_odds[1], bf_odds, liquidity, score, closeness, bf_game.date, bf_game.time, bet))
+                    for bf_data, ss_odds in zip(vars_in_bf, vars_in_ss):
+                        #Sometimes there is 0 available on betfair
+                        if bf_data[1] == None:
+                            continue
+                        #Or betfair LOL
+                        if ss_odds[1] == None:
+                            continue
+                        bf_odds = bf_data[1][1]
+                        liquidity = bf_data[1][0]
+                        score = bf_data[0]
+                        if (bf_odds != None) and (ss_odds[1] != None):
+                            closeness = getCloseness(bf_odds, ss_odds[1])
+                            bet = makeVarReadable(ss_odds[0], market)
+                            if closeness > set_closeness and float(bf_odds) < set_odds:
+                                if bet == "r1":
+                                    bet = bf_game.name.split(" v ")[0]
+                                elif bet == "rX":
+                                    bet = "Draw"
+                                elif bet == "r2":
+                                    bet = bf_game.name.split(" v ")[1]
+                                good_odds.append(OddsmatcherEntry(bf_game.name, ss_odds[1], bf_odds, liquidity, score, closeness, bf_game.date, bf_game.time, bet))
+            except Exception as e:
+                logger.error(e)
     good_odds = sorted(good_odds, key=operator.attrgetter('closeness'))
     return good_odds
 
