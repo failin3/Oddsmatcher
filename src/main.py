@@ -317,8 +317,8 @@ while True:
     driver = runBetrebels(driver, betfair_games)
     driver = runNeobet(driver, betfair_games)
     
-    logger.info("Sleeping for 1 minute")
-    sleep(60*1)
+    #logger.info("Sleeping for 1 minute")
+    #sleep(60*1)
 
 
 
