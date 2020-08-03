@@ -131,6 +131,8 @@ def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30
 
 def insertData(oddsmatcher_games, table_name):
     try:
+        if len(oddsmatcher_games) == 0:
+            logger.debug("Table {} insert is empty")
         connection = pymysql.connect(host='185.104.29.14',
                              user='u80189p74860_oddsmatcher',
                              password='Kq90*r%XXlEXaUIvoxwo',
