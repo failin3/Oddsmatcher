@@ -3,8 +3,9 @@ $servername = "localhost";
 $username = "u80189p74860_oddsmatcher";
 $password = "Kq90*r%XXlEXaUIvoxwo";
 
-
+//Check if request comes from the oddsmatcher pages, else return nothing.
 if ($_SERVER["HTTP_REFERER"] != "https://www.rickproductions.nl/oddsmatcher-dev/" && $_SERVER["HTTP_REFERER"] != "https://www.rickproductions.nl/oddsmatcher/") {
+  http_response_code(403);
   exit();
 }
 
