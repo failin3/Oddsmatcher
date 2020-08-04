@@ -4,6 +4,9 @@ $username = "u80189p74860_oddsmatcher";
 $password = "Kq90*r%XXlEXaUIvoxwo";
 
 
+if ($_SERVER["HTTP_REFERER"] != "https://www.rickproductions.nl/oddsmatcher-dev/" && $_SERVER["HTTP_REFERER"] != "https://www.rickproductions.nl/oddsmatcher/") {
+  exit();
+}
 
 // Create connection
 $mysqli = new mysqli($servername, $username, $password, $username);
