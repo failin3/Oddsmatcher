@@ -35,6 +35,23 @@ slider = document.getElementById("layStake");
 slider_min_element = document.getElementById("minSlider");
 slider_max_element = document.getElementById("maxSlider");
 
+var url = window.location.href;
+var url = new URL(url);
+var back_value = url.searchParams.get("b");
+var lay_value = url.searchParams.get("l");
+var commission_value = url.searchParams.get("c");
+if (back_value != null) {
+    document.getElementById("backOdds").value = back_value;
+}
+if (lay_value != null) {
+    document.getElementById("layOdds").value = lay_value;
+}
+if (commission_value != null) {
+    document.getElementById("layComm").value = commission_value;
+}
+
+
+
 lay_stake = 0;
 slider_min = slider_min_element.value;
 slider_max = slider_max_element.value;

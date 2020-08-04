@@ -141,3 +141,8 @@ dmypy.json
 
 # pytype static type analyzer
 .pytype/
+frontend/jquery-3.5.1.min.js
+src/betfair_api_credentials.txt
+src/bin/chromedriver.exe
+src/bin/geckodriver.exe
+betfair_api_credentials.txt

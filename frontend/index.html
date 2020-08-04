@@ -91,12 +91,13 @@ min_liquidity_slider.oninput = function() {
 #oddsmatcher th {padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: #5C9EAD;color: white;}
 .match {width: 35%;}
 .result {width: 20%;}
-.bookmaker {width: 10%; border-right: 1px solid #f2f2f2;}
-.exchange {width: 10%;}
+.bookmaker {width: 7.5%; border-right: 1px solid #f2f2f2;}
+.exchange {width: 7.5%;}
 #oddsmatcher tbody tr td:nth-child(3) {background-color:#a6d8ff;}
 #oddsmatcher tbody tr td:nth-child(4) {background-color:#fac9d1;}
 .liquidity {width: 10%;}
 .date {width: 15%;}
+.go {width: 5%;}
 </style>
     
 
@@ -108,6 +109,7 @@ min_liquidity_slider.oninput = function() {
         <col class="exchange" />
         <col class="liquidity" />
         <col class="date" />
+        <col class="go" />
     </colgroup>
     <tr>
         <th>Match</th>
@@ -116,8 +118,10 @@ min_liquidity_slider.oninput = function() {
         <th>Lay</th>
         <th>Liquidity</th>
         <th>Date</th>
+        <th></th>
     </tr>
 </table>
+<div id="loading"></div>
 
 <script>
     function RefreshTable() {
@@ -126,12 +130,15 @@ min_liquidity_slider.oninput = function() {
    }
 
     var ajax = function() {
-        jQuery.ajax({    //create an ajax request to display.php
+        //jQuery("#loading").text("Loading...");
+        jQuery.ajax({    //create an ajax request to ajax_php_call.php
             type: "POST",
             url: "/AJAX/ajax_php_call.php",             
             data: jQuery('#filter').serialize(),
             dataType: "json",   //expect json to be returned                
-            success: function(response){        
+            success: function(response){
+                //jQuery("#loading").text("");
+                //console.log(response);
                 RefreshTable();
                 jQuery.each(response, function(i, item) {
                     $game = jQuery(item)[0]["MatchName"];
@@ -142,7 +149,7 @@ min_liquidity_slider.oninput = function() {
                     $date = jQuery(item)[0]["Date"];
                     $time = jQuery(item)[0]["Time"];
                     //console.log((item));
-                    jQuery('#oddsmatcher > tbody:last-child').append(`<tr><td>${$game}</td><td>${$result}</td><td>${$bookmaker_odds}</td><td>${$exchange_odds}</td><td>${$liquidity}</td><td>${$date} ${$time}</td></tr>`);
+                    jQuery('#oddsmatcher > tbody:last-child').append(`<tr><td>${$game}</td><td>${$result}</td><td>${$bookmaker_odds}</td><td>${$exchange_odds}</td><td>${$liquidity}</td><td>${$date} ${$time}</td><td><a href="/calculator?b=${$bookmaker_odds}&l=${$exchange_odds}&c=6.5" target="_blank">go</a></td></tr>`);
                 });
             }
         });
@@ -151,7 +158,7 @@ min_liquidity_slider.oninput = function() {
     jQuery(document).ready(ajax);
     jQuery("#filter").submit(function(e) {
         e.preventDefault();
-        console.log("Preventing default!!!");
+        //console.log("Preventing default!!!");
         ajax();
     });    
     jQuery("#bookmaker").on("change", function() {
