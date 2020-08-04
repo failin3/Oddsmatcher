@@ -1,0 +1,129 @@
+<form>
+    <input type="text" id="backStake" placeholder="Back stake" autofocus autocomplete="off" tabindex="1" onkeyup="updatelay(false)">
+    <br>
+    <input type="text" id="backOdds" placeholder="Back odds" autocomplete="off" tabindex="2" onkeyup="updatelay(false)">
+    <br>
+    <input type="text" id="layOdds" placeholder="Lay odds" autocomplete="off" tabindex="3" onkeyup="updatelay(false)">
+    <br>
+    <input type="text" id="layComm" placeholder="Lay commission" autocomplete="off" tabindex="4" onkeyup="updatelay(false)">
+    <br>
+    <input type="text" id="minSlider" autocomplete="off" onkeyup="updatelay(true)">
+    <input type="range" id="layStake" min="0" max="100" value="50">
+    <input type="text" id="maxSlider" autocomplete="off" onkeyup="updatelay(true)">
+
+    <br>
+    <input type="radio" id="normal_bet" name="bet_type" value="normal" onclick="updatelay(false)" checked="checked">
+    <label for="Normal">Normal</label><br>
+    <input type="radio" id="free_bet" name="bet_type" value="free_bet" onclick="updatelay(false)">
+    <label for="Free bet">Free bet</label><br>
+
+      
+</form>
+<input type="submit" value="Calculate" onclick="updatelay(false)" action="">
+
+<div id="lay_stake_output">Lay stake:</div><br>
+<div id="liability_output">Liability:</div><br>
+Bookmaker bet wins: <span id="bookmaker_win_output">Bookmaker bet wins:</span><br>
+<div id="exchange_win_output">Exchange bet wins:</div><br>
+
+
+<br>
+
+
+<script type="text/javascript">
+slider = document.getElementById("layStake");
+slider_min_element = document.getElementById("minSlider");
+slider_max_element = document.getElementById("maxSlider");
+
+lay_stake = 0;
+slider_min = slider_min_element.value;
+slider_max = slider_max_element.value;
+
+function updatelay(updateLimits) {
+    //Ugly but works haha
+    //console.log("lay_stake: " + lay_stake);
+
+    back_stake = document.getElementById("backStake").value;
+    back_odds = document.getElementById("backOdds").value;
+    lay_odds = document.getElementById("layOdds").value;
+    lay_comm = document.getElementById("layComm").value;
+    lay_stake_percentage = document.getElementById("layStake").value;
+
+    if (updateLimits == true) {
+        if (slider_min_element.value != slider_min || slider_max_element.value != slider_max) {
+            slider_min = parseFloat(slider_min_element.value);
+            slider_max = parseFloat(slider_max_element.value);
+            if (slider_min == NaN) {
+                slider_min = 0;
+            }
+            if (slider_max == NaN) {
+                slider_max = 0;
+            }
+            //console.log("slider_min: " + slider_min);
+            new_pos = (lay_stake - slider_min) /  (slider_max-slider_min);
+            //console.log("new_pos: " + new_pos);
+            slider.value = new_pos*100;
+        }
+        //return
+    }
+
+
+    if (!isNaN(back_stake) && back_stake != "" && !isNaN(back_odds) && back_odds != "" && !isNaN(lay_odds) && lay_odds != "" && !isNaN(lay_comm) && lay_comm != "") {
+        if (document.getElementById("normal_bet").checked == true) {
+            optimal_lay_stake = (back_odds / (lay_odds - lay_comm/100) * back_stake);
+        } else {
+            optimal_lay_stake = (back_odds-1) / (lay_odds - lay_comm/100) * back_stake;
+        }
+        if (updateLimits == false) {
+            slider_min = (optimal_lay_stake-optimal_lay_stake*0.4);
+            slider_max = (optimal_lay_stake+optimal_lay_stake*0.4);
+            slider_min_element.value = slider_min.toFixed(2);
+            slider_max_element.value = slider_max.toFixed(2);
+        }
+        
+        if (document.getElementById("normal_bet").checked == true) {
+            gains_bookmaker = back_stake*back_odds;
+            lay_stake = slider_min + (slider_max - slider_min)*slider.value/100;
+            slider.step = 1/((slider_max-slider_min));
+            liability= (lay_stake * (lay_odds - 1));
+            bookmaker_win = gains_bookmaker - liability - back_stake;
+            exchange_win = lay_stake*(1-lay_comm/100) - back_stake;
+        } else {
+            lay_stake = slider_min + (slider_max - slider_min)*slider.value/100;
+            slider.step = 1/((slider_max-slider_min));
+            liability= (lay_stake * (lay_odds - 1));
+            bookmaker_win = (back_odds-1)*back_stake-(lay_odds-1)*lay_stake;
+            exchange_win = lay_stake * (1-lay_comm/100)
+        }
+        
+
+    } else {
+        lay_stake = 0;
+        liability = 0;
+        bookmaker_win = 0;
+        exchange_win = 0;
+    }
+    //console.log("lay_stake: " + lay_stake);
+    //console.log("slider.value: " + slider.value);
+    document.getElementById("lay_stake_output").innerHTML =  "Lay stake: " + parseFloat(lay_stake).toFixed(2);
+    document.getElementById("liability_output").innerHTML =  "Liability: " + liability.toFixed(2);
+    document.getElementById("bookmaker_win_output").innerHTML =  bookmaker_win.toFixed(2);
+    document.getElementById("exchange_win_output").innerHTML =  exchange_win.toFixed(2);
+    if (bookmaker_win > 0) {
+        document.getElementById("bookmaker_win_output").style.color = 'green';
+    } else {
+        document.getElementById("bookmaker_win_output").style.color = 'red';
+    }
+    if (exchange_win > 0) {
+        document.getElementById("exchange_win_output").style.color = 'green';
+    } else {
+        document.getElementById("exchange_win_output").style.color = 'red';
+    }
+}
+
+slider.oninput = function() {
+  updatelay()
+}
+previous_min = slider_min_element.value;
+previous_max = slider_max_element.value;
+</script>
