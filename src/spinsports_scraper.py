@@ -1,5 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 from time import sleep
 import re
@@ -124,24 +126,38 @@ def getMatchUrls(url, driver):
     driver.find_element_by_id("odd_style_1").click()
     
     #Click to go to the page of all games next 24 hours
-    elements = driver.find_elements_by_tag_name("li")
-    for element in elements:
-        if element.text == "Upcoming":
-            element.click()
-            sleep(1)
-            break
-    dropdown = driver.find_elements_by_class_name("filter-htmldropdown-placeholder")[1]
-    dropdown.click()
+    #This has been removed recently, so if it crasehs no problem.
+    try:
+        elements = driver.find_elements_by_tag_name("li")
+        for element in elements:
+            if element.text == "Upcoming":
+                element.click()
+                sleep(1)
+                break
+        dropdown = driver.find_elements_by_class_name("filter-htmldropdown-placeholder")[1]
+        dropdown.click()
+        sleep(1)
+        selection = driver.find_elements_by_xpath("//*[contains(text(), 'Next 24 Hours')]")[0]
+        selection.click()
+    except IndexError:
+        logger.debug("There is no 24 hour panel")
     sleep(1)
-    selection = driver.find_elements_by_xpath("//*[contains(text(), 'Next 24 Hours')]")[0]
-    selection.click()
-    sleep(1)
-    soup = BeautifulSoup(driver.page_source, features="html.parser")
-    sleep(1)
-    for game in soup.find_all("a", class_="event-details event-details-upcomming"):
-        url = game["href"]
-        if "/en/sports/soccer/" in url and url not in url_list and not "esports" in url:
-            url_list.append(url)
+    #Select soccer, doesnt work TODO: Implement this
+    # dropdown = driver.find_elements_by_class_name("filter-htmldropdown-placeholder")[0]
+    # dropdown.click()
+    # sleep(1)
+    # driver.find_elements_by_class_name("branch-name")[1].click()
+    # sleep(1)
+    for _ in range(3):
+        #Scroll down twice
+        ActionChains(driver).send_keys(Keys.SPACE).perform()
+        sleep(1)
+        soup = BeautifulSoup(driver.page_source, features="html.parser")
+        #Used to be "event-details event-details-upcomming"
+        for game in soup.find_all("a", class_="rj-ev-list__ev-card__section rj-ev-list__ev-card__event-info rj-ev-list__ev-card__section-item--no-league"):
+            url = game["href"]
+            if "/en/sports/soccer/" in url and url not in url_list and not "esports" in url:
+                url_list.append(url)
     return url_list
 
 if __name__ == "__main__":
@@ -154,7 +170,7 @@ if __name__ == "__main__":
 
 
 
-    game = parseMatch("/en/sports/soccer/turkey-super-ligi/20200726/denizlispor-vs-ankaragucu/", driver)
+    #game = parseMatch("/en/sports/soccer/turkey-super-ligi/20200726/denizlispor-vs-ankaragucu/", driver)
 
 
 
