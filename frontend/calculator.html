@@ -106,8 +106,8 @@ function updatelay(updateLimits) {
             gains_bookmaker = back_stake*back_odds;
             slider.step = 1/((slider_max-slider_min));
             //Set slider to the middle, only happens when its one step removed from the middle and hasnt happend to back stake
-            //Why 49.5 and 50? Just a big enough buffer, kinda random
-            if (((slider.value >= 49.5 && slider.value <= 50) || (slider.value <= 50.5 && slider.value >= 50)) && (set_back_stake != back_stake)) {
+            //Why 45 and 55? Just a big enough buffer, kinda random
+            if (((slider.value >= 45 && slider.value <= 55) || (slider.value <= 51 && slider.value >= 50)) && (set_back_stake != back_stake)) {
                 set_back_stake = back_stake;
                 if (Math.abs((50/slider.step).toFixed(0)*slider.step - 50) <= Math.abs((50/slider.step + 1).toFixed(0)*slider.step - 50)) {
                     //Closer to first than second
@@ -126,8 +126,8 @@ function updatelay(updateLimits) {
             lay_stake = slider_min + (slider_max - slider_min)*slider.value/100;
             slider.step = 1/((slider_max-slider_min));
             //Set slider to the middle, only happens when its one step removed from the middle and hasnt happend to back stake
-            //Why 49.5 and 50? Just a big enough buffer, kinda random
-            if (((slider.value >= 49.5 && slider.value <= 50) || (slider.value <= 50.5 && slider.value >= 50)) && (set_back_stake != back_stake)) {
+            //Why 45 and 55? Just a big enough buffer, kinda random
+            if (((slider.value >= 45 && slider.value <= 55) || (slider.value <= 51 && slider.value >= 50)) && (set_back_stake != back_stake)) {
                 set_back_stake = back_stake;
                 if (Math.abs((50/slider.step).toFixed(0)*slider.step - 50) <= Math.abs((50/slider.step + 1).toFixed(0)*slider.step - 50)) {
                     //Closer to first than second
