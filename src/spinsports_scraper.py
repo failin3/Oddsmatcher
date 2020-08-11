@@ -142,12 +142,8 @@ def getMatchUrls(url, driver):
     except IndexError:
         logger.debug("There is no 24 hour panel")
     sleep(1)
-    #Select soccer, doesnt work TODO: Implement this
-    # dropdown = driver.find_elements_by_class_name("filter-htmldropdown-placeholder")[0]
-    # dropdown.click()
-    # sleep(1)
-    # driver.find_elements_by_class_name("branch-name")[1].click()
-    # sleep(1)
+
+    #Page with upcoming games
     for _ in range(3):
         #Scroll down twice
         ActionChains(driver).send_keys(Keys.SPACE).perform()
@@ -158,6 +154,22 @@ def getMatchUrls(url, driver):
             url = game["href"]
             if "/en/sports/soccer/" in url and url not in url_list and not "esports" in url:
                 url_list.append(url)
+
+    #Soccer page with games of the day, and tommorow
+    second_game_list_url = "https://spinsportsmga.spinpalace.com/en/sports/soccer/"
+    driver.get(second_game_list_url)
+    sleep(1)
+    for _ in range(2):
+        sleep(1)
+        soup = BeautifulSoup(driver.page_source, features="html.parser")
+        #Used to be "event-details event-details-upcomming"
+        for game in soup.find_all("a", class_="rj-ev-list__ev-card__section rj-ev-list__ev-card__event-info rj-ev-list__ev-card__section-item--no-league"):
+            url = game["href"]
+            if "/en/sports/soccer/" in url and url not in url_list and not "esports" in url:
+                url_list.append(url)
+        #Click on second item, to go to tommorow
+        driver.find_elements_by_class_name("rj-carousel-item__date")[1].click()
+        sleep(1)
     return url_list
 
 if __name__ == "__main__":
