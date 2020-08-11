@@ -16,7 +16,10 @@ $mysqli = new mysqli($servername, $username, $password, $username);
 if ($mysqli->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-if($_POST['bookmaker']) {
+//Make sure to update this when adding new bookmakers
+//Check this to prevent MYSQL injection
+$bookmaker_array = ["Spinsports", "Neobet", "Casinowinner", "Betsson", "Betsafe", "Betrebels", "888sport"];
+if($_POST['bookmaker'] && in_array($_POST['bookmaker'], $bookmaker_array)) {
   $bookmaker = $_POST['bookmaker'];
 } else {
   $bookmaker = "Spinsports";
