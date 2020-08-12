@@ -17,8 +17,8 @@ def parseBetsson(driver):
     driver.get(betsson_url)
     sleep(7)
     league_element = driver.find_elements_by_class_name("obg-m-events-master-detail-header-title")
-    #Click on top 6 leagues
-    for i in range(6):
+    #Click on top 10 leagues
+    for i in range(10):
         league_element[i].click()
         sleep(1)
     soup = BeautifulSoup(driver.page_source, features="html.parser")
@@ -46,8 +46,8 @@ def parseBetsafe(driver):
     driver.get(betsafe_url)
     sleep(7)
     league_element = driver.find_elements_by_class_name("obg-m-events-master-detail-header-title")
-    #Click on top 6 leagues
-    for i in range(6):
+    #Click on top 10 leagues
+    for i in range(10):
         league_element[i].click()
         sleep(1)
     soup = BeautifulSoup(driver.page_source, features="html.parser")
