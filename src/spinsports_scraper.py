@@ -166,7 +166,8 @@ def getMatchUrls(url, driver):
         for game in soup.find_all("a", class_="rj-ev-list__ev-card__section rj-ev-list__ev-card__event-info rj-ev-list__ev-card__section-item--no-league"):
             url = game["href"]
             if "/en/sports/soccer/" in url and url not in url_list and not "esports" in url:
-                url_list.append(url)
+                #Insert to the front of the list
+                url_list.insert(0, url)
         #Click on second item, to go to tommorow
         driver.find_elements_by_class_name("rj-carousel-item__date")[1].click()
         sleep(1)
