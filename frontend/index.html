@@ -1,49 +1,46 @@
 <style>
-#oddsmatcher {table-layout: fixed;}
-#oddsmatcher td, #oddsmatcher th {border: 1px solid #ddd; padding: 5px; white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;}
-#oddsmatcher tr:nth-child(2n+2){background-color: #f2f2f2;}
-#oddsmatcher tr:hover {background-color: #ddd;}
-#oddsmatcher th {padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: #5C9EAD;color: white;}
-.match {width: 35%;}
-.result {width: 20%;}
-.bookmaker {width: 7.5%; border-right: 1px solid #f2f2f2;}
-.exchange {width: 7.5%;}
-#oddsmatcher tbody tr td:nth-child(3) {background-color:#a6d8ff;}
-#oddsmatcher tbody tr td:nth-child(4) {background-color:#fac9d1;}
-.liquidity {width: 10%;}
-.date {width: 15%;}
-.go {width: 5%;}
+    #oddsmatcher {table-layout: fixed;}
+    #oddsmatcher td, #oddsmatcher th {border: 1px solid #ddd; padding: 5px; white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;}
+    #oddsmatcher tr:nth-child(2n+2){background-color: #f2f2f2;}
+    #oddsmatcher tr:hover {background-color: #ddd;}
+    #oddsmatcher th {padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: #4e4e4e;color: white;}
+    .match {width: 35%;}
+    .result {width: 20%;}
+    .bookmaker {width: 7.5%; border-right: 1px solid #f2f2f2;}
+    .exchange {width: 7.5%;}
+    #oddsmatcher tbody tr td:nth-child(3) {background-color:#a6d8ff;}
+    #oddsmatcher tbody tr td:nth-child(4) {background-color:#fac9d1;}
+    .liquidity {width: 10%;}
+    .date {width: 15%;}
+    .go {width: 5%;}
 </style>
     
-
-<table id="oddsmatcher" border='1'>
+<table id="oddsmatcher" border="1">
     <colgroup>
-        <col class="match" />
-        <col class="result" />
-        <col class="bookmaker" />
-        <col class="exchange" />
-        <col class="liquidity" />
-        <col class="date" />
-        <col class="go" />
+        <col class="match">
+        <col class="result">
+        <col class="bookmaker">
+        <col class="exchange">
+        <col class="liquidity">
+        <col class="date">
+        <col class="go">
     </colgroup>
-    <tr>
+    <tbody><tr>
         <th>Match</th>
-        <th>Result</th>
-        <th>Back</th>
+        <th class="">Result</th>
+        <th class="">Back</th>
         <th>Lay</th>
-        <th>Liquidity</th>
+        <th class="">Liquidity</th>
         <th>Date</th>
-        <th></th>
+        <th>🌊</th>
     </tr>
-</table>
+</tbody></table>
 <div id="loading"></div>
-
 <script>
     function RefreshTable() {
         //console.log("Refresh!");
         jQuery("#oddsmatcher > tbody > tr:not(:first)").remove()
-   }
-
+    }
     var ajax = function() {
         //jQuery("#loading").text("Loading...");
         console.log(jQuery('#bookmaker_filter, #odds_filter, #time_filter, #liquidity_filter').serialize());
@@ -65,12 +62,11 @@
                     $date = jQuery(item)[0]["Date"];
                     $time = jQuery(item)[0]["Time"];
                     //console.log((item));
-                    jQuery('#oddsmatcher > tbody:last-child').append(`<tr><td>${$game}</td><td>${$result}</td><td>${$bookmaker_odds}</td><td>${$exchange_odds}</td><td>${$liquidity}</td><td>${$date} ${$time}</td><td><a href="/calculator?b=${$bookmaker_odds}&l=${$exchange_odds}&c=6.5" target="_blank">go</a></td></tr>`);
+                    jQuery('#oddsmatcher > tbody:last-child').append(`<tr><td>${$game}</td><td>${$result}</td><td>${$bookmaker_odds}</td><td>${$exchange_odds}</td><td>€${$liquidity}</td><td>${$date} ${$time}</td><td><a href="/calculator?b=${$bookmaker_odds}&l=${$exchange_odds}&c=6.5" target="_blank">go</a></td></tr>`);
                 });
             }
         });
     }
-
     jQuery(document).ready(ajax);
     jQuery("#submit_filter").submit(function(e) {
         e.preventDefault();
@@ -80,7 +76,5 @@
     jQuery("#bookmaker").on("change", function() {
         ajax();
     });
-
-
 setInterval(ajax, 1000*60* 2);
 </script>
