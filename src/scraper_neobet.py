@@ -3,6 +3,9 @@ from bs4 import BeautifulSoup
 from time import sleep
 import re
 
+from logger_manager import *
+
+
 class OutrightGame:
     def __init__(self, name, r1, rX, r2):
         self.name = name
@@ -21,10 +24,35 @@ def makePageLoad(driver, url, nr_of_tries):
         driver.get(url)
     print("Page just doesn't want to load")
 
+def getFootballSection(soup):
+    #Get football section
+    soup = soup.find_all("section")
+    for item in soup:
+        if item["data-onsite-sport-block"] == "Football":
+            soup = item
+            break
+    return soup
+
 def parseNeobet(driver):
     url = "https://neo.bet/en/Sportbets"
     driver.get(url)
     makePageLoad(driver, url, 5)
+    sleep(1)
+    #Scrape main page
+    soup = BeautifulSoup(driver.page_source, features="html.parser")
+    soup = getFootballSection(soup)
+    game_list = []
+    for bet in soup.find_all("div", class_="matchRow"):
+        try:
+            team1 = bet.find_all("div", class_=re.compile("s1\w_team"))[0].text.strip()
+            team2 = bet.find_all("div", class_=re.compile("s1\w_team"))[2].text.strip()
+            r1 = bet.find_all("span", class_=re.compile("s1\w_decimal"))[0].text.strip()
+            rX = bet.find_all("span", class_=re.compile("s1\w_decimal"))[1].text.strip()
+            r2 = bet.find_all("span", class_=re.compile("s1\w_decimal"))[2].text.strip()
+            game_list.append(OutrightGame("{} vs {}".format(team1, team2), r1, rX, r2))
+        except Exception as e:
+            logger.debug(e)
+
     #Why 3? Idk, weird web design
     driver.find_elements_by_xpath("//*[contains(text(), 'Time')]")[3].click()
     sleep(1)
@@ -34,21 +62,22 @@ def parseNeobet(driver):
     
     #print(driver.find_elements_by_class_name("events-tree-table-node-CH-name"))    
     soup = BeautifulSoup(driver.page_source, features="html.parser")
-    game_list = []
+    soup = getFootballSection(soup)
     for bet in soup.find_all("div", class_="matchRow"):
         #TODO: implement live indicator, to dismiss that game.
         # if bet.find("div", class_="live-indicator"):
         #     continue
         #Now using \w in regex because s1*_betmarket etc keeps changing
-        if len(bet.find_all("div", class_=re.compile("s1\w_betmarket"))[1].find_all("div", class_=re.compile("s1\w_center"))) == 3:
+        #if len(bet.find_all("div", class_=re.compile("s1\w_betmarket"))[1].find_all("div", class_=re.compile("s1\w_center"))) == 3:
+        try:
             team1 = bet.find_all("div", class_=re.compile("s1\w_team"))[0].text.strip()
             team2 = bet.find_all("div", class_=re.compile("s1\w_team"))[2].text.strip()
             r1 = bet.find_all("span", class_=re.compile("s1\w_decimal"))[0].text.strip()
             rX = bet.find_all("span", class_=re.compile("s1\w_decimal"))[1].text.strip()
             r2 = bet.find_all("span", class_=re.compile("s1\w_decimal"))[2].text.strip()
             game_list.append(OutrightGame("{} vs {}".format(team1, team2), r1, rX, r2))
-        else:
-            break
+        except Exception as e:
+            logger.debug(e)
     return game_list
 
 if __name__ == "__main__":
