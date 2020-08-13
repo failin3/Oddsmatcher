@@ -1,88 +1,3 @@
-<script type="text/javascript" src="/AJAX/jquery-3.5.1.min.js"></script>
-
-<form id="filter" method="POST" action="#">
-    <div style="float: left; margin-right: 10px;" onselect="ajax()">
-        <select name="bookmaker" id="bookmaker">
-            <option value="888sport">888sport</option>
-            <option value="Betrebels">Betrebels</option>
-            <option value="Betsafe">Betsafe</option>
-            <option value="Betsson">Betsson</option>
-            <option value="Casinowinner">Casinowinner</option>
-            <option value="Neobet">Neobet</option>
-            <option value="Spinsports" selected="selected">Spinsports</option>
-        </select>
-    </div>
-    <div class="wrapper" style="display: inline-block;">
-        <div class="" style="float: left; margin-right: 5px;">
-            <input type="range" name="time_range" id="time_range" min="0" max="25" value="25">
-            <p>Game before: <span id="output"></span></p>
-        </div>
-        <div class="" style="float: left; margin-right: 5px;">
-            <input type="range" name="min_odds" id="min_odds" min="0" max="30" step="0.1" value="0">
-            <p>Minimum odds: <span id="min_odds_output"></span></p>
-        </div>
-        <div class="" style="float: left;">
-            <input type="range" name="max_odds" id="max_odds" min="0" max="30" value="30">
-            <p>Maximum odds: <span id="max_odds_output"></span></p>
-        </div>
-        <div class="" style="float: left;">
-            <input type="range" name="min_liquidity" id="min_liquidity" min="0" max="1000" step="10" value="0">
-            <p>Minimum Liquidity: <span id="min_liquidity_output"></span></p>
-        </div>
-        <div style="display:block; text-align: center;">
-            <input type="submit" value="Submit">
-        </div>
-    </div>
-    
-</form>
-
-
-
-<script>
-var slider = document.getElementById("time_range");
-var output = document.getElementById("output");
-
-var min_odds_slider = document.getElementById("min_odds");
-var min_odds_output = document.getElementById("min_odds_output");
-
-var max_odds_slider = document.getElementById("max_odds");
-var max_odds_output = document.getElementById("max_odds_output");
-
-var min_liquidity_slider = document.getElementById("min_liquidity");
-var min_liquidity_output = document.getElementById("min_liquidity_output");
-
-//Time
-output.innerHTML = "∞";
-slider.oninput = function() {
-    if (slider.value < 25) {
-        output.innerHTML = this.value + ":00";
-    } else {
-        output.innerHTML = "∞";
-    }
-    
-}
-
-//Min odds
-min_odds_output.innerHTML = min_odds_slider.value;
-min_odds_slider.oninput = function() {
-    min_odds_output.innerHTML = min_odds_slider.value;
-}
-
-//Max odds
-max_odds_output.innerHTML = max_odds_slider.value;
-max_odds_slider.oninput = function() {
-    max_odds_output.innerHTML = this.value;
-}
-
-//Min Liquidity
-min_liquidity_output.innerHTML = "€" + min_liquidity_slider.value;
-min_liquidity_slider.oninput = function() {
-    min_liquidity_output.innerHTML = "€" + this.value;
-}
-
-
-</script>
-
 <style>
 #oddsmatcher {table-layout: fixed;}
 #oddsmatcher td, #oddsmatcher th {border: 1px solid #ddd; padding: 5px; white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;}
@@ -131,10 +46,11 @@ min_liquidity_slider.oninput = function() {
 
     var ajax = function() {
         //jQuery("#loading").text("Loading...");
+        console.log(jQuery('#bookmaker_filter, #odds_filter, #time_filter, #liquidity_filter').serialize());
         jQuery.ajax({    //create an ajax request to ajax_php_call.php
             type: "POST",
             url: "/AJAX/ajax_php_call.php",             
-            data: jQuery('#filter').serialize(),
+            data: jQuery('#bookmaker_filter, #odds_filter, #time_filter, #liquidity_filter').serialize(),
             dataType: "json",   //expect json to be returned                
             success: function(response){
                 //jQuery("#loading").text("");
@@ -156,7 +72,7 @@ min_liquidity_slider.oninput = function() {
     }
 
     jQuery(document).ready(ajax);
-    jQuery("#filter").submit(function(e) {
+    jQuery("#submit_filter").submit(function(e) {
         e.preventDefault();
         //console.log("Preventing default!!!");
         ajax();

@@ -1,0 +1,90 @@
+<form id="bookmaker_filter" method="POST" action="#">
+    <select name="bookmaker" id="bookmaker">
+        <option value="888sport">888sport</option>
+        <option value="Betrebels">Betrebels</option>
+        <option value="Betsafe">Betsafe</option>
+        <option value="Betsson">Betsson</option>
+        <option value="Casinowinner">Casinowinner</option>
+        <option value="Neobet">Neobet</option>
+        <option value="Spinsports" selected="selected">Spinsports</option>
+    </select>
+</form>
+<form id="odds_filter" method="POST" action="#">
+    <input type="text" name="min_odds" class="oddsValue" data-index="0" value="0" style="width: 60px;" autocomplete="off">
+    <div id="oddsSlider" style="width: 50%; display: inline-block; margin-left: 20px; margin-right: 20px;"></div>
+    <input type="text" name="max_odds" class="oddsValue" data-index="1" value="30" style="width: 60px;" autocomplete="off">
+</form>
+<form id="liquidity_filter" method="POST" action="#">
+    <input type="text" name="min_liquidity" class="liquidityValue" data-index="0" value="0" style="width: 60px;" autocomplete="off">
+    <div id="liquiditySlider" style="width: 50%; display: inline-block; margin-left: 20px; margin-right: 20px;"></div>
+</form>
+<form id="time_filter" method="POST" action="#">
+    <input type="text" name="min_time" class="timeValue" data-index="0" value="0:00" style="width: 60px;" readonly="">
+    <div id="timeSlider" style="width: 50%; display: inline-block; margin-left: 20px; margin-right: 20px;"></div>
+    <input type="text" name="max_time" class="timeValue" data-index="1" value="∞" style="width: 60px;" readonly="">
+</form>
+
+<div style="text-align: center;">
+    <form id="submit_filter" method="POST" action="#">
+        <input type="submit" value="Filter">
+    </form>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script>jQ = jQuery.noConflict(true);</script>
+<script type="text/javascript">
+jQ(document).ready(function() {
+    jQ('#oddsSlider').slider({
+        min: 0,
+        max: 30,
+        step: 0.1,
+        values: [0, 30],
+        slide: function(event, ui) {
+        for (var i = 0; i < ui.values.length; ++i) {
+            jQ("input.oddsValue[data-index=" + i + "]").val(ui.values[i]);
+        }
+    }
+    });
+    jQ("input.oddsValue").change(function() {
+    var jQthis = jQ(this);
+    jQ("#oddsSlider").slider("values", jQthis.data("index"), jQthis.val());
+    });
+    jQ('#timeSlider').slider({
+        min: 0,
+        max: 25,
+        step: 1,
+        values: [0, 30],
+        slide: function(event, ui) {
+        for (var i = 0; i < ui.values.length; ++i) {
+            if (ui.values[i] == 25) {
+                jQ("input.timeValue[data-index=" + i + "]").val("∞");
+            } else {
+                jQ("input.timeValue[data-index=" + i + "]").val(ui.values[i] + ":00");
+            }
+        }
+    }
+    });
+    jQ("input.timeValue").change(function() {
+    var jQthis = jQ(this);
+    jQ("#timeSlider").slider("values", jQthis.data("index"), jQthis.val());
+    });
+    jQ('#liquiditySlider').slider({
+        min: 0,
+        max: 1000,
+        step: 1,
+        values: [0],
+        slide: function(event, ui) {
+        for (var i = 0; i < ui.values.length; ++i) {
+            jQ("input.liquidityValue[data-index=" + i + "]").val(ui.values[i]);
+        }
+    }
+    });
+    jQ("input.liquidityValue").change(function() {
+    var jQthis = jQ(this);
+    jQ("#liquiditySlider").slider("values", jQthis.data("index"), jQthis.val());
+    });
+});
+</script>

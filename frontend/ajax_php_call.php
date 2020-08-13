@@ -4,9 +4,9 @@ $username = "u80189p74860_oddsmatcher";
 $password = "Kq90*r%XXlEXaUIvoxwo";
 
 //Check if request comes from the oddsmatcher pages, else return nothing.
-if ($_SERVER["HTTP_REFERER"] != "https://www.rickproductions.nl/oddsmatcher-dev/" && $_SERVER["HTTP_REFERER"] != "https://www.rickproductions.nl/oddsmatcher/") {
-  http_response_code(403);
-  exit();
+if ( $_SERVER["HTTP_REFERER"] != "https://www.rickproductions.nl/oddsmatcher-dev/" && $_SERVER["HTTP_REFERER"] != "https://www.rickproductions.nl/oddsmatcher/") {
+  //http_response_code(403);
+  //exit();
 }
 
 // Create connection
@@ -35,15 +35,16 @@ if ($_POST) {
   //Add extra conditions to query
   //DONT FORGET TO ADD SPACE TO THE START OF NEW ADDITION!!
   $query_extra = "";
-  if ($_POST['time_range']) {
+  if ($_POST['max_time']) {
     //Set the timerange slider to the posted value, with ugly javascript
-    $timerange = $_POST['time_range'];
+    $timerange = $_POST['max_time'];
+    $min_time = $_POST['min_time'];
     $timerange_original = $timerange;
-    $timerange = "$timerange:00";
     $current_date = date("d-m");
-    $query_extra = "$query_extra WHERE Time < '$timerange'";
-    if ($timerange_original < 25) {
-      $query_extra = "$query_extra AND Date = '$current_date'";
+    if ($timerange != "∞") {
+      $query_extra = "$query_extra WHERE Time <= '$timerange' AND Time >= '$min_time' AND Date = '$current_date'";
+    } else {
+      $query_extra = "$query_extra WHERE (Date > '$current_date' OR Time >= '$min_time')";
     }
   } 
   if ($_POST['min_odds']) {
