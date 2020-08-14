@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 from time import sleep
 import json
 
+from logger_manager import *
+
 
 class OutrightGame:
     def __init__(self, name, r1, rX, r2):
@@ -15,28 +17,45 @@ class OutrightGame:
         return json.dumps(self, default=lambda o: o.__dict__, 
             sort_keys=True, indent=4)
 
+def makePageLoad(driver, url, nr_of_tries):
+    #Make it LOAAADD!!!!
+    for _ in range(nr_of_tries):
+        for _ in range(5):
+            if len(driver.find_elements_by_class_name("main-loader")) == 0:
+                sleep(2)
+                return
+            sleep(1)
+        driver.get(url)
+    logger.info("Page just doesn't want to load")
+
 def get888sportData(driver):
-    driver.get("https://www.888sport.com/#/filter/football")
-    sleep(10)
+    url = "https://www.888sport.com/#/filter/football"
+    driver.get(url)
+    sleep(2)
+    makePageLoad(driver, url, 5)
     #webdriver.ActionChains(driver).key_down(u'\ue00d').perform()
     driver.find_element_by_class_name("close").click()
-    countries = driver.find_elements_by_class_name("KambiBC-collapsible-container")[2:10]
+    #countries = driver.find_elements_by_class_name("KambiBC-collapsible-container")[2:10]
+    countries = driver.find_elements_by_css_selector("div[class='KambiBC-collapsible-container KambiBC-mod-event-group-container']")
     for country in countries:
         country.click()
-        sleep(1)
+        sleep(0.05)
     soup = BeautifulSoup(driver.page_source, features="html.parser")
     game_list = []
     for element in soup.find_all("a", class_="KambiBC-event-item__link"):
-        team_names = element.find_all("div", class_="KambiBC-event-participants__name")
-        team1 = team_names[0].text
-        team2 = team_names[1].text
+        try:
+            team_names = element.find_all("div", class_="KambiBC-event-participants__name")
+            team1 = team_names[0].text
+            team2 = team_names[1].text
 
-        #0 selects outright, otherwise you get second bet type as well
-        odds = element.find_all("div", class_="KambiBC-bet-offer__outcomes")[0]
-        r1 = odds.find_all("button", class_="KambiBC-betty-outcome")[0].find_all("div")[5].text
-        rX = odds.find_all("button", class_="KambiBC-betty-outcome")[1].find_all("div")[5].text
-        r2 = odds.find_all("button", class_="KambiBC-betty-outcome")[2].find_all("div")[5].text
-        game_list.append(OutrightGame("{} vs {}".format(team1, team2), r1, rX, r2))
+            #0 selects outright, otherwise you get second bet type as well
+            odds = element.find_all("div", class_="KambiBC-bet-offer__outcomes")[0]
+            r1 = odds.find_all("button", class_="KambiBC-betty-outcome")[0].find_all("div")[5].text
+            rX = odds.find_all("button", class_="KambiBC-betty-outcome")[1].find_all("div")[5].text
+            r2 = odds.find_all("button", class_="KambiBC-betty-outcome")[2].find_all("div")[5].text
+            game_list.append(OutrightGame("{} vs {}".format(team1, team2), r1, rX, r2))
+        except Exception as e:
+            logger.debug(e)
 
     return game_list
 

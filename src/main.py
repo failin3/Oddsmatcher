@@ -253,10 +253,9 @@ def run888sport(driver, betfair_games):
         except WebDriverException:
             logger.warning("Chrome has crashed, reopening")
             driver = startChromeDriver()
-        except:
-            logger.error("Some problem with 888sport again")
-            return driver
-    logger.info("Comparing games, and uploading")
+        except Exception as e:
+            logger.error(e)
+    logger.info("Comparing odds")
     try:
         compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
     except Exception as e:
@@ -319,7 +318,7 @@ while True:
     betfair_games, driver = runSpinsports(driver)
     #betfair_games = getGames()
     driver = runBetsson(driver, betfair_games)
-    #driver = run888sport(driver, betfair_games)
+    driver = run888sport(driver, betfair_games)
     driver = runBetrebels(driver, betfair_games)
     driver = runNeobet(driver, betfair_games)
     
