@@ -14,6 +14,7 @@ from scraper_888sport import *
 from scraper_betsson import *
 from scraper_betrebels import *
 from scraper_neobet import *
+from scraper_intertops import *
 
 
 
@@ -309,19 +310,47 @@ def runNeobet(driver, betfair_games):
     insertData(compared_list, "Neobet")
     return driver
 
+def runIntertops(driver, betfair_games):
+    logger.info("Collecting intertops data")
+    for _ in range(3):
+        bookmaker_games = []
+        try:
+            bookmaker_games = parseIntertops(driver)
+            break
+        except WebDriverException:
+            logger.warning("Chrome has crashed, reopening")
+            driver = startChromeDriver()
+        except Exception as e:
+            logger.error(e)
+    logger.info("Comparing odds")
+    try:
+        compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
+    except Exception as e:
+        compared_list = []
+        logger.error(e)
+    logger.info("Inserting into database")
+    insertData(compared_list, "Intertops")
+    return driver
+
 logger.info("Starting driver")
 driver = startChromeDriver()
 
-
-while True:
-    #first spinsports
+def schedule1(driver):
     betfair_games, driver = runSpinsports(driver)
-    #betfair_games = getGames()
     driver = runBetsson(driver, betfair_games)
     driver = run888sport(driver, betfair_games)
     driver = runBetrebels(driver, betfair_games)
     driver = runNeobet(driver, betfair_games)
-    
+
+def schedule2(driver):
+    betfair_games = getGames()
+    driver = runIntertops(driver, betfair_games)
+    driver.get("http://www.google.com")
+
+while True:
+    #schedule1(driver)
+    schedule2(driver)
+
     #logger.info("Sleeping for 1 minute")
     #sleep(60*1)
 
