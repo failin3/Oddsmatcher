@@ -14,7 +14,7 @@
     .date {width: 15%;}
     .go {width: 5%;}
 </style>
-    
+<h3 id="bookmaker_name">Spinsports</h3>   
 <table id="oddsmatcher" border="1">
     <colgroup>
         <col class="match">
@@ -53,6 +53,7 @@
                 //jQuery("#loading").text("");
                 //console.log(response);
                 RefreshTable();
+                jQuery("#bookmaker_name").text(jQuery("#bookmaker").val());
                 jQuery.each(response, function(i, item) {
                     $game = jQuery(item)[0]["MatchName"];
                     $bookmaker_odds = jQuery(item)[0]["BookmakerOdds"];
