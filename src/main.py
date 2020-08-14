@@ -15,6 +15,7 @@ from scraper_betsson import *
 from scraper_betrebels import *
 from scraper_neobet import *
 from scraper_intertops import *
+from scraper_bet90 import *
 
 
 
@@ -332,6 +333,28 @@ def runIntertops(driver, betfair_games):
     insertData(compared_list, "Intertops")
     return driver
 
+def runBet90(driver, betfair_games):
+    logger.info("Collecting bet90 data")
+    for _ in range(3):
+        bookmaker_games = []
+        try:
+            bookmaker_games = parseBet90(driver)
+            break
+        except WebDriverException:
+            logger.warning("Chrome has crashed, reopening")
+            driver = startChromeDriver()
+        except Exception as e:
+            logger.error(e)
+    logger.info("Comparing odds")
+    try:
+        compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
+    except Exception as e:
+        compared_list = []
+        logger.error(e)
+    logger.info("Inserting into database")
+    insertData(compared_list, "Bet90")
+    return driver
+
 logger.info("Starting driver")
 driver = startChromeDriver()
 
@@ -345,7 +368,7 @@ def schedule1(driver):
 def schedule2(driver):
     betfair_games = getGames()
     driver = runIntertops(driver, betfair_games)
-    driver.get("http://www.google.com")
+    driver = runBet90(driver, betfair_games)
 
 while True:
     #schedule1(driver)
