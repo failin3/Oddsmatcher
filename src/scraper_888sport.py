@@ -20,7 +20,7 @@ class OutrightGame:
 def makePageLoad(driver, url, nr_of_tries):
     #Make it LOAAADD!!!!
     for _ in range(nr_of_tries):
-        for _ in range(5):
+        for _ in range(10):
             if len(driver.find_elements_by_class_name("main-loader")) == 0:
                 sleep(2)
                 return
@@ -28,13 +28,23 @@ def makePageLoad(driver, url, nr_of_tries):
         driver.get(url)
     logger.info("Page just doesn't want to load")
 
+def classExists(game_to_check, game_list):
+    for game in game_list:
+        if game_to_check.name == game.name:
+            return True
+    return False
+
 def get888sportData(driver):
     url = "https://www.888sport.com/#/filter/football"
     driver.get(url)
+    sleep(1)
+    makePageLoad(driver, url, 3)
     sleep(2)
-    makePageLoad(driver, url, 5)
     #webdriver.ActionChains(driver).key_down(u'\ue00d').perform()
-    driver.find_element_by_class_name("close").click()
+    close_buttons = driver.find_elements_by_class_name("close")
+    for button in close_buttons:
+        button.click()
+        sleep(1)
     #countries = driver.find_elements_by_class_name("KambiBC-collapsible-container")[2:10]
     countries = driver.find_elements_by_css_selector("div[class='KambiBC-collapsible-container KambiBC-mod-event-group-container']")
     for country in countries:
@@ -53,7 +63,9 @@ def get888sportData(driver):
             r1 = odds.find_all("button", class_="KambiBC-betty-outcome")[0].find_all("div")[5].text
             rX = odds.find_all("button", class_="KambiBC-betty-outcome")[1].find_all("div")[5].text
             r2 = odds.find_all("button", class_="KambiBC-betty-outcome")[2].find_all("div")[5].text
-            game_list.append(OutrightGame("{} vs {}".format(team1, team2), r1, rX, r2))
+            game = OutrightGame("{} vs {}".format(team1, team2), r1, rX, r2)                
+            if not classExists(game, game_list):
+                game_list.append(game)
         except Exception as e:
             logger.debug(e)
 
