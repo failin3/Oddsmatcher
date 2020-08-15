@@ -51,7 +51,6 @@ def classExists(game_to_check, game_list):
     return False
 
 def parseIntertops(driver):
-    driver.get("http://www.google.com")
     url = "https://sports.intertops.eu/en/Bets/Soccer/12"
     driver.get(url)
     sleep(1)
