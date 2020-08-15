@@ -13,27 +13,19 @@
     </select>
 </form>
 <form id="odds_filter" method="POST" action="#">
-    <input type="text" name="min_odds" class="oddsValue" data-index="0" value="0" style="width: 60px;" autocomplete="off">
+    <input type="text" name="min_odds" class="oddsValue" data-index="0" value="0" style="width: 70px;" autocomplete="off">
     <div id="oddsSlider" style="width: 50%; display: inline-block; margin-left: 20px; margin-right: 20px;"></div>
-    <input type="text" name="max_odds" class="oddsValue" data-index="1" value="30" style="width: 60px;" autocomplete="off">
+    <input type="text" name="max_odds" class="oddsValue" data-index="1" value="30" style="width: 70px;" autocomplete="off">
 </form>
-<form id="liquidity_filter" method="POST" action="#">
-    <input type="text" name="min_liquidity" class="liquidityValue" data-index="0" value="0" style="width: 60px;" autocomplete="off">
-    <div id="liquiditySlider" style="width: 50%; display: inline-block; margin-left: 20px; margin-right: 20px;"></div>
+<form id="liquidity_filter" method="POST" action="#" _lpchecked="1">
+        <input type="text" name="min_liquidity" class="liquidityValue" data-index="0" value="0" style="width: 70px;" autocomplete="off">
+        <div id="liquiditySlider" style="width: 50%; display: inline-block; margin-left: 20px; margin-right: 20px;"></div>
 </form>
-<form id="time_filter" method="POST" action="#">
-    <input type="text" name="min_time" class="timeValue" data-index="0" value="0:00" style="width: 60px;" readonly="">
+<form id="time_filter" method="POST" action="#" _lpchecked="1">
+    <input type="text" name="min_time" class="timeValue" data-index="0" value="0:00" style="width: 70px;" readonly="">
     <div id="timeSlider" style="width: 50%; display: inline-block; margin-left: 20px; margin-right: 20px;"></div>
-    <input type="text" name="max_time" class="timeValue" data-index="1" value="∞" style="width: 60px;" readonly="">
+    <input type="text" name="max_time" class="timeValue" data-index="1" value="∞" style="width: 70px;" readonly="">
 </form>
-
-<div style="text-align: center;">
-    <form id="submit_filter" method="POST" action="#">
-        <input type="submit" value="Filter">
-    </form>
-</div>
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
