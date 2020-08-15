@@ -23,6 +23,7 @@ from scraper_bet90 import *
 parser = argparse.ArgumentParser(description = "Oddsmatcher backend")
 parser.add_argument("-p", "--production", help = "Runs oddsmatcher without display", action='store_true')
 parser.add_argument("-l", "--logs", help = "Show more verbose logging", action='store_true')
+parser.add_argument("-s", "--schedule", help = "Change the schedule to be ran, default is schedule 1", type=int)
 
 argument = parser.parse_args()
 
@@ -380,14 +381,28 @@ def schedule1(driver):
     driver = run888sport(driver, betfair_games)
     driver = runBetrebels(driver, betfair_games)
     driver = runNeobet(driver, betfair_games)
+    return driver
 
 def schedule2(driver):
     betfair_games = getGames()
     driver = runIntertops(driver, betfair_games)
     driver = runBet90(driver, betfair_games)
+    return driver
 
 while True:
-    schedule1(driver)
+    if not argument.schedule:
+        #Default
+        driver = schedule1(driver)
+    else:
+        if argument.schedule == 1:
+            driver = schedule1(driver)
+        elif argument.schedule == 2:
+            driver = schedule2(driver)
+        else:
+            logger.info("This schedule does not exist")
+            break
+    
+    #schedule1(driver)
     #schedule2(driver)
 
     #logger.info("Sleeping for 1 minute")
