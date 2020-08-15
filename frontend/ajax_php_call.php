@@ -18,7 +18,7 @@ if ($mysqli->connect_error) {
 }
 //Make sure to update this when adding new bookmakers
 //Check this to prevent MYSQL injection
-$bookmaker_array = ["Spinsports", "Neobet", "Casinowinner", "Betsson", "Betsafe", "Betrebels", "888sport", "Intertops", "Bet90", "Betathome"];
+$bookmaker_array = ["Spinsports", "Neobet", "Casinowinner", "Betsson", "Betsafe", "Betrebels", "888sport", "Intertops", "Bet90", "Betathome", "Unibet"];
 if($_POST['bookmaker'] && in_array($_POST['bookmaker'], $bookmaker_array)) {
   $bookmaker = $_POST['bookmaker'];
 } else {

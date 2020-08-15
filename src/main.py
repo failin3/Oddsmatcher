@@ -17,6 +17,7 @@ from scraper_neobet import *
 from scraper_intertops import *
 from scraper_bet90 import *
 from scraper_betathome import *
+from scraper_unibet import *
 
 
 
@@ -395,6 +396,28 @@ def runBetathome(driver, betfair_games):
     insertData(compared_list, "Betathome")
     return driver
 
+def runUnibet(driver, betfair_games):
+    logger.info("Collecting unibet data")
+    for _ in range(3):
+        bookmaker_games = []
+        try:
+            bookmaker_games = parseUnibet(driver)
+            break
+        except WebDriverException:
+            logger.warning("Chrome has crashed, reopening")
+            driver = startChromeDriver()
+        except Exception as e:
+            logger.error(e)
+    logger.info("Comparing odds")
+    try:
+        compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
+    except Exception as e:
+        compared_list = []
+        logger.error(e)
+    logger.info("Inserting into database")
+    insertData(compared_list, "Unibet")
+    return driver
+
 
 logger.info("Starting driver")
 driver = startChromeDriver()
@@ -409,6 +432,7 @@ def schedule1(driver):
 
 def schedule2(driver):
     betfair_games = getGames()
+    driver = runUnibet(driver, betfair_games)
     driver = runBetathome(driver, betfair_games)
     driver = runIntertops(driver, betfair_games)
     driver = runBet90(driver, betfair_games)
