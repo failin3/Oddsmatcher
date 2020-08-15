@@ -73,6 +73,22 @@ def compareNames(bookmaker_game, betfair_name):
         Str1_second = Str1.split(' vs ')[1].strip()
         Str2_first = Str2.split(' v ')[0].strip()
         Str2_second = Str2.split(' v ')[1].strip()
+
+        reference = ["man utd", "man city", "man united"]
+        replace = ["manchester united", "manchester city", "manchester united"]
+        
+        for ref, rep in zip(reference, replace):
+            if ref in Str1_first:
+                Str1_first = Str1_first.replace(ref, rep)
+            if ref in Str1_second:
+                Str1_second = Str1_second.replace(ref, rep)
+            if ref in Str2_first:
+                Str2_first = Str2_first.replace(ref, rep)
+            if ref in Str2_second:
+                Str2_second = Str2_second.replace(ref, rep)
+        Str1 = "{} vs {}".format(Str1_first, Str1_second)
+        Str2 = "{} vs {}".format(Str2_first, Str2_second)
+
         if (Str1_first in Str2_first or Str2_first in Str1_first) and (Str1_second in Str2_second or Str2_second in Str1_second):
             return True
         else:
@@ -371,8 +387,8 @@ def schedule2(driver):
     driver = runBet90(driver, betfair_games)
 
 while True:
-    #schedule1(driver)
-    schedule2(driver)
+    schedule1(driver)
+    #schedule2(driver)
 
     #logger.info("Sleeping for 1 minute")
     #sleep(60*1)
