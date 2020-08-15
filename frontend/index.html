@@ -53,7 +53,7 @@
                 //jQuery("#loading").text("");
                 //console.log(response);
                 RefreshTable();
-                jQuery("#bookmaker_name").text(jQuery("#bookmaker").val());
+                jQuery("#bookmaker_name").text(jQuery("#bookmaker option:selected").text());
                 jQuery.each(response, function(i, item) {
                     $game = jQuery(item)[0]["MatchName"];
                     $bookmaker_odds = jQuery(item)[0]["BookmakerOdds"];
