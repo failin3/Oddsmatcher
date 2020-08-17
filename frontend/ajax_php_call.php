@@ -68,7 +68,7 @@ $results=mysqli_query($mysqli,$query);
 $row_count=mysqli_num_rows($results);
 
 while ($row = mysqli_fetch_array($results)) {
-    $rows[] = $row;
+    $rows[] = array_map('utf8_encode', $row);
 }
 echo json_encode($rows);
 ?>
