@@ -1,4 +1,6 @@
 from matchbook.apiclient import APIClient
+from datetime import datetime
+import pytz
 
 class OutrightRunner:
     def __init__(self, r1, rX, r2):
@@ -18,7 +20,13 @@ class MatchbookGame:
 def processDate(event_date):
     date = event_date.split("T")[0]
     time = event_date.split("T")[1].split(".")[0]
-    return date, time
+    date = datetime.strptime("{} {}".format(date, time), "%Y-%m-%d %H:%M:%S")
+    #Convert timezone
+    amsterdam = pytz.timezone('Europe/Amsterdam')
+    date = pytz.utc.localize(date).astimezone(amsterdam)
+    event_date = date.strftime("%d-%m")
+    time = date.strftime("%H:%M:%S")
+    return event_date, time
 
 def getMatchbookGames():
     mb = APIClient('tKofschip', 'N1hj001*UJZwIkx$')
@@ -54,9 +62,9 @@ def getMatchbookGames():
 
             #r1 = [liquidity, odds]
             try:
-                r1 = [round([m["available-amount"] for m in market_data["runners"][0]["prices"] if m["side"] == "lay"][0], 2), [m["decimal-odds"] for m in market_data["runners"][0]["prices"] if m["side"] == "lay"][0]]
-                rX = [round([m["available-amount"] for m in market_data["runners"][2]["prices"] if m["side"] == "lay"][0], 2), [m["decimal-odds"] for m in market_data["runners"][2]["prices"] if m["side"] == "lay"][0]]
-                r2 = [round([m["available-amount"] for m in market_data["runners"][1]["prices"] if m["side"] == "lay"][0], 2), [m["decimal-odds"] for m in market_data["runners"][1]["prices"] if m["side"] == "lay"][0]]
+                r1 = [round([m["available-amount"] for m in market_data["runners"][0]["prices"] if m["side"] == "lay"][0], 2), round([m["decimal-odds"] for m in market_data["runners"][0]["prices"] if m["side"] == "lay"][0], 2)]
+                rX = [round([m["available-amount"] for m in market_data["runners"][2]["prices"] if m["side"] == "lay"][0], 2), round([m["decimal-odds"] for m in market_data["runners"][2]["prices"] if m["side"] == "lay"][0], 2)]
+                r2 = [round([m["available-amount"] for m in market_data["runners"][1]["prices"] if m["side"] == "lay"][0], 2), round([m["decimal-odds"] for m in market_data["runners"][1]["prices"] if m["side"] == "lay"][0], 2)]
             except IndexError:
                 continue
 

@@ -22,7 +22,7 @@ $bookmaker_array = ["Spinsports", "Neobet", "Casinowinner", "Betsson", "Betsafe"
 if($_POST['bookmaker'] && in_array($_POST['bookmaker'], $bookmaker_array)) {
   $bookmaker = $_POST['bookmaker'];
 } else {
-  $bookmaker = "Spinsports";
+  $bookmaker = "Intertops";
 }
 if ($bookmaker == "Spinsports") {
   $order = "Loss";
@@ -30,11 +30,15 @@ if ($bookmaker == "Spinsports") {
   $order = "Closeness";
 }
 
+if ($_POST["exchange"] == "Matchbook") {
+  $bookmaker = "{$bookmaker}_Matchbook";
+}
+
+$query_extra = "";
 //Check if filter has been posted
 if ($_POST) {
   //Add extra conditions to query
   //DONT FORGET TO ADD SPACE TO THE START OF NEW ADDITION!!
-  $query_extra = "";
   if ($_POST['max_time']) {
     //Set the timerange slider to the posted value, with ugly javascript
     $timerange = $_POST['max_time'];
@@ -63,10 +67,14 @@ if ($_POST) {
 } else {
   $query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity FROM $bookmaker ORDER BY $order DESC";
 }
+if ($_POST["exchange"] == "Both") {
+  $query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity FROM {$bookmaker}_Matchbook $query_extra UNION $query";
+}
+
+//echo $query;
 //$query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity FROM $bookmaker ORDER BY $order DESC";
 $results=mysqli_query($mysqli,$query);
 $row_count=mysqli_num_rows($results);
-
 while ($row = mysqli_fetch_array($results)) {
     $rows[] = array_map('utf8_encode', $row);
 }

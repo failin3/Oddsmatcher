@@ -43,11 +43,11 @@
     }
     var ajax = function() {
         //jQuery("#loading").text("Loading...");
-        console.log(jQuery('#bookmaker_filter, #odds_filter, #time_filter, #liquidity_filter').serialize());
+        console.log(jQuery('#bookmaker_filter, #exchange_filter, #odds_filter, #time_filter, #liquidity_filter').serialize());
         jQuery.ajax({    //create an ajax request to ajax_php_call.php
             type: "POST",
             url: "/AJAX/ajax_php_call.php",             
-            data: jQuery('#bookmaker_filter, #odds_filter, #time_filter, #liquidity_filter').serialize(),
+            data: jQuery('#bookmaker_filter, #exchange_filter, #odds_filter, #time_filter, #liquidity_filter').serialize(),
             dataType: "json",   //expect json to be returned                
             success: function(response){
                 //jQuery("#loading").text("");
@@ -75,6 +75,9 @@
         ajax();
     });    
     jQuery("#bookmaker").on("change", function() {
+        ajax();
+    });
+    jQuery("#exchange").on("change", function() {
         ajax();
     });
 setInterval(ajax, 1000*60* 2);

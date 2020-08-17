@@ -9,6 +9,8 @@ import argparse
 from logger_manager import *
 
 from BetfairClass import *
+from MatchbookClass import *
+
 from spinsports_scraper import *
 from scraper_888sport import *
 from scraper_betsson import *
@@ -66,7 +68,7 @@ def getSpinsportsGames(nr_of_games, driver):
 def getCloseness(ss_odds, bf_odds):
     return (1/float(ss_odds) - 1/float(bf_odds))*100 + 100
 
-def compareNames(bookmaker_game, betfair_name):
+def compareNames(bookmaker_game, betfair_name, exchange_split):
     try:
         Str1 = bookmaker_game
         Str2 = betfair_name
@@ -74,8 +76,8 @@ def compareNames(bookmaker_game, betfair_name):
         Str2  = Str2.lower()
         Str1_first = Str1.split(' vs ')[0].strip()
         Str1_second = Str1.split(' vs ')[1].strip()
-        Str2_first = Str2.split(' v ')[0].strip()
-        Str2_second = Str2.split(' v ')[1].strip()
+        Str2_first = Str2.split(exchange_split)[0].strip()
+        Str2_second = Str2.split(exchange_split)[1].strip()
 
         reference = ["man utd", "man city", "man united"]
         replace = ["manchester united", "manchester city", "manchester united"]
@@ -110,7 +112,7 @@ def makeVarReadable(var, market):
     if market == "outrights":
         return var
 
-def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30):
+def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30, exchange_split=" v "):
     """Compares the odds of all spinsports games in the list ss_games
     To those of the bookmaker selected.
     First checks whether the names of the two teams are similar, then it calculates the closenss of the odds
@@ -120,7 +122,7 @@ def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30
     for ss_game in ss_games:
         for bf_game in bookmaker_games:
             try:
-                if compareNames(ss_game.name, bf_game.name):
+                if compareNames(ss_game.name, bf_game.name, exchange_split):
                     logger.debug("{} == {} score: {}".format(ss_game.name, bf_game.name, fuzz.ratio(ss_game.name, bf_game.name)))
                     if market == "correct_score":
                         bf_runner = bf_game.correct_score
@@ -145,11 +147,11 @@ def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30
                             bet = makeVarReadable(ss_odds[0], market)
                             if closeness > set_closeness and float(bf_odds) < set_odds:
                                 if bet == "r1":
-                                    bet = bf_game.name.split(" v ")[0]
+                                    bet = bf_game.name.split(exchange_split)[0]
                                 elif bet == "rX":
                                     bet = "Draw"
                                 elif bet == "r2":
-                                    bet = bf_game.name.split(" v ")[1]
+                                    bet = bf_game.name.split(exchange_split)[1]
                                 good_odds.append(OddsmatcherEntry(bf_game.name, ss_odds[1], bf_odds, liquidity, score, closeness, bf_game.date, bf_game.time, bet))
             except Exception as e:
                 logger.error(e)
@@ -159,7 +161,7 @@ def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30
 def insertData(oddsmatcher_games, table_name):
     try:
         if len(oddsmatcher_games) == 0:
-            logger.debug("Table {} insert is empty")
+            logger.debug("Table {} insert is empty".format(table_name))
         connection = pymysql.connect(host='185.104.29.14',
                              user='u80189p74860_oddsmatcher',
                              password='Kq90*r%XXlEXaUIvoxwo',
@@ -183,6 +185,18 @@ def insertData(oddsmatcher_games, table_name):
         logger.error("MySQL error: {}".format(e))
     finally:
         connection.close()
+
+def compareAndInsert(bookmaker_games, betfair_games, matchbook_games, odds_type, bf_database_name, mb_database_name):
+    logger.info("Comparing odds")
+    try:
+        compared_list = compareOdds(bookmaker_games, betfair_games, odds_type, exchange_split=" v ")
+        compared_list_matchbook = compareOdds(bookmaker_games, matchbook_games, odds_type, exchange_split=" vs ")
+    except Exception as e:
+        compared_list = []
+        logger.error(e)
+    logger.info("Inserting into database")
+    insertData(compared_list, bf_database_name)
+    insertData(compared_list_matchbook, mb_database_name)
 
 def runSpinsports(driver):
     logger.info("Collecting spinsports data")
@@ -330,7 +344,7 @@ def runNeobet(driver, betfair_games):
     insertData(compared_list, "Neobet")
     return driver
 
-def runIntertops(driver, betfair_games):
+def runIntertops(driver, betfair_games ,matchbook_games):
     logger.info("Collecting intertops data")
     for _ in range(3):
         bookmaker_games = []
@@ -342,17 +356,10 @@ def runIntertops(driver, betfair_games):
             driver = startChromeDriver()
         except Exception as e:
             logger.error(e)
-    logger.info("Comparing odds")
-    try:
-        compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
-    except Exception as e:
-        compared_list = []
-        logger.error(e)
-    logger.info("Inserting into database")
-    insertData(compared_list, "Intertops")
+    compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Intertops", "Intertops_Matchbook")
     return driver
 
-def runBet90(driver, betfair_games):
+def runBet90(driver, betfair_games, matchbook_games):
     logger.info("Collecting bet90 data")
     for _ in range(3):
         bookmaker_games = []
@@ -364,17 +371,10 @@ def runBet90(driver, betfair_games):
             driver = startChromeDriver()
         except Exception as e:
             logger.error(e)
-    logger.info("Comparing odds")
-    try:
-        compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
-    except Exception as e:
-        compared_list = []
-        logger.error(e)
-    logger.info("Inserting into database")
-    insertData(compared_list, "Bet90")
+    compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Bet90", "Bet90_Matchbook")
     return driver
 
-def runBetathome(driver, betfair_games):
+def runBetathome(driver, betfair_games, matchbook_games):
     logger.info("Collecting betathome data")
     for _ in range(3):
         bookmaker_games = []
@@ -386,17 +386,10 @@ def runBetathome(driver, betfair_games):
             driver = startChromeDriver()
         except Exception as e:
             logger.error(e)
-    logger.info("Comparing odds")
-    try:
-        compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
-    except Exception as e:
-        compared_list = []
-        logger.error(e)
-    logger.info("Inserting into database")
-    insertData(compared_list, "Betathome")
+    compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Betathome", "Betathome_Matchbook")
     return driver
 
-def runUnibet(driver, betfair_games):
+def runUnibet(driver, betfair_games, matchbook_games):
     logger.info("Collecting unibet data")
     for _ in range(3):
         bookmaker_games = []
@@ -408,14 +401,7 @@ def runUnibet(driver, betfair_games):
             driver = startChromeDriver()
         except Exception as e:
             logger.error(e)
-    logger.info("Comparing odds")
-    try:
-        compared_list = compareOdds(bookmaker_games, betfair_games, "outrights")
-    except Exception as e:
-        compared_list = []
-        logger.error(e)
-    logger.info("Inserting into database")
-    insertData(compared_list, "Unibet")
+    compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Unibet", "Unibet_Matchbook")
     return driver
 
 
@@ -432,10 +418,11 @@ def schedule1(driver):
 
 def schedule2(driver):
     betfair_games = getGames()
-    driver = runUnibet(driver, betfair_games)
-    driver = runBetathome(driver, betfair_games)
-    driver = runIntertops(driver, betfair_games)
-    driver = runBet90(driver, betfair_games)
+    matchbook_games = getMatchbookGames()
+    driver = runUnibet(driver, betfair_games, matchbook_games)
+    driver = runBetathome(driver, betfair_games, matchbook_games)
+    driver = runIntertops(driver, betfair_games, matchbook_games)
+    driver = runBet90(driver, betfair_games, matchbook_games)
     return driver
 
 while True:
