@@ -34,10 +34,11 @@ def getFootballSection(soup):
     return soup
 
 def openContainers(driver):
+    sleep(2)
     #Click to open first 10 containers
     for i in range(10):
         driver.find_elements_by_class_name("s1z_headerRow")[i].click()
-        sleep(0.1)
+        sleep(0.5)
 
 def parseNeobet(driver):
     url = "https://neo.bet/en/Sportbets"
