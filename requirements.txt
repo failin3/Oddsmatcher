@@ -1,5 +1,6 @@
 betfairlightweight
-pytz
+pytz==2017.2
+requests==2.13.0
 selenium
 fuzzywuzzy
 PyMySQL
