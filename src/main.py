@@ -180,6 +180,7 @@ def insertData(oddsmatcher_games, table_name):
                 exchange_lay_wins = lay_stake*(1-commission)-back_stake
                 sql = "INSERT INTO {} (MatchName, ExchangeOdds, BookmakerOdds, Closeness, Date, Time, Liquidity, Loss, Bet) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)" .format(table_name)
                 cursor.execute(sql, (game.name, game.exch_odds, game.bkma_odds, game.closeness, game.date, game.time, game.exch_liquidity, exchange_lay_wins, game.bet))
+                logger.debug("Inserted game: {} into database succesfully".format(game.name))
         connection.commit()
     except Exception as e:
         logger.error("MySQL error: {}".format(e))
