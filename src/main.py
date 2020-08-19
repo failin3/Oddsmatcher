@@ -204,9 +204,14 @@ def runSpinsports(driver):
     try:
         bookmaker_games = getSpinsportsGames(15, driver)
     except WebDriverException:
-        logger.warning("Chrome has crashed, reopening")
-        driver = startChromeDriver()
-        bookmaker_games = getSpinsportsGames(15, driver)
+        #Test if chrome has really crashed
+        try:
+            driver.title
+            logger.debug("WebDriverException, but chrome didn't crash")
+        except WebDriverException:
+            logger.warning("Chrome has crashed, reopening")
+            driver = startChromeDriver()
+            bookmaker_games = getSpinsportsGames(15, driver)
     except Exception as e:
         logger.error("Some other error with spinsports: {}".format(e))
         return getGames(), driver
@@ -287,8 +292,12 @@ def run888sport(driver, betfair_games):
             bookmaker_games = get888sportData(driver)
             break
         except WebDriverException:
-            logger.warning("Chrome has crashed, reopening")
-            driver = startChromeDriver()
+            try:
+                driver.get_title
+                logger.debug("WebDriverException, but chrome didn't crash")
+            except WebDriverException:
+                logger.warning("Chrome has crashed, reopening")
+                driver = startChromeDriver()
         except Exception as e:
             logger.error(e)
     logger.info("Comparing odds")
@@ -309,8 +318,12 @@ def runBetrebels(driver, betfair_games):
             bookmaker_games = parseBetrebels(driver)
             break
         except WebDriverException:
-            logger.warning("Chrome has crashed, reopening")
-            driver = startChromeDriver()
+            try:
+                driver.get_title
+                logger.debug("WebDriverException, but chrome didn't crash")
+            except WebDriverException:
+                logger.warning("Chrome has crashed, reopening")
+                driver = startChromeDriver()
         except Exception as e:
             logger.error(e)
     logger.info("Comparing odds")
@@ -331,8 +344,12 @@ def runNeobet(driver, betfair_games):
             bookmaker_games = parseNeobet(driver)
             break
         except WebDriverException:
-            logger.warning("Chrome has crashed, reopening")
-            driver = startChromeDriver()
+            try:
+                driver.get_title
+                logger.debug("WebDriverException, but chrome didn't crash")
+            except WebDriverException:
+                logger.warning("Chrome has crashed, reopening")
+                driver = startChromeDriver()
         except Exception as e:
             logger.error(e)
     logger.info("Comparing odds")
@@ -353,8 +370,12 @@ def runIntertops(driver, betfair_games ,matchbook_games):
             bookmaker_games = parseIntertops(driver)
             break
         except WebDriverException:
-            logger.warning("Chrome has crashed, reopening")
-            driver = startChromeDriver()
+            try:
+                driver.get_title
+                logger.debug("WebDriverException, but chrome didn't crash")
+            except WebDriverException:
+                logger.warning("Chrome has crashed, reopening")
+                driver = startChromeDriver()
         except Exception as e:
             logger.error(e)
     compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Intertops", "Intertops_Matchbook")
@@ -368,8 +389,12 @@ def runBet90(driver, betfair_games, matchbook_games):
             bookmaker_games = parseBet90(driver)
             break
         except WebDriverException:
-            logger.warning("Chrome has crashed, reopening")
-            driver = startChromeDriver()
+            try:
+                driver.get_title
+                logger.debug("WebDriverException, but chrome didn't crash")
+            except WebDriverException:
+                logger.warning("Chrome has crashed, reopening")
+                driver = startChromeDriver()
         except Exception as e:
             logger.error(e)
     compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Bet90", "Bet90_Matchbook")
@@ -383,8 +408,12 @@ def runBetathome(driver, betfair_games, matchbook_games):
             bookmaker_games = parseBetathome(driver)
             break
         except WebDriverException:
-            logger.warning("Chrome has crashed, reopening")
-            driver = startChromeDriver()
+            try:
+                driver.get_title
+                logger.debug("WebDriverException, but chrome didn't crash")
+            except WebDriverException:
+                logger.warning("Chrome has crashed, reopening")
+                driver = startChromeDriver()
         except Exception as e:
             logger.error(e)
     compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Betathome", "Betathome_Matchbook")
@@ -398,8 +427,12 @@ def runUnibet(driver, betfair_games, matchbook_games):
             bookmaker_games = parseUnibet(driver)
             break
         except WebDriverException:
-            logger.warning("Chrome has crashed, reopening")
-            driver = startChromeDriver()
+            try:
+                driver.get_title
+                logger.debug("WebDriverException, but chrome didn't crash")
+            except WebDriverException:
+                logger.warning("Chrome has crashed, reopening")
+                driver = startChromeDriver()
         except Exception as e:
             logger.error(e)
     compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Unibet", "Unibet_Matchbook")
