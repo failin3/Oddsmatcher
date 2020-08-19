@@ -33,11 +33,18 @@ def getFootballSection(soup):
             break
     return soup
 
+def openContainers(driver):
+    #Click to open first 10 containers
+    for i in range(10):
+        driver.find_elements_by_class_name("s1z_headerRow")[i].click()
+        sleep(0.1)
+
 def parseNeobet(driver):
     url = "https://neo.bet/en/Sportbets"
     driver.get(url)
     makePageLoad(driver, url, 5)
     sleep(1)
+    openContainers(driver)
     #Scrape main page
     soup = BeautifulSoup(driver.page_source, features="html.parser")
     soup = getFootballSection(soup)
@@ -59,7 +66,7 @@ def parseNeobet(driver):
     #Why 1? Again IDK!
     driver.find_elements_by_xpath("//*[contains(text(), 'Today')]")[1].click()
     sleep(1)
-    
+    openContainers(driver)
     #print(driver.find_elements_by_class_name("events-tree-table-node-CH-name"))    
     soup = BeautifulSoup(driver.page_source, features="html.parser")
     soup = getFootballSection(soup)
