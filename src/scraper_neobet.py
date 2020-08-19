@@ -40,6 +40,12 @@ def openContainers(driver):
         driver.find_elements_by_class_name("s1z_headerRow")[i].click()
         sleep(0.5)
 
+def classExists(game_to_check, game_list):
+    for game in game_list:
+        if game_to_check.name == game.name:
+            return True
+    return False
+
 def parseNeobet(driver):
     url = "https://neo.bet/en/Sportbets"
     driver.get(url)
@@ -83,7 +89,9 @@ def parseNeobet(driver):
             r1 = bet.find_all("span", class_=re.compile("s1\w_decimal"))[0].text.strip()
             rX = bet.find_all("span", class_=re.compile("s1\w_decimal"))[1].text.strip()
             r2 = bet.find_all("span", class_=re.compile("s1\w_decimal"))[2].text.strip()
-            game_list.append(OutrightGame("{} vs {}".format(team1, team2), r1, rX, r2))
+            game = OutrightGame("{} vs {}".format(team1, team2), r1, rX, r2)
+            if not classExists(game, game_list):
+                game_list.append(game)
         except Exception as e:
             logger.debug(e)
     return game_list
