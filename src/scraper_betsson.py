@@ -46,7 +46,7 @@ def parseBetsson(driver):
                 game_name = team1 + " vs " + team2 
                 game = OutrightGame(game_name, r1, rX, r2)
                 game_list.append(game)
-            except:
+            except Exception as e:
                 logger.debug(e)
     return game_list
 
