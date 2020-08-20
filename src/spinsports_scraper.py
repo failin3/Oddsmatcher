@@ -106,7 +106,7 @@ def parseMatch(url, driver):
             #Give 5 attempts to find the buttons, if this fails 5 times stop giving these tries and immediately fail
             if failure_counter > 5:
                 logger.debug("5 failures, aborting this match")
-                logger.error("The error was: {}".format(e))
+                logger.debug("The error was: {}".format(e))
                 return None
             attempt_counter += 1
             if attempt_counter > 5:
