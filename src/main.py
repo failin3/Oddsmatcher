@@ -293,7 +293,7 @@ def run888sport(driver, betfair_games):
             break
         except WebDriverException:
             try:
-                driver.get_title
+                driver.title
                 logger.debug("WebDriverException, but chrome didn't crash")
             except WebDriverException:
                 logger.warning("Chrome has crashed, reopening")
@@ -319,7 +319,7 @@ def runBetrebels(driver, betfair_games):
             break
         except WebDriverException:
             try:
-                driver.get_title
+                driver.title
                 logger.debug("WebDriverException, but chrome didn't crash")
             except WebDriverException:
                 logger.warning("Chrome has crashed, reopening")
@@ -345,7 +345,7 @@ def runNeobet(driver, betfair_games):
             break
         except WebDriverException:
             try:
-                driver.get_title
+                driver.title
                 logger.debug("WebDriverException, but chrome didn't crash")
             except WebDriverException:
                 logger.warning("Chrome has crashed, reopening")
@@ -371,7 +371,7 @@ def runIntertops(driver, betfair_games ,matchbook_games):
             break
         except WebDriverException:
             try:
-                driver.get_title
+                driver.title
                 logger.debug("WebDriverException, but chrome didn't crash")
             except WebDriverException:
                 logger.warning("Chrome has crashed, reopening")
@@ -390,7 +390,7 @@ def runBet90(driver, betfair_games, matchbook_games):
             break
         except WebDriverException:
             try:
-                driver.get_title
+                driver.title
                 logger.debug("WebDriverException, but chrome didn't crash")
             except WebDriverException:
                 logger.warning("Chrome has crashed, reopening")
@@ -409,7 +409,7 @@ def runBetathome(driver, betfair_games, matchbook_games):
             break
         except WebDriverException:
             try:
-                driver.get_title
+                driver.title
                 logger.debug("WebDriverException, but chrome didn't crash")
             except WebDriverException:
                 logger.warning("Chrome has crashed, reopening")
@@ -428,7 +428,7 @@ def runUnibet(driver, betfair_games, matchbook_games):
             break
         except WebDriverException:
             try:
-                driver.get_title
+                driver.title
                 logger.debug("WebDriverException, but chrome didn't crash")
             except WebDriverException:
                 logger.warning("Chrome has crashed, reopening")
