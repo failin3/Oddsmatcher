@@ -69,7 +69,6 @@ def getCloseness(ss_odds, bf_odds):
     return (1/float(ss_odds) - 1/float(bf_odds))*100 + 100
 
 def compareNames(bookmaker_game, betfair_name, exchange_split):
-    print(compareNames(, , " vs "))
     try:
         Str1 = bookmaker_game
         Str2 = betfair_name
