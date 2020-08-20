@@ -3,7 +3,7 @@ import logging
 logger = logging.getLogger("Server Logger")
 logger.setLevel(logging.DEBUG)
 # create file handler which logs even debug messages
-fh = logging.FileHandler("application.log")
+fh = logging.FileHandler("application.log", "w", "utf-8")
 fh.setLevel(logging.DEBUG)
 # create console handler with a higher log level
 ch = logging.StreamHandler()
