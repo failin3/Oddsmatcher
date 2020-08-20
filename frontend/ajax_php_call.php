@@ -29,9 +29,10 @@ if ($bookmaker == "Spinsports") {
 } else {
   $order = "Closeness";
 }
-
+$exchange = "Betfair";
 if ($_POST["exchange"] == "Matchbook") {
   $bookmaker = "{$bookmaker}_Matchbook";
+  $exchange = "Matchbook";
 }
 
 $query_extra = "";
@@ -63,12 +64,12 @@ if ($_POST) {
     $min_liquidity = $_POST['min_liquidity'];
     $query_extra = "$query_extra AND Liquidity > $min_liquidity";
   }
-  $query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity FROM $bookmaker $query_extra ORDER BY $order DESC";
+  $query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity, '$exchange' AS Exchange FROM $bookmaker $query_extra ORDER BY $order DESC";
 } else {
-  $query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity FROM $bookmaker ORDER BY $order DESC";
+  $query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity, '$exchange' AS Exchange FROM $bookmaker ORDER BY $order DESC";
 }
 if ($_POST["exchange"] == "Both") {
-  $query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity FROM {$bookmaker}_Matchbook $query_extra UNION $query";
+  $query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity, 'Matchbook' AS Exchange FROM {$bookmaker}_Matchbook $query_extra UNION $query";
 }
 
 //echo $query;

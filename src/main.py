@@ -98,7 +98,7 @@ def compareNames(bookmaker_game, betfair_name, exchange_split):
             return True
         else:
             Ratio = fuzz.ratio(Str1,Str2)
-            if Ratio > 75:
+            if Ratio > 70:
                 return True
         return False
     except IndexError:
