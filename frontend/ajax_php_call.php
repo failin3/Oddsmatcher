@@ -64,12 +64,12 @@ if ($_POST) {
     $min_liquidity = $_POST['min_liquidity'];
     $query_extra = "$query_extra AND Liquidity > $min_liquidity";
   }
-  $query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity, '$exchange' AS Exchange FROM $bookmaker $query_extra ORDER BY $order DESC";
+  $query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity, Url, '$exchange' AS Exchange FROM $bookmaker $query_extra ORDER BY $order DESC";
 } else {
-  $query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity, '$exchange' AS Exchange FROM $bookmaker ORDER BY $order DESC";
+  $query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity, Url, '$exchange' AS Exchange FROM $bookmaker ORDER BY $order DESC";
 }
 if ($_POST["exchange"] == "Both") {
-  $query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity, 'Matchbook' AS Exchange FROM {$bookmaker}_Matchbook $query_extra UNION $query";
+  $query = "SELECT MatchName, BookmakerOdds, ExchangeOdds, Closeness, Date, Time, Loss, Bet, Liquidity, Url, 'Matchbook' AS Exchange FROM {$bookmaker}_Matchbook $query_extra UNION $query";
 }
 
 //echo $query;

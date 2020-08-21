@@ -40,7 +40,7 @@ def startChromeDriver():
     return driver
 
 class OddsmatcherEntry:
-    def __init__(self, name, bookmaker_odds, exchange_odds, exchange_liquidity, runner_id, closeness, date, time, bet):
+    def __init__(self, name, bookmaker_odds, exchange_odds, exchange_liquidity, runner_id, closeness, date, time, bet, exchange_id):
         self.name = name
         self.bkma_odds = bookmaker_odds
         self.exch_odds = exchange_odds
@@ -50,6 +50,7 @@ class OddsmatcherEntry:
         self.date = date
         self.time = time
         self.bet = bet
+        self.exchange_id = exchange_id
 
 def getSpinsportsGames(nr_of_games, driver):
     url = "/en/sports/soccer/germany-1-bundesliga/20200224/eintracht-frankfurt-vs-union-berlin/"
@@ -94,11 +95,15 @@ def compareNames(bookmaker_game, betfair_name, exchange_split):
         Str1 = "{} vs {}".format(Str1_first, Str1_second)
         Str2 = "{} vs {}".format(Str2_first, Str2_second)
 
+        #Ignore women football on Unibet
+        if "(W)" in Str1 or "(W)" in Str2:
+            return False
+
         if (Str1_first in Str2_first or Str2_first in Str1_first) and (Str1_second in Str2_second or Str2_second in Str1_second):
             return True
         else:
             Ratio = fuzz.ratio(Str1,Str2)
-            if Ratio > 70:
+            if Ratio > 85:
                 return True
         return False
     except IndexError:
@@ -152,7 +157,7 @@ def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30
                                     bet = "Draw"
                                 elif bet == "r2":
                                     bet = bf_game.name.split(exchange_split)[1]
-                                good_odds.append(OddsmatcherEntry(bf_game.name, ss_odds[1], bf_odds, liquidity, score, closeness, bf_game.date, bf_game.time, bet))
+                                good_odds.append(OddsmatcherEntry(bf_game.name, ss_odds[1], bf_odds, liquidity, score, closeness, bf_game.date, bf_game.time, bet, bf_game.event_id))
             except Exception as e:
                 logger.debug(e)
     good_odds = sorted(good_odds, key=operator.attrgetter('closeness'))
@@ -178,8 +183,12 @@ def insertData(oddsmatcher_games, table_name):
                 gains_bookmaker = back_stake*float(game.bkma_odds)
                 lay_stake = (gains_bookmaker-800-back_stake)/(float(game.exch_odds)-1)
                 exchange_lay_wins = lay_stake*(1-commission)-back_stake
-                sql = "INSERT INTO {} (MatchName, ExchangeOdds, BookmakerOdds, Closeness, Date, Time, Liquidity, Loss, Bet) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)" .format(table_name)
-                cursor.execute(sql, (game.name, game.exch_odds, game.bkma_odds, game.closeness, game.date, game.time, game.exch_liquidity, exchange_lay_wins, game.bet))
+                if "_Matchbook" in table_name:
+                    url = "https://www.matchbook.com/events/soccer/{}".format(game.exchange_id)
+                else: 
+                    url = "https://www.betfair.com/exchange/plus/en/football/--/---{}".format(game.exchange_id)
+                sql = "INSERT INTO {} (MatchName, ExchangeOdds, BookmakerOdds, Closeness, Date, Time, Liquidity, Loss, Bet, Url) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)".format(table_name)
+                cursor.execute(sql, (game.name, game.exch_odds, game.bkma_odds, game.closeness, game.date, game.time, game.exch_liquidity, exchange_lay_wins, game.bet, url))
                 logger.debug("Inserted game: {} into database succesfully".format(game.name))
         connection.commit()
     except Exception as e:

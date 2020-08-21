@@ -6,13 +6,13 @@
     #oddsmatcher th {padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: #4e4e4e;color: white;}
     .match {width: 35%;}
     .result {width:15%;}
-    .bookmaker {width: 7.5%; border-right: 1px solid #f2f2f2;}
+    .bookmaker {width: 7.5%;}
     .exchange {width: 7.5%;}
     #oddsmatcher tbody tr td:nth-child(3) {background-color:#a6d8ff;}
     #oddsmatcher tbody tr td:nth-child(4) {background-color:#fac9d1;}
     .liquidity {width: 10%;}
     .date {width: 15%;}
-    .exchange {width: 5%;}
+    .exchange {width: 10%;}
     .go {width: 5%;}
 </style>
 <h3 id="bookmaker_name" style="text-align: center; color: #4e4e4e;">Spinsports</h3>   
@@ -20,22 +20,22 @@
     <colgroup>
         <col class="match">
         <col class="result">
-        <col class="bookmaker">
-        <col class="exchange">
+        <col class="bookmaker" style="width:70px;">
+        <col class="exchange" style="width:70px;">
         <col class="liquidity">
         <col class="date">
-        <col class="exchange">
+        <col class="exchange" style="text-align:center;">
         <col class="go">
     </colgroup>
     <tbody><tr>
         <th>Match</th>
         <th class="">Result</th>
         <th class="">Back</th>
-        <th>Lay</th>
+        <th class="">Lay</th>
         <th class="">Liquidity</th>
         <th>Date</th>
         <th>Exchange</th>
-        <th>🌊</th>
+        <th><img role="img" class="emoji" alt="🌊" src="https://s.w.org/images/core/emoji/13.0.0/svg/1f30a.svg" draggable="false"></th>
     </tr>
 </tbody></table>
 <div id="loading"></div>
@@ -66,9 +66,17 @@
                     $date = jQuery(item)[0]["Date"];
                     $time = jQuery(item)[0]["Time"];
                     $exchange = jQuery(item)[0]["Exchange"];
-                    console.log($exchange);
+                    $exchange_url = jQuery(item)[0]["Url"];
+                    console.log($exchange_url);
+                    if ($exchange == "Betfair") {
+                        $commission = 6.5;
+                        $exchange = `<a href='${$exchange_url}' target="_blank"'><center><img src='/img/betfair.jpeg' width='30px' height='30px'></center></a>`;
+                    } else {
+                        $commission = 4;
+                        $exchange = `<a href='${$exchange_url}' target="_blank"'><center><img src='/img/matchbook.jpeg' width='30px' height='30px'></center></a>`;
+                    }
                     //console.log((item));
-                    jQuery('#oddsmatcher > tbody:last-child').append(`<tr><td>${$game}</td><td>${$result}</td><td>${$bookmaker_odds}</td><td>${$exchange_odds}</td><td>€${$liquidity}</td><td>${$date} ${$time}</td><td>${$exchange}</td><td><a href="/calculator?b=${$bookmaker_odds}&l=${$exchange_odds}&c=6.5" target="_blank">go</a></td></tr>`);
+                    jQuery('#oddsmatcher > tbody:last-child').append(`<tr><td>${$game}</td><td>${$result}</td><td>${$bookmaker_odds}</td><td>${$exchange_odds}</td><td>€${$liquidity}</td><td>${$date} ${$time}</td><td>${$exchange}</td><td><a href="/calculator?b=${$bookmaker_odds}&l=${$exchange_odds}&c=${$commission}" target="_blank">go</a></td></tr>`);
                 });
             }
         });
