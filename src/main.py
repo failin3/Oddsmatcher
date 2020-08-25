@@ -150,7 +150,7 @@ def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30
                         if (bf_odds != None) and (ss_odds[1] != None):
                             closeness = getCloseness(bf_odds, ss_odds[1])
                             bet = makeVarReadable(ss_odds[0], market)
-                            if closeness > set_closeness and float(bf_odds) < set_odds:
+                            if closeness > set_closeness and float(bf_odds) < set_odds and closeness < 110:
                                 if bet == "r1":
                                     bet = bf_game.name.split(exchange_split)[0]
                                 elif bet == "rX":
@@ -469,7 +469,7 @@ def schedule2(driver):
 def schedule3(driver):
     betfair_games = getGames()
     matchbook_games = getMatchbookGames()
-    driver = runLVBet(driver, betfair_games, matchbook_games)
+    driver = runBetrebels(driver, betfair_games, matchbook_games)
     return driver
 
 
