@@ -236,101 +236,7 @@ def runSpinsports(driver):
     insertData(compared_list, "Spinsports")
     return betfair_games, driver
 
-def runBetsson(driver, betfair_games, matchbook_games):
-    logger.info("Collecting Betsson group data")
-    #Try 3 times
-    for _ in range(3):
-        betsson_games = []
-        try:
-            betsson_games = parseBetsson(driver)
-            break
-        except WebDriverException:
-            try:
-                driver.title
-                logger.debug("WebDriverException, but chrome didn't crash")
-            except WebDriverException:
-                logger.warning("Chrome has crashed, reopening")
-                driver = startChromeDriver()
-        except Exception as e:
-            logger.error("Betsson:")
-            logger.error(e)
-    for _ in range(3):
-        betsafe_games = []
-        try:
-            betsafe_games = parseBetsafe(driver)
-            break
-        except WebDriverException:
-            try:
-                driver.title
-                logger.debug("WebDriverException, but chrome didn't crash")
-            except WebDriverException:
-                logger.warning("Chrome has crashed, reopening")
-                driver = startChromeDriver()
-        except Exception as e:
-            logger.error("Betsafe:")
-            logger.error(e)
-    for _ in range(3):
-        casinowinner_games = []
-        try:
-            casinowinner_games = parseCasinowinner(driver)
-            break
-        except WebDriverException:
-            try:
-                driver.title
-                logger.debug("WebDriverException, but chrome didn't crash")
-            except WebDriverException:
-                logger.warning("Chrome has crashed, reopening")
-                driver = startChromeDriver()
-        except Exception as e:
-            logger.error("Casinowinner:")
-            logger.error(e)
-    logger.info("Betsson:")
-    compareAndInsert(betsson_games, betfair_games, matchbook_games, "outrights", "Betsson", "Betsson_Matchbook")
-    logger.info("Betsafe:")
-    compareAndInsert(betsafe_games, betfair_games, matchbook_games, "outrights", "Betsafe", "Betsafe_Matchbook")
-    logger.info("Casinowinner:")
-    compareAndInsert(casinowinner_games, betfair_games, matchbook_games, "outrights", "Casinowinner", "Casinowinner_Matchbook")
-    return driver
 
-def run888sport(driver, betfair_games, matchbook_games):
-    logger.info("Collecting 888sport data")
-    for _ in range(3):
-        bookmaker_games = []
-        try:
-            bookmaker_games = get888sportData(driver)
-            break
-        except WebDriverException:
-            try:
-                driver.title
-                logger.debug("WebDriverException, but chrome didn't crash")
-            except WebDriverException:
-                logger.warning("Chrome has crashed, reopening")
-                driver = startChromeDriver()
-        except Exception as e:
-            logger.error(e)
-    compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "888sport", "888sport_Matchbook")
-    return driver
-
-def runBetrebels(driver, betfair_games, matchbook_games):
-    logger.info("Collecting betrebels data")
-    for _ in range(3):
-        bookmaker_games = []
-        try:
-            bookmaker_games = parseBetrebels(driver)
-            break
-        except WebDriverException:
-            try:
-                driver.title
-                logger.debug("WebDriverException, but chrome didn't crash")
-            except WebDriverException:
-                logger.warning("Chrome has crashed, reopening")
-                driver = startChromeDriver()
-        except Exception as e:
-            logger.error(e)
-    compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Betrebels", "Betrebels_Matchbook")
-    return driver
-
-def runNeobet(driver, betfair_games, matchbook_games):
     logger.info("Collecting neobet data")
     for _ in range(3):
         bookmaker_games = []
@@ -349,12 +255,12 @@ def runNeobet(driver, betfair_games, matchbook_games):
     compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Neobet", "Neobet_Matchbook")
     return driver
 
-def runIntertops(driver, betfair_games ,matchbook_games):
-    logger.info("Collecting intertops data")
+def runBookmaker(bookmaker_function, bf_db_name, mb_db_name, driver, betfair_games, matchbook_games):
+    logger.info("Collecting {} data".format(bf_db_name))
     for _ in range(3):
         bookmaker_games = []
         try:
-            bookmaker_games = parseIntertops(driver)
+            bookmaker_games = bookmaker_function(driver)
             break
         except WebDriverException:
             try:
@@ -365,111 +271,39 @@ def runIntertops(driver, betfair_games ,matchbook_games):
                 driver = startChromeDriver()
         except Exception as e:
             logger.error(e)
-    compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Intertops", "Intertops_Matchbook")
+    compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", bf_db_name, mb_db_name)
     return driver
-
-def runBet90(driver, betfair_games, matchbook_games):
-    logger.info("Collecting bet90 data")
-    for _ in range(3):
-        bookmaker_games = []
-        try:
-            bookmaker_games = parseBet90(driver)
-            break
-        except WebDriverException:
-            try:
-                driver.title
-                logger.debug("WebDriverException, but chrome didn't crash")
-            except WebDriverException:
-                logger.warning("Chrome has crashed, reopening")
-                driver = startChromeDriver()
-        except Exception as e:
-            logger.error(e)
-    compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Bet90", "Bet90_Matchbook")
-    return driver
-
-def runBetathome(driver, betfair_games, matchbook_games):
-    logger.info("Collecting betathome data")
-    for _ in range(3):
-        bookmaker_games = []
-        try:
-            bookmaker_games = parseBetathome(driver)
-            break
-        except WebDriverException:
-            try:
-                driver.title
-                logger.debug("WebDriverException, but chrome didn't crash")
-            except WebDriverException:
-                logger.warning("Chrome has crashed, reopening")
-                driver = startChromeDriver()
-        except Exception as e:
-            logger.error(e)
-    compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Betathome", "Betathome_Matchbook")
-    return driver
-
-def runUnibet(driver, betfair_games, matchbook_games):
-    logger.info("Collecting unibet data")
-    for _ in range(3):
-        bookmaker_games = []
-        try:
-            bookmaker_games = parseUnibet(driver)
-            break
-        except WebDriverException:
-            try:
-                driver.title
-                logger.debug("WebDriverException, but chrome didn't crash")
-            except WebDriverException:
-                logger.warning("Chrome has crashed, reopening")
-                driver = startChromeDriver()
-        except Exception as e:
-            logger.error(e)
-    compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Unibet", "Unibet_Matchbook")
-    return driver
-
-def runLVBet(driver, betfair_games, matchbook_games):
-    logger.info("Collecting LVBet data")
-    for _ in range(3):
-        bookmaker_games = []
-        try:
-            bookmaker_games = parseLVBet(driver)
-            break
-        except WebDriverException:
-            try:
-                driver.title
-                logger.debug("WebDriverException, but chrome didn't crash")
-            except WebDriverException:
-                logger.warning("Chrome has crashed, reopening")
-                driver = startChromeDriver()
-        except Exception as e:
-            logger.error(e)
-    compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "LVBet", "LVBet_Matchbook")
-    return driver
-
 
 logger.info("Starting driver")
 driver = startChromeDriver()
 
 def schedule1(driver):
-    betfair_games, driver = runSpinsports(driver)
+    #betfair_games, driver = runSpinsports(driver)
     matchbook_games = getMatchbookGames()
-    driver = runBetsson(driver, betfair_games, matchbook_games)
-    driver = run888sport(driver, betfair_games, matchbook_games)
-    driver = runBetrebels(driver, betfair_games, matchbook_games)
-    driver = runNeobet(driver, betfair_games, matchbook_games)
+    betfair_games = getGames()
+    driver = runBookmaker(parseBetsson, "Betsson", "Betsson_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseBetsafe, "Betsafe", "Betsafe_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseCasinowinner, "Casinowinner", "Casinowinner_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(get888sportData, "888sport", "888sport_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseBetrebels, "Betrebels", "Betrebels_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseNeobet, "Neobet", "Neobet_Matchbook", driver, betfair_games, matchbook_games)
+
     return driver
 
 def schedule2(driver):
     betfair_games = getGames()
     matchbook_games = getMatchbookGames()
-    driver = runUnibet(driver, betfair_games, matchbook_games)
-    driver = runBetathome(driver, betfair_games, matchbook_games)
-    driver = runIntertops(driver, betfair_games, matchbook_games)
-    driver = runBet90(driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseUnibet, "Unibet", "Unibet_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseBetathome, "Betathome", "Betathome_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseIntertops, "Intertops", "Intertops_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseBet90, "Bet90", "Bet90_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseLVBet, "LVBet", "LVBet_Matchbook", driver, betfair_games, matchbook_games)
     return driver
 
 def schedule3(driver):
     betfair_games = getGames()
     matchbook_games = getMatchbookGames()
-    driver = runBetrebels(driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseLVBet, "LVBet", "LVBet_Matchbook", driver, betfair_games, matchbook_games)
     return driver
 
 
