@@ -20,7 +20,7 @@ from scraper_intertops import *
 from scraper_bet90 import *
 from scraper_betathome import *
 from scraper_unibet import *
-
+from scraper_lvbet import *
 
 
 #Parse command line arguments
@@ -425,6 +425,25 @@ def runUnibet(driver, betfair_games, matchbook_games):
     compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "Unibet", "Unibet_Matchbook")
     return driver
 
+def runLVBet(driver, betfair_games, matchbook_games):
+    logger.info("Collecting LVBet data")
+    for _ in range(3):
+        bookmaker_games = []
+        try:
+            bookmaker_games = parseLVBet(driver)
+            break
+        except WebDriverException:
+            try:
+                driver.title
+                logger.debug("WebDriverException, but chrome didn't crash")
+            except WebDriverException:
+                logger.warning("Chrome has crashed, reopening")
+                driver = startChromeDriver()
+        except Exception as e:
+            logger.error(e)
+    compareAndInsert(bookmaker_games, betfair_games, matchbook_games, "outrights", "LVBet", "LVBet_Matchbook")
+    return driver
+
 
 logger.info("Starting driver")
 driver = startChromeDriver()
@@ -450,7 +469,7 @@ def schedule2(driver):
 def schedule3(driver):
     betfair_games = getGames()
     matchbook_games = getMatchbookGames()
-    driver = run888sport(driver, betfair_games, matchbook_games)
+    driver = runLVBet(driver, betfair_games, matchbook_games)
     return driver
 
 
