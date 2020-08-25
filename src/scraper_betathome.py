@@ -20,7 +20,7 @@ def parseBetathome(driver):
     driver.find_elements_by_class_name("ftl-item-link")[0].click()
     sleep(1)
     #Click on all leagues
-    for i in range(10):
+    for i in range(15):
         try:
             driver.find_elements_by_class_name("ftl-nestedItem-title")[i+1].click()
             driver.find_elements_by_class_name("i-checkRegionBlue15x14")[i+1].click()
