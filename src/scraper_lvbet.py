@@ -61,9 +61,9 @@ def parseLVBet(driver):
 
 def parseEnergybet(driver):
     driver.get(energybet_url)
-    # if not makePageLoad(driver, 5):
-    #     return []
-    sleep(10)
+    if not makePageLoad(driver, 5):
+        return []
+    sleep(2)
     soup = BeautifulSoup(driver.page_source, features="html.parser")
     game_list = []
     for bet in soup.find_all("div", class_="lv-table-entry"):
