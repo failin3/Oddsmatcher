@@ -6,6 +6,10 @@ from time import sleep
 
 from logger_manager import *
 
+#TODO: Add Laliga, Serie A and more league ids to url
+lvbet_url = "https://sports.lvbet.com/en/pre-matches/multiple--?leagues=53,392,617,853,942,20195,20191,4215,11470,860,18884,7306,486,823,3568,6877,9868,353,9659,42867,44230,754,4620,676,719,741,4858,5117,9593,9629,9630,12803,13039,671,604,909,400,583,4859,665,651,666,786,639,680,1613,290,846,850,753,904,629,633,2735,74,1224,1757,11654,12369,557,594,592,606,674,433,730,1109,2971,11320,11321"
+energybet_url = "https://energybet.com/en/pre-matches/multiple--?leagues=53,392,617,853,942,20195,20191,4215,11470,860,18884,7306,486,823,3568,6877,9868,353,9659,42867,44230,754,4620,676,719,741,4858,5117,9593,9629,9630,12803,13039,671,604,909,400,583,4859,665,651,666,786,639,680,1613,290,846,850,753,904,629,633,2735,74,1224,1757,11654,12369,557,594,592,606,674,433,730,1109,2971,11320,11321"
+
 
 class OutrightGame:
     def __init__(self, name, r1, rX, r2):
@@ -31,9 +35,7 @@ def makePageLoad(driver, nr_of_tries):
     return False
 
 def parseLVBet(driver):
-    #TODO: Add Laliga, Serie A and more league ids to url
-    url = "https://sports.lvbet.com/en/pre-matches/multiple--?leagues=53,392,617,853,942,20195,20191,4215,11470,860,18884,7306,486,823,3568,6877,9868,353,9659,42867,44230,754,4620,676,719,741,4858,5117,9593,9629,9630,12803,13039,671,604,909,400,583,4859,665,651,666,786,639,680,1613,290,846,850,753,904,629,633,2735,74,1224,1757,11654,12369,557,594,592,606,674,433,730,1109,2971,11320,11321"
-    driver.get(url)
+    driver.get(lvbet_url)
     if not makePageLoad(driver, 5):
         return []
     sleep(2)
@@ -57,8 +59,33 @@ def parseLVBet(driver):
             logger.debug(e)
     return game_list
 
+def parseEnergybet(driver):
+    driver.get(energybet_url)
+    # if not makePageLoad(driver, 5):
+    #     return []
+    sleep(10)
+    soup = BeautifulSoup(driver.page_source, features="html.parser")
+    game_list = []
+    for bet in soup.find_all("div", class_="lv-table-entry"):
+        try:
+            team1 = bet.find("p").contents[2].strip()
+            team2 = bet.find("p").contents[5].replace("-", "").strip()
+            game_name = "{} vs {}".format(team1, team2)
+
+            odds_location = bet.find_all("market-selections")[0]
+
+            r1 = odds_location.find_all("rate-button")[0].text.strip().split(" ")[1]
+            rX = odds_location.find_all("rate-button")[1].text.strip().split(" ")[1]
+            r2 = odds_location.find_all("rate-button")[2].text.strip().split(" ")[1]
+
+            game = OutrightGame(game_name, r1, rX, r2)
+            game_list.append(game)
+        except Exception as e:
+            logger.debug(e)
+    return game_list
+
 if __name__ == "__main__":
     driver = webdriver.Chrome("bin/chromedriver")
-    game_list = parseLVBet(driver)
+    game_list = parseEnergybet(driver)
     for game in game_list:
         print("{:<40} {:>7} {:>7}  {:>7}".format(game.name, game.r1, game.rX, game.r2))

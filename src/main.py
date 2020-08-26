@@ -304,6 +304,7 @@ def schedule3(driver):
     betfair_games = getGames()
     matchbook_games = getMatchbookGames()
     driver = runBookmaker(parseLVBet, "LVBet", "LVBet_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseEnergybet, "Energybet", "Energybet_Matchbook", driver, betfair_games, matchbook_games)
     return driver
 
 
