@@ -21,6 +21,7 @@ from scraper_bet90 import *
 from scraper_betathome import *
 from scraper_unibet import *
 from scraper_lvbet import *
+from scraper_betway import *
 
 
 #Parse command line arguments
@@ -298,13 +299,14 @@ def schedule2(driver):
     driver = runBookmaker(parseIntertops, "Intertops", "Intertops_Matchbook", driver, betfair_games, matchbook_games)
     driver = runBookmaker(parseBet90, "Bet90", "Bet90_Matchbook", driver, betfair_games, matchbook_games)
     driver = runBookmaker(parseLVBet, "LVBet", "LVBet_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseEnergybet, "Energybet", "Energybet_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseBetway, "Betway", "Betway_Matchbook", driver, betfair_games, matchbook_games)
     return driver
 
 def schedule3(driver):
     betfair_games = getGames()
     matchbook_games = getMatchbookGames()
-    driver = runBookmaker(parseLVBet, "LVBet", "LVBet_Matchbook", driver, betfair_games, matchbook_games)
-    driver = runBookmaker(parseEnergybet, "Energybet", "Energybet_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseBetway, "Betway", "Betway_Matchbook", driver, betfair_games, matchbook_games)
     return driver
 
 
