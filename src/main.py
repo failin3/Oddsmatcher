@@ -192,11 +192,10 @@ def insertData(oddsmatcher_games, table_name):
                 cursor.execute(sql, (game.name, game.exch_odds, game.bkma_odds, game.closeness, game.date, game.time, game.exch_liquidity, exchange_lay_wins, game.bet, url))
                 logger.debug("Inserted game: {} into database succesfully".format(game.name))
         connection.commit()
+        connection.close()
     except Exception as e:
         logger.error("MySQL error: {}".format(e))
-    finally:
-        connection.close()
-
+        
 def compareAndInsert(bookmaker_games, betfair_games, matchbook_games, odds_type, bf_database_name, mb_database_name):
     logger.info("Comparing odds")
     try:
