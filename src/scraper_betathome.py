@@ -12,25 +12,7 @@ class OutrightGame:
         self.rX = rX
         self.r2 = r2
 
-def parseBetathome(driver):
-    url = "https://www.bet-at-home.com/en/sport"
-    driver.get(url)
-    sleep(1)
-    #Click on Football
-    driver.find_elements_by_class_name("ftl-item-link")[0].click()
-    sleep(1)
-    #Click on all leagues
-    for i in range(15):
-        try:
-            driver.find_elements_by_class_name("ftl-nestedItem-title")[i+1].click()
-            driver.find_elements_by_class_name("i-checkRegionBlue15x14")[i+1].click()
-        except:
-            logger.debug("Probably tooltip in the way and couldn't click")
-        sleep(0.5)
-    sleep(1)
-    #Start scraping
-    soup = BeautifulSoup(driver.page_source, features="html.parser")
-    #First one is not a game
+def parsePage(soup):
     soup = soup.find("div", class_="sport-odds")
     iterate = soup.find_all("tr")
     game_list = []
@@ -50,6 +32,37 @@ def parseBetathome(driver):
             pass
         except Exception as e:
             logger.debug(e)
+    return game_list
+
+def makePageLoad(driver, nr_of_tries):
+    for _ in range(nr_of_tries):
+        for _ in range(5):
+            if len(driver.find_elements_by_class_name("ods-odd-link")) > 100:
+                return True
+            sleep(1)
+        sleep(1)
+    logger.debug("Page didn't want to load")
+    return False
+
+def parseBetathome(driver):
+    url = "https://www.bet-at-home.com/en/sport"
+    driver.get(url)
+    sleep(1)
+    #Click on Football
+    driver.find_elements_by_class_name("ftl-item-link")[0].click()
+    sleep(0.2)
+    driver.find_elements_by_class_name("seb")[0].find_elements_by_tag_name("a")[0].click()
+    sleep(1)
+    #Start scraping
+    if makePageLoad(driver, 5):
+        soup = BeautifulSoup(driver.page_source, features="html.parser")
+        game_list = parsePage(soup)
+    driver.find_elements_by_class_name("m-pageNum2")[0].click()
+    sleep(1)
+    if makePageLoad(driver, 5):
+        soup = BeautifulSoup(driver.page_source, features="html.parser")
+        game_list += parsePage(soup)
+    
 
     return game_list
 
