@@ -24,6 +24,8 @@ BETFAIR_PASSWORD
 
 Create a bin folder and add the chromedirver binary here, named "chromedriver".
 
+Of course run pip install -r requirements.txt
+
 Run `./run.sh` on linux, on windows make sure you are in the home directory and run `py -3.7 src/main.py`
 
 ### Testing
@@ -34,4 +36,9 @@ Bookmakers can change their website, or there might be a weird situation with fo
 To test parts of the software individually, the single scrapers can be ran on their own, by running `py -3.7 src/scraper_neobet.py` for example. 
 
 A more robust testing solution should be implemented however, to make the process of finding bugs easier. 
+
+### Status
+The current status of all bookmaker scrapers can be viewed [here](https://rickproductions.nl/AJAX/status.php). 
+
+On this page the latest update time of all bookmakers is shown.
 
