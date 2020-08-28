@@ -266,7 +266,8 @@ def runBookmaker(bookmaker_function, bf_db_name, mb_db_name, driver, betfair_gam
         except WebDriverException:
             try:
                 driver.title
-                logger.debug("WebDriverException, but chrome didn't crash")
+                logger.debug("WebDriverException, but chrome didn't crash", exc_info=1)
+                #logger.exception("WebDriverException, but chrome didn't crash")
             except WebDriverException:
                 logger.warning("Chrome has crashed, reopening")
                 driver = startChromeDriver()
