@@ -37,7 +37,10 @@ def parseUnibet(driver):
         return []
     sleep(1)
     #Click cookie accept
-    driver.find_element_by_id("CybotCookiebotDialogBodyButtonAccept").click()
+    try:
+        driver.find_element_by_id("CybotCookiebotDialogBodyButtonAccept").click()
+    except:
+        logger.debug("Cookie button has already been pressed")
     sleep(1)
     #Click on football
     driver.find_elements_by_class_name("KambiBC-filter-events-by-sports-container")[1].click()
