@@ -19,6 +19,7 @@ $query = "SELECT TABLE_NAME, UPDATE_TIME FROM information_schema.tables WHERE TA
 $results=mysqli_query($mysqli,$query);
 $row_count=mysqli_num_rows($results);
 ?>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <h1 style="text-align: center; font-family: arial, sans-serif;">Status</h1>
 <style>
 table {
@@ -34,6 +35,27 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+.green-dot {
+    height: 20px;
+    width: 20px;
+    background-color: #16c60c;
+    border-radius: 50%;
+    display: inline-block;
+}
+.orange-dot {
+    height: 20px;
+    width: 20px;
+    background-color: orange;
+    border-radius: 50%;
+    display: inline-block;
+}
+.red-dot {
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
 }
 </style>
 <table style="margin-left: auto; margin-right: auto;">
@@ -52,20 +74,20 @@ while ($row = mysqli_fetch_array($results)) {
     $now = time();
     $diff = $now - $update_time; //Difference in time in seconds
     if ($diff <= $green_time) {
-        $status = "🟢";
+        $status = "<span class='green-dot'></span>";
         $diff = gmdate("i:s", $diff);
     } elseif ($diff <= $orange_time) {
-        $status = "🟠";
+        $status = "<span class='orange-dot'></span>";
         $diff = gmdate("i:s", $diff);
     } elseif ($diff > $timeout_time) {
         $diff = "∞";
         $status = "❓";
     } else {
-        $status = "🔴";
+        $status = "<span class='red-dot'></span>";
         $diff = "∞";
     }
     if ($table_name == "Spinsports_Matchbook") {
-        $status = "🔴";
+        $status = "<span class='red-dot'></span>";
     }
     if (strpos($table_name, "Matchbook")) {
         echo "<th>$status</th></tr>";
