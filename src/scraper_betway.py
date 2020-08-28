@@ -35,7 +35,10 @@ def parseBetway(driver):
     if not makePageLoad(driver, 5):
         return []
     sleep(1)
-    driver.find_element_by_class_name("cookiePolicyAcceptButton").click()
+    try:
+        driver.find_element_by_class_name("cookiePolicyAcceptButton").click()
+    except:
+        logger.debug("Cookie button has already been pressed")
     for i in range(4):
         driver.find_elements_by_class_name("alternativeHeaderBackground")[i+1].click()
         sleep(1)
