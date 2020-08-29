@@ -34,11 +34,15 @@ def getFootballSection(soup):
     return soup
 
 def openContainers(driver):
-    sleep(2)
-    #Click to open first 10 containers
-    for i in range(10):
-        driver.find_elements_by_class_name("s1z_headerRow")[i].click()
-        sleep(0.5)
+    #Click to open first 20 containers
+    for i in range(20):
+        try:
+            collapse_container = driver.find_elements_by_class_name("s1z_headerRow")[i]
+            if "closedBlock" in collapse_container.get_attribute("class"):
+                collapse_container.click()
+                sleep(0.1)
+        except:
+            pass
 
 def classExists(game_to_check, game_list):
     for game in game_list:
