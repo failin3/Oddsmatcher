@@ -3,8 +3,8 @@ $servername = "localhost";
 $username = "u80189p74860_oddsmatcher";
 $password = "Kq90*r%XXlEXaUIvoxwo";
 
-$green_time = 7*60;
-$orange_time = 15*60;
+$green_time = 15*60;
+$orange_time = 30*60;
 $timeout_time = 10000*60;
 
 
