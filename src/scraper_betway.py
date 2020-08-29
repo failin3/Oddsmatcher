@@ -22,7 +22,7 @@ def classExists(game_to_check, game_list):
 def makePageLoad(driver, nr_of_tries):
     for _ in range(nr_of_tries):
         for _ in range(5):
-            if len(driver.find_elements_by_class_name("outcomes3x")) > 10:
+            if len(driver.find_elements_by_class_name("outcomes3x")) > 3:
                 return True
             sleep(1)
         sleep(1)
