@@ -84,7 +84,7 @@ while ($row = mysqli_fetch_array($results)) {
         $status = "❓";
     } else {
         $status = "<span class='red-dot'></span>";
-        $diff = "∞";
+        $diff = gmdate("i:s", $diff);
     }
     if ($table_name == "Spinsports_Matchbook") {
         $status = "<span class='red-dot'></span>";
