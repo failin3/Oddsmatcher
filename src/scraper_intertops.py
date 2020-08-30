@@ -59,16 +59,21 @@ def parseIntertops(driver):
     driver.find_element_by_class_name("nextbets").click()
     sleep(1)
 
-
-    for _ in range(5):
+    for _ in range(10):
         if len(driver.find_elements_by_class_name("toast-close-button")) > 0:
             driver.find_elements_by_class_name("toast-close-button")[0].click()
             sleep(1)
         try:
             driver.find_element_by_class_name("load-more-lnk").click()
         except:
-            driver.find_elements_by_class_name("toast-close-button")[0].click()
-        sleep(1.5)
+            #Not pretty this, but effective
+            #Might crash if there are no pages left anymore
+            try:
+                driver.find_elements_by_class_name("toast-close-button")[0].click()
+            except:
+                #No more pages
+                break
+        sleep(1)
     soup = BeautifulSoup(driver.page_source, features="html.parser")
     soup_next = soup.find("ul", class_="nextbets")
     soup_top = soup.find("ul", class_="topbets")
@@ -88,4 +93,3 @@ if __name__ == "__main__":
     game_list = parseIntertops(driver)
     for game in game_list:
         print("{:<40} {:>7} {:>7}  {:>7}".format(game.name, game.r1, game.rX, game.r2))
-    game_list = parseIntertops(driver)
