@@ -19,7 +19,10 @@ $query = "SELECT TABLE_NAME, UPDATE_TIME FROM information_schema.tables WHERE TA
 $results=mysqli_query($mysqli,$query);
 $row_count=mysqli_num_rows($results);
 ?>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <title>Oddsmatcher Status</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <h1 style="text-align: center; font-family: arial, sans-serif;">Status</h1>
 <style>
 table {
@@ -58,6 +61,19 @@ tr:nth-child(even) {
     display: inline-block;
 }
 </style>
+<div style="
+    display: flex;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+">
+<div>
 <table style="margin-left: auto; margin-right: auto;">
     <tr>
         <th>Table Name</th>
@@ -97,3 +113,28 @@ while ($row = mysqli_fetch_array($results)) {
 }
 ?>
 </table>
+</div>
+<div style="
+float: left; 
+padding-left: 20px;
+padding-top: 35px;">
+    <table>
+        <tr style="background-color: #ffffff;">
+            <th style="border: 0px solid #dddddd;"><span class='green-dot'></span></th>
+            <th style="border: 0px solid #dddddd;"> < <?php echo $green_time/60; ?> minutes</th>
+        </tr>
+        <tr style="background-color: #ffffff;">
+            <th style="border: 0px solid #dddddd;"><span class='orange-dot'></span></th>
+            <th style="border: 0px solid #dddddd;"> < <?php echo $orange_time/60; ?> minutes</th>
+        </tr>
+        <tr style="background-color: #ffffff;">
+            <th style="border: 0px solid #dddddd;"><span class='red-dot'></span></th>
+            <th style="border: 0px solid #dddddd;"> > <?php echo $orange_time/60; ?> minutes</th>
+        </tr>
+        <tr style="background-color: #ffffff;">
+            <th style="border: 0px solid #dddddd;">❓</th>
+            <th style="border: 0px solid #dddddd;">MySQL Bug</th>
+        </tr>
+    </table>
+</div>
+</div>
