@@ -60,6 +60,11 @@ tr:nth-child(even) {
     border-radius: 50%;
     display: inline-block;
 }
+@media all and (max-width: 800px) {
+    .legenda {
+        display: none;
+    }
+}
 </style>
 <div style="
     display: flex;
@@ -114,7 +119,7 @@ while ($row = mysqli_fetch_array($results)) {
 ?>
 </table>
 </div>
-<div style="
+<div class="legenda" style="
 float: left; 
 padding-left: 20px;
 padding-top: 35px;">
