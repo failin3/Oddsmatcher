@@ -1,9 +1,11 @@
 import logging
+from logging.handlers import RotatingFileHandler
 
 logger = logging.getLogger("Server Logger")
 logger.setLevel(logging.DEBUG)
 # create file handler which logs even debug messages
-fh = logging.FileHandler("application.log", "w", "utf-8")
+#fh = logging.FileHandler("application.log", "w", "utf-8")
+fh = RotatingFileHandler("application.log", maxBytes=1*1024*1024, backupCount=1, encoding="utf-8", delay=0)
 fh.setLevel(logging.DEBUG)
 # create console handler with a higher log level
 ch = logging.StreamHandler()
