@@ -24,7 +24,7 @@
     </select>
 </form>
 <form id="odds_filter" method="POST" action="#">
-    <input type="text" name="min_odds" class="oddsValue" data-index="0" value="0" style="width: 70px;" autocomplete="off">
+    <input type="text" name="min_odds" class="oddsValue" data-index="0" value="1" style="width: 70px;" autocomplete="off">
     <div id="oddsSlider" style="width: 50%; display: inline-block; margin-left: 20px; margin-right: 20px;"></div>
     <input type="text" name="max_odds" class="oddsValue" data-index="1" value="30" style="width: 70px;" autocomplete="off">
 </form>
@@ -44,10 +44,10 @@
 <script type="text/javascript">
 jQ(document).ready(function() {
     jQ('#oddsSlider').slider({
-        min: 0,
+        min: 1,
         max: 30,
         step: 0.1,
-        values: [0, 30],
+        values: [1, 30],
         slide: function(event, ui) {
         for (var i = 0; i < ui.values.length; ++i) {
             jQ("input.oddsValue[data-index=" + i + "]").val(ui.values[i]);
