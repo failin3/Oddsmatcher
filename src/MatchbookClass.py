@@ -31,6 +31,7 @@ def processDate(event_date):
     return event_date, time
 
 def getMatchbookGames():
+    logger.info("Collecting Matchbook games")
     mb = APIClient('tKofschip', 'N1hj001*UJZwIkx$')
     mb.login()
 

@@ -191,7 +191,7 @@ def insertData(oddsmatcher_games, table_name):
                     url = "https://www.betfair.com/exchange/plus/en/football/--/---{}".format(game.exchange_id)
                 sql = "INSERT INTO {} (MatchName, ExchangeOdds, BookmakerOdds, Closeness, Date, Time, Liquidity, Loss, Bet, Url) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)".format(table_name)
                 cursor.execute(sql, (game.name, game.exch_odds, game.bkma_odds, game.closeness, game.date, game.time, game.exch_liquidity, exchange_lay_wins, game.bet, url))
-                logger.debug("Inserted game: {} into database succesfully".format(game.name))
+                #logger.debug("Inserted game: {} into database succesfully".format(game.name))
         connection.commit()
         connection.close()
     except Exception as e:

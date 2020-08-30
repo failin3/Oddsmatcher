@@ -126,6 +126,7 @@ def getOutrights(game, markets):
     
 
 def getGames():
+    logger.info("Collecting Betfair games")
     #Calculate new date every time this function is called
     START_DATE = datetime.datetime.now().strftime("%Y-%m-%d")
     END_DATE = (datetime.datetime.now()+datetime.timedelta(days=GAME_DATE_RANGE)).strftime("%Y-%m-%d")
@@ -152,7 +153,7 @@ def getGames():
     for i, event in enumerate(events):
         while True:
             try:
-                logger.debug("{}/{}".format(i+1, len(events)))
+                #logger.debug("{}/{}".format(i+1, len(events)))
                 #Loop over event, create class then save info
                 event_name = event.event.name
                 event_id = event.event.id
