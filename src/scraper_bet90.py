@@ -43,7 +43,7 @@ def parseBet90(driver):
         try:
             ActionChains(driver).send_keys(Keys.SPACE).perform()
             soup = BeautifulSoup(driver.page_source, features="html.parser")
-            for item in soup.find_all("div", class_="rj-ev-list__ev-card rj-ev-list__ev-card--upcoming rj-ev-list__ev-card--regular"):
+            for item in soup.find_all("div", class_="rj-ev-list__ev-card__inner"):
                 team1 = item.find_all("span", class_="rj-ev-list__name-text")[0].text
                 team2 = item.find_all("span", class_="rj-ev-list__name-text")[1].text
                 r1 = item.find_all("span", class_="rj-ev-list__bet-btn__odd")[0].text
