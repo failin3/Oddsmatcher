@@ -54,6 +54,8 @@ def parseBetathome(driver):
     driver.find_elements_by_class_name("seb")[0].find_elements_by_tag_name("a")[0].click()
     sleep(1)
     #Start scraping
+    driver.find_elements_by_class_name("m-pageNum1")[0].click()
+    sleep(1)
     if makePageLoad(driver, 5):
         soup = BeautifulSoup(driver.page_source, features="html.parser")
         game_list = parsePage(soup)
@@ -68,6 +70,8 @@ def parseBetathome(driver):
 
 if __name__ == "__main__":
     driver = webdriver.Chrome("bin/chromedriver")
-    game_list = parseBetathome(driver)
-    for game in game_list:
-        print("{:<40} {:>7} {:>7}  {:>7}".format(game.name, game.r1, game.rX, game.r2))
+    for _ in range(3):
+        game_list = parseBetathome(driver)
+        for game in game_list:
+            print("{:<40} {:>7} {:>7}  {:>7}".format(game.name, game.r1, game.rX, game.r2))
+        driver.get("http://www.google.com")
