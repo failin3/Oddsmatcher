@@ -96,9 +96,11 @@ def compareNames(bookmaker_game, betfair_name, exchange_split):
         Str1 = "{} vs {}".format(Str1_first, Str1_second)
         Str2 = "{} vs {}".format(Str2_first, Str2_second)
 
-        #Ignore women football on Unibet
-        if "(W)" in Str1 or "(W)" in Str2:
-            return False
+        #Ignore women and lower football
+        ignore_list = ["(W)", "U23", "U20", "U21", "U19", "U18", "U17", "U16", "U15"]
+        for item in ignore_list:
+            if item.lower() in Str1 or item.lower() in Str2:
+                return False
 
         if (Str1_first in Str2_first or Str2_first in Str1_first) and (Str1_second in Str2_second or Str2_second in Str1_second):
             return True
@@ -307,7 +309,8 @@ def schedule2(driver):
 def schedule3(driver):
     betfair_games = getGames()
     matchbook_games = getMatchbookGames()
-    driver = runBookmaker(parseBetway, "Betway", "Betway_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(get888sportData, "888sport", "888sport_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseUnibet, "Unibet", "Unibet_Matchbook", driver, betfair_games, matchbook_games)
     return driver
 
 
