@@ -3,8 +3,9 @@ $servername = "localhost";
 $username = "u80189p74860_oddsmatcher";
 $password = "Kq90*r%XXlEXaUIvoxwo";
 
+
 //Check if request comes from the oddsmatcher pages, else return nothing.
-if ( $_SERVER["HTTP_REFERER"] != "https://www.rickproductions.nl/oddsmatcher-dev/" && $_SERVER["HTTP_REFERER"] != "https://www.rickproductions.nl/oddsmatcher/") {
+if ( $_SERVER["HTTP_REFERER"] != "https://www.rickproductions.nl/oddsmatcher-dev/" && $_SERVER["HTTP_REFERER"] != "https://www.rickproductions.nl/oddsmatcher/" && $_SERVER["HTTP_REFERER"] != "https://www.rickproductions.nl/oddsmatcher-gratis/") {
   //http_response_code(403);
   //exit();
 }
@@ -24,6 +25,11 @@ if($_POST['bookmaker'] && in_array($_POST['bookmaker'], $bookmaker_array)) {
 } else {
   $bookmaker = "Intertops";
 }
+if ( $_SERVER["HTTP_REFERER"] == "https://www.rickproductions.nl/oddsmatcher-gratis/") {
+  $bookmaker = "888sport";
+}
+
+
 if ($bookmaker == "Spinsports") {
   $order = "Loss";
 } else {
