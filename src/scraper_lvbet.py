@@ -39,6 +39,21 @@ def classExists(game_to_check, game_list):
             return True
     return False
 
+def makePageLoad(driver, nr_of_tries):
+    for _ in range(nr_of_tries):
+        for _ in range(5):
+            print("Loop")
+            try:
+                f = driver.find_element_by_tag_name("rate-button").text
+                if f != '':
+                    return True
+            except:
+                pass
+            sleep(1)
+        sleep(1)
+    logger.debug("Page didn't want to load")
+    return False
+
 def waitOnButtons(driver):
     wait = WebDriverWait(driver, 50)
     #wait.until(lambda d: "." in d.find_elements_by_tag_name("rate-button").text)
