@@ -25,9 +25,6 @@ if($_POST['bookmaker'] && in_array($_POST['bookmaker'], $bookmaker_array)) {
 } else {
   $bookmaker = "Intertops";
 }
-if ( $_SERVER["HTTP_REFERER"] == "https://www.rickproductions.nl/oddsmatcher-gratis/") {
-  $bookmaker = "888sport";
-}
 
 
 if ($bookmaker == "Spinsports") {
@@ -39,6 +36,12 @@ $exchange = "Betfair";
 if ($_POST["exchange"] == "Matchbook") {
   $bookmaker = "{$bookmaker}_Matchbook";
   $exchange = "Matchbook";
+}
+
+
+if ( $_SERVER["HTTP_REFERER"] == "https://www.rickproductions.nl/oddsmatcher-gratis/") {
+  $bookmaker = "888sport";
+  $exchange = "Betfair";
 }
 
 $query_extra = "";
