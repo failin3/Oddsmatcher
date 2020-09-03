@@ -4,6 +4,11 @@ from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 from time import sleep
 
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+
 from logger_manager import *
 
 #TODO: Add Laliga, Serie A and more league ids to url
@@ -27,8 +32,13 @@ def classExists(game_to_check, game_list):
 def makePageLoad(driver, nr_of_tries):
     for _ in range(nr_of_tries):
         for _ in range(5):
-            if len(driver.find_elements_by_tag_name("rate-button")) > 500:
-                return True
+            print("Loop")
+            try:
+                f = driver.find_element_by_tag_name("rate-button").text
+                if f != '':
+                    return True
+            except:
+                pass
             sleep(1)
         sleep(1)
     logger.debug("Page didn't want to load")
@@ -86,6 +96,6 @@ def parseEnergybet(driver):
 
 if __name__ == "__main__":
     driver = webdriver.Chrome("bin/chromedriver")
-    game_list = parseEnergybet(driver)
+    game_list = parseLVBet(driver)
     for game in game_list:
         print("{:<40} {:>7} {:>7}  {:>7}".format(game.name, game.r1, game.rX, game.r2))
