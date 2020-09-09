@@ -31,15 +31,19 @@ def processDate(event_date):
     return event_date, time
 
 def getMatchbookGames():
-    logger.info("Collecting Matchbook games")
-    mb = APIClient('tKofschip', 'N1hj001*UJZwIkx$')
-    mb.login()
+    try:
+        logger.info("Collecting Matchbook games")
+        mb = APIClient('tKofschip', 'N1hj001*UJZwIkx$')
+        mb.login()
 
-    game_list = []
+        game_list = []
 
-    sports = mb.reference_data.get_sports()
-    football_id = [s['id'] for s in sports if s['name']=='Soccer'][0]
-    football_events = mb.market_data.get_events(sport_ids=football_id, price_depth=1, minimum_liquidity=50)
+        sports = mb.reference_data.get_sports()
+        football_id = [s['id'] for s in sports if s['name']=='Soccer'][0]
+        football_events = mb.market_data.get_events(sport_ids=football_id, price_depth=1, minimum_liquidity=50)
+    except:
+        logger.debug("Error when initializing Matchbook", exc_info=1)
+        return []
     for event in football_events:
         try:
             event_name = event["name"]
