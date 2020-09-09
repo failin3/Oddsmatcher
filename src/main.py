@@ -162,7 +162,7 @@ def compareOdds(ss_games, bookmaker_games, market, set_closeness=95, set_odds=30
                                     bet = bf_game.name.split(exchange_split)[1]
                                 good_odds.append(OddsmatcherEntry(bf_game.name, ss_odds[1], bf_odds, liquidity, score, closeness, bf_game.date, bf_game.time, bet, bf_game.event_id))
             except Exception as e:
-                logger.debug(e)
+                logger.debug(e, exc_info=1)
     good_odds = sorted(good_odds, key=operator.attrgetter('closeness'))
     return good_odds
 
@@ -309,8 +309,9 @@ def schedule2(driver):
 def schedule3(driver):
     betfair_games = getGames()
     matchbook_games = getMatchbookGames()
-    driver = runBookmaker(get888sportData, "888sport", "888sport_Matchbook", driver, betfair_games, matchbook_games)
-    driver = runBookmaker(parseUnibet, "Unibet", "Unibet_Matchbook", driver, betfair_games, matchbook_games)
+    driver = runBookmaker(parseLVBet, "LVBet", "LVBet_Matchbook", driver, betfair_games, matchbook_games)
+    driver.get("http://www.google.com")
+    driver = runBookmaker(parseLVBet, "LVBet", "LVBet_Matchbook", driver, betfair_games, matchbook_games)
     return driver
 
 
