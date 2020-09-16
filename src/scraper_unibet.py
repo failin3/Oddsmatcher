@@ -2,10 +2,16 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from time import sleep
 
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.expected_conditions import _find_element
+import re
+
 from logger_manager import *
 
-
 url = "https://www.unibet.eu/betting/sports/filter/all/all/all/all/starting-soon"
+
 
 class OutrightGame:
     def __init__(self, name, r1, rX, r2):
@@ -23,6 +29,12 @@ def makePageLoad(driver, nr_of_tries):
             sleep(1)
         driver.get(url)
     return False
+
+def waitOnButtons(driver):
+    wait = WebDriverWait(driver, 60)
+    #wait.until(lambda d: "." in d.find_elements_by_tag_name("rate-button").text)
+    wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "KambiBC-filter-events-by-sports-container")))
+    #sleep(4)
 
 def classExists(game_to_check, game_list):
     for game in game_list:
@@ -43,7 +55,7 @@ def parseUnibet(driver):
         logger.debug("Cookie button has already been pressed")
     sleep(1)
     #Click on football
-    driver.find_elements_by_class_name("KambiBC-filter-events-by-sports-container")[1].click()
+    driver.find_elements_by_class_name("KambiBC-filter-events-by-sports-container")[0].click()
     sleep(1)
 
     #Collapse expanded
