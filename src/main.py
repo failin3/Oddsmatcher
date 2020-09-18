@@ -1,5 +1,6 @@
 from pyvirtualdisplay import Display
 from selenium.common.exceptions import WebDriverException
+from selenium.common.exceptions import TimeoutException
 from time import sleep
 from fuzzywuzzy import fuzz
 import operator
@@ -272,6 +273,9 @@ def runBookmaker(bookmaker_function, bf_db_name, mb_db_name, driver, betfair_gam
                 #logger.exception("WebDriverException, but chrome didn't crash")
             except WebDriverException:
                 logger.warning("Chrome has crashed, reopening")
+                driver = startChromeDriver()
+            except TimeoutException:
+                logger.warning("Chrome has timed out, reopening")
                 driver = startChromeDriver()
         except Exception as e:
             logger.error(e)
