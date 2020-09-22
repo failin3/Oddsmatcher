@@ -14,7 +14,7 @@ class OutrightGame:
 def makePageLoad(driver, nr_of_tries):
     for _ in range(nr_of_tries):
         for _ in range(5):
-            if len(driver.find_elements_by_class_name("flex")) > 10:
+            if len(driver.find_elements_by_class_name("asb-flex-col")) > 10:
                 return True
             sleep(1)
         sleep(1)
