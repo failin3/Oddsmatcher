@@ -73,7 +73,7 @@ def sortOdds(odds, scores):
     return odds_sorted
 
 def parseMatch(url, driver):
-    logger.debug("Going  to Match URL")
+    logger.debug("Going  to {}".format(url))
     url = "https://spinsportsmga.spinpalace.com" + url
     game_name = url.rsplit("/", 2)[-2]
     driver.get(url)
