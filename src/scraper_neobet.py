@@ -19,10 +19,10 @@ def makePageLoad(driver, url, nr_of_tries):
         for _ in range(5):
             if len(driver.find_elements_by_class_name("matchRow")) > 2:
                 sleep(2)
-                return
+                return True
             sleep(1)
         driver.get(url)
-    print("Page just doesn't want to load")
+    return False
 
 def getFootballSection(soup):
     #Get football section
@@ -53,7 +53,8 @@ def classExists(game_to_check, game_list):
 def parseNeobet(driver):
     url = "https://neo.bet/en/Sportbets"
     driver.get(url)
-    makePageLoad(driver, url, 5)
+    if not makePageLoad(driver, url, 5):
+        return []
     sleep(1)
     openContainers(driver)
     #Scrape main page
