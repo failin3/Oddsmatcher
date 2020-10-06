@@ -27,11 +27,12 @@ if($_POST['bookmaker'] && in_array($_POST['bookmaker'], $bookmaker_array)) {
 }
 
 
-if ($bookmaker == "Spinsports") {
-  $order = "Loss";
-} else {
-  $order = "Closeness";
-}
+// if ($bookmaker == "Spinsports") {
+//   $order = "Loss";
+// } else {
+//   $order = "Closeness";
+// }
+$order = "Closeness";
 $exchange = "Betfair";
 if ($_POST["exchange"] == "Matchbook") {
   $bookmaker = "{$bookmaker}_Matchbook";

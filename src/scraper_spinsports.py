@@ -44,7 +44,6 @@ def getMatchesOnPage(driver):
             game = OutrightGame("{} vs {}".format(team1, team2), r1, rX, r2)
             game_list.append(game)
         except Exception as e:
-            print(e)
             logger.debug(e)
     return game_list
 
