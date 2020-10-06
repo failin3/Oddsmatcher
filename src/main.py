@@ -12,7 +12,8 @@ from logger_manager import *
 from BetfairClass import *
 from MatchbookClass import *
 
-from spinsports_scraper import *
+from scraper_spinsports import *
+#from spinsports_scraper import *
 from scraper_888sport import *
 from scraper_betsson import *
 from scraper_betrebels import *
@@ -287,9 +288,10 @@ logger.info("Starting driver")
 driver = startChromeDriver()
 
 def schedule1(driver):
-    betfair_games, driver = runSpinsports(driver)
+    #betfair_games, driver = runSpinsports(driver)
     matchbook_games = getMatchbookGames()
-    #betfair_games = getGames()
+    betfair_games = getGames()
+    driver = runBookmaker(parseSpinsports, "Spinsports", "Spinsports_Matchbook", driver, betfair_games, matchbook_games)
     driver = runBookmaker(parseBetsson, "Betsson", "Betsson_Matchbook", driver, betfair_games, matchbook_games)
     driver = runBookmaker(parseBetsafe, "Betsafe", "Betsafe_Matchbook", driver, betfair_games, matchbook_games)
     driver = runBookmaker(parseCasinowinner, "Casinowinner", "Casinowinner_Matchbook", driver, betfair_games, matchbook_games)
