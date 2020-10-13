@@ -48,6 +48,12 @@ def parseBetathome(driver):
     url = "https://www.bet-at-home.com/en/sport"
     driver.get(url)
     sleep(1)
+    #Accept cookies if necessary
+    try:
+        driver.find_elements_by_class_name("l-flex--shrink-0")[0].find_elements_by_tag_name("a")[1].click()
+        sleep(1)
+    except:
+        pass
     #Click on Football
     driver.find_elements_by_class_name("ftl-item-link")[0].click()
     sleep(0.2)
