@@ -1,12 +1,12 @@
 # Oddsmatcher
 
-Matching odds of betting exchanges (currently only Betfair) and bookmakers. 
+Matching odds of betting exchanges (Betfair and Matchbook) and bookmakers. 
 
 This project mostly focusses on bookmakers that are interesting for Dutch matched betters. 
 
 ### Structure
 
-The backend is written in python, while the frontend uses AJAX, thus making use of javascript and PHP. 
+The backend is written in python, while the frontend uses javascript and PHP. 
 
 The information collected by the backend is inserted into a MYSQL database. All odds matching is done on the back end, such that the results load quickly when accessing the frontend.
 
@@ -22,9 +22,13 @@ BETFAIR_USERNAME
 BETFAIR_PASSWORD
 ```
 
+Matchbook credentials are handled worse at the moment, change the credentials in `MatchbookClass.py`
+
 Create a bin folder and add the chromedirver binary here, named "chromedriver".
 
 Of course run pip install -r requirements.txt
+
+You might encounter some conflicts, most of the the time requests is the problem.
 
 Run `./run.sh` on linux, on windows make sure you are in the home directory and run `py -3.7 src/main.py`
 
