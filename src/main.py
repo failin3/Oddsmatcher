@@ -289,7 +289,7 @@ driver = startChromeDriver()
 
 def schedule1(driver):
     #betfair_games, driver = runSpinsports(driver)
-    matchbook_games = getMatchbookGames()
+    matchbook_games = [] #getMatchbookGames()
     betfair_games = getGames()
     driver = runBookmaker(parseSpinsports, "Spinsports", "Spinsports_Matchbook", driver, betfair_games, matchbook_games)
     driver = runBookmaker(parseBetsson, "Betsson", "Betsson_Matchbook", driver, betfair_games, matchbook_games)
@@ -303,7 +303,7 @@ def schedule1(driver):
 
 def schedule2(driver):
     betfair_games = getGames()
-    matchbook_games = getMatchbookGames()
+    matchbook_games = [] #getMatchbookGames()
     driver = runBookmaker(parseUnibet, "Unibet", "Unibet_Matchbook", driver, betfair_games, matchbook_games)
     driver = runBookmaker(parseBetathome, "Betathome", "Betathome_Matchbook", driver, betfair_games, matchbook_games)
     driver = runBookmaker(parseIntertops, "Intertops", "Intertops_Matchbook", driver, betfair_games, matchbook_games)
@@ -315,7 +315,7 @@ def schedule2(driver):
 
 def schedule3(driver):
     betfair_games = getGames()
-    matchbook_games = getMatchbookGames()
+    matchbook_games = [] #getMatchbookGames()
     driver = runBookmaker(parseLVBet, "LVBet", "LVBet_Matchbook", driver, betfair_games, matchbook_games)
     driver.get("http://www.google.com")
     driver = runBookmaker(parseLVBet, "LVBet", "LVBet_Matchbook", driver, betfair_games, matchbook_games)
