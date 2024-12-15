@@ -1,32 +1,75 @@
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Matched Betting Calculator</title>
+</head>
+<body>
 <form>
-    <input type="text" id="backStake" placeholder="Back stake" autofocus autocomplete="off" tabindex="1" onkeyup="updatelay(false)">
-    <br>
-    <input type="text" id="backOdds" placeholder="Back odds" autocomplete="off" tabindex="2" onkeyup="updatelay(false)">
-    <br>
-    <input type="text" id="layOdds" placeholder="Lay odds" autocomplete="off" tabindex="3" onkeyup="updatelay(false)">
-    <br>
-    <input type="text" id="layComm" placeholder="Lay commission" autocomplete="off" tabindex="4" onkeyup="updatelay(false)">
-    <br>
-    <input type="text" id="minSlider" autocomplete="off" onkeyup="updatelay(true)">
-    <input type="range" id="layStake" min="0" max="100" value="50">
-    <input type="text" id="maxSlider" autocomplete="off" onkeyup="updatelay(true)">
+    <div class="stake-container" style="width: 800px;">
+        <div style="width: 100%; display: flex; background-color: #99ccff; padding: 15px; border-radius: 7px; justify-content: flex-end!important;">
+            <span style="width: 45%;">
+                Back stake:
+                <br>
+                <input type="text" id="backStake" placeholder="Back stake" autofocus autocomplete="off" tabindex="1" onkeyup="updatelay(false)">
+            </span>
+            <span style="width: 45%;">
+                Back odds:
+                <br>
+                <input type="text" id="backOdds" placeholder="Back odds" autocomplete="off" tabindex="2" onkeyup="updatelay(false)">
+            </span>
+        </div>
+        <div style="width: 100%; display: flex; background-color: #ffcccc; padding: 15px; border-radius: 7px; justify-content: flex-end!important;">
+            <span style="width: 45%;">
+                Lay odds:
+                <br>
+                <input type="text" id="layOdds" placeholder="Lay odds" autocomplete="off" tabindex="3" onkeyup="updatelay(false)">
+            </span>
+            <span style="width: 45%;">
+                Commission:
+                <br>
+                <input type="text" id="layComm" placeholder="Lay commission" autocomplete="off" tabindex="4" onkeyup="updatelay(false)" value="6.5">
+            </span> 
+        </div>
+    </div>
+
+    <div>
+        <input type="radio" id="normal_bet" name="bet_type" value="normal" onclick="updatelay(false)" checked="checked">
+        <label for="Normal">Normal</label>
+        <input type="radio" id="free_bet" name="bet_type" value="free_bet" onclick="updatelay(false)">
+        <label for="Free bet">Free bet</label>
+    </div>
 
     <br>
-    <input type="radio" id="normal_bet" name="bet_type" value="normal" onclick="updatelay(false)" checked="checked">
-    <label for="Normal">Normal</label><br>
-    <input type="radio" id="free_bet" name="bet_type" value="free_bet" onclick="updatelay(false)">
-    <label for="Free bet">Free bet</label><br>
+    <div class="slider-container">
+        <input type="text" id="minSlider" autocomplete="off" onkeyup="updatelay(true)">
+        <input type="range" id="layStake" min="0" max="100" value="50">
+        <input type="text" id="maxSlider" autocomplete="off" onkeyup="updatelay(true)">
+    </div>
+
+    <br>
+    <br>
+    
+
+    <div style="display: flex;">
+        <input type="submit" value="Calculate" onclick="updatelay(false)" action="">
+        <input type="submit" value="Reset" onclick="reset_slider(true); updatelay(false)" action="">
+    </div>
+
+    <br><br>
+
+    <div style="width: 800px; display: flex;">
+        <div style="width: 200px;">Lay Stake: <span id="lay_stake_output">Lay stake:</span></div>
+        <div>Liability: <span id="liability_output">Liability:</span></div>
+    </div>
+    <br>
+    Bookmaker bet wins: <span id="bookmaker_win_output">Bookmaker bet wins:</span><br>
+    Exchange bet wins: <span id="exchange_win_output">Exchange bet wins:</span><br>
 
       
 </form>
-<input type="submit" value="Calculate" onclick="updatelay(false)" action="">
 
-<input type="submit" value="Reset" onclick="reset_slider(true); updatelay(false)" action="">
 
-<div id="lay_stake_output">Lay stake:</div><br>
-<div id="liability_output">Liability:</div><br>
-Bookmaker bet wins: <span id="bookmaker_win_output">Bookmaker bet wins:</span><br>
-<div id="exchange_win_output">Exchange bet wins:</div><br>
+
 
 
 <br>
@@ -162,6 +205,7 @@ function updatelay(updateLimits) {
     } else {
         document.getElementById("exchange_win_output").style.color = 'red';
     }
+    navigator.clipboard.writeText(parseFloat(lay_stake).toFixed(2));
 }
 
 slider.oninput = function() {
@@ -170,3 +214,5 @@ slider.oninput = function() {
 previous_min = slider_min_element.value;
 previous_max = slider_max_element.value;
 </script>
+</body>
+</html>
