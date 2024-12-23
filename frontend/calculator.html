@@ -166,7 +166,7 @@ function updatelay(updateLimits) {
             slider.step = 1/((slider_max-slider_min));
             //Set slider to the middle, only happens when its one step removed from the middle and hasnt happend to back stake
             //Why 45 and 55? Just a big enough buffer, kinda random
-            reset_slider(false);
+            reset_slider(true);
             lay_stake = slider_min + (slider_max - slider_min)*slider.value/100;
             liability= (lay_stake * (lay_odds - 1));
             bookmaker_win = gains_bookmaker - liability - back_stake;
@@ -176,7 +176,7 @@ function updatelay(updateLimits) {
             slider.step = 1/((slider_max-slider_min));
             //Set slider to the middle, only happens when its one step removed from the middle and hasnt happend to back stake
             //Why 45 and 55? Just a big enough buffer, kinda random
-            reset_slider(false);
+            reset_slider(true);
             liability= (lay_stake * (lay_odds - 1));
             bookmaker_win = (back_odds-1)*back_stake-(lay_odds-1)*lay_stake;
             exchange_win = lay_stake * (1-lay_comm/100)
