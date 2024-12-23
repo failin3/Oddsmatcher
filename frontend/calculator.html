@@ -104,7 +104,7 @@ slider_max = slider_max_element.value;
 set_back_stake = null;
 
 function reset_slider(force) {
-    if (((slider.value >= 45 && slider.value <= 55) || (slider.value <= 51 && slider.value >= 50)) && (set_back_stake != back_stake) || force) {
+    if (((slider.value >= 45 && slider.value <= 55) || (slider.value <= 50.1 && slider.value >= 50)) && (set_back_stake != back_stake) || force) {
         set_back_stake = back_stake;
         if (Math.abs((50/slider.step).toFixed(0)*slider.step - 50) <= Math.abs((50/slider.step + 1).toFixed(0)*slider.step - 50)) {
             //Closer to first than second
@@ -166,7 +166,7 @@ function updatelay(updateLimits) {
             slider.step = 1/((slider_max-slider_min));
             //Set slider to the middle, only happens when its one step removed from the middle and hasnt happend to back stake
             //Why 45 and 55? Just a big enough buffer, kinda random
-            reset_slider(true);
+            reset_slider(false);
             lay_stake = slider_min + (slider_max - slider_min)*slider.value/100;
             liability= (lay_stake * (lay_odds - 1));
             bookmaker_win = gains_bookmaker - liability - back_stake;
@@ -176,7 +176,7 @@ function updatelay(updateLimits) {
             slider.step = 1/((slider_max-slider_min));
             //Set slider to the middle, only happens when its one step removed from the middle and hasnt happend to back stake
             //Why 45 and 55? Just a big enough buffer, kinda random
-            reset_slider(true);
+            reset_slider(false);
             liability= (lay_stake * (lay_odds - 1));
             bookmaker_win = (back_odds-1)*back_stake-(lay_odds-1)*lay_stake;
             exchange_win = lay_stake * (1-lay_comm/100)
