@@ -104,7 +104,12 @@ slider_max = slider_max_element.value;
 set_back_stake = null;
 
 function reset_slider(force) {
-    if (((slider.value >= 45 && slider.value <= 55) || (slider.value <= 50.1 && slider.value >= 50)) && (set_back_stake != back_stake) || force) {
+    if (set_back_stake == back_stake) {
+        if (slider.value >= 49 && slider.value <= 51) {
+            force = true;
+        } 
+    }
+    if (((slider.value >= 45 && slider.value <= 55) || (slider.value <= 40 && slider.value >= 60)) && (set_back_stake != back_stake) || force) {
         set_back_stake = back_stake;
         if (Math.abs((50/slider.step).toFixed(0)*slider.step - 50) <= Math.abs((50/slider.step + 1).toFixed(0)*slider.step - 50)) {
             //Closer to first than second
@@ -113,7 +118,6 @@ function reset_slider(force) {
             //Closer to second than first
             slider.value = (50/slider.step).toFixed(0)*slider.step+slider.step;
         }
-        
     }
 }
 
