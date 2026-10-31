@@ -28,7 +28,7 @@
                 Commission:
                 <br>
                 <input type="number" step="0.01" onmouseup="this.select();" id="layComm" placeholder="Lay commission" autocomplete="off" tabindex="4" onkeyup="updatelay(false)" value="6.5">
-            </span> 
+            </span>
         </div>
     </div>
 
@@ -48,7 +48,7 @@
 
     <br>
     <br>
-    
+
 
     <div style="display: flex;">
         <input type="button" value="Calculate" onclick="updatelay(false)" action="">
@@ -62,10 +62,13 @@
         <div>Liability: <span id="liability_output"></span></div>
     </div>
     <br>
-    Bookmaker bet wins: <span id="bookmaker_win_output"></span><br>
+    <div style="width: 800px; display: flex;">
+        <div style="width: 300px;">Bookmaker bet wins: <span id="bookmaker_win_output"></span></div>
+        <div>Free Bet Return: <span id="free_bet_percentage_output"></span></div>
+    </div>
     Exchange bet wins: <span id="exchange_win_output"></span><br>
 
-      
+
 </form>
 
 
@@ -107,7 +110,7 @@ function reset_slider(force) {
     if (set_back_stake == back_stake) {
         if (slider.value >= 49 && slider.value <= 51) {
             force = true;
-        } 
+        }
     }
     if (((slider.value >= 45 && slider.value <= 55) || (slider.value <= 40 && slider.value >= 60)) && (set_back_stake != back_stake) || force) {
         set_back_stake = back_stake;
@@ -164,7 +167,7 @@ function updatelay(updateLimits) {
             slider_min_element.value = slider_min.toFixed(2);
             slider_max_element.value = slider_max.toFixed(2);
         }
-        
+
         if (document.getElementById("normal_bet").checked == true) {
             gains_bookmaker = back_stake*back_odds;
             slider.step = 1/((slider_max-slider_min));
@@ -185,7 +188,7 @@ function updatelay(updateLimits) {
             bookmaker_win = (back_odds-1)*back_stake-(lay_odds-1)*lay_stake;
             exchange_win = lay_stake * (1-lay_comm/100)
         }
-        
+
 
     } else {
         lay_stake = 0;
@@ -199,6 +202,20 @@ function updatelay(updateLimits) {
     document.getElementById("liability_output").innerHTML =  liability.toFixed(2);
     document.getElementById("bookmaker_win_output").innerHTML =  bookmaker_win.toFixed(2);
     document.getElementById("exchange_win_output").innerHTML =  exchange_win.toFixed(2);
+
+    // Calculate and display free bet percentage if free bet is selected and back_stake > 0
+    if (document.getElementById("free_bet").checked == true && !isNaN(back_stake) && back_stake > 0) {
+        var freeBetPercentage = (bookmaker_win / parseFloat(back_stake)) * 100;
+        document.getElementById("free_bet_percentage_output").innerHTML = freeBetPercentage.toFixed(0) + "%";
+        if (freeBetPercentage >= 70) {
+            document.getElementById("free_bet_percentage_output").style.color = 'green';
+        } else {
+            document.getElementById("free_bet_percentage_output").style.color = 'red';
+        }
+    } else {
+        document.getElementById("free_bet_percentage_output").innerHTML = "";
+    }
+
     if (bookmaker_win > 0) {
         document.getElementById("bookmaker_win_output").style.color = 'green';
     } else {
@@ -213,7 +230,7 @@ function updatelay(updateLimits) {
 }
 
 slider.oninput = function() {
-  updatelay()
+   updatelay()
 }
 previous_min = slider_min_element.value;
 previous_max = slider_max_element.value;
