@@ -15,7 +15,7 @@
             <span style="width: 45%;">
                 Back odds:
                 <br>
-                <input type="number" step="0.01" onmouseup="this.select();" id="backOdds" placeholder="Back odds" autocomplete="off" tabindex="2" onkeyup="updatelay(false)">
+                <input type="number" step="0.01" onmouseup="this.select();" id="backOdds" placeholder="Back odds" autocomplete="off" tabindex="2" onkeyup="updateBackOdds()">
             </span>
         </div>
         <div style="width: 100%; display: flex; background-color: #ffcccc; padding: 15px; border-radius: 7px; justify-content: flex-end!important;">
@@ -90,12 +90,23 @@ var lay_value = url.searchParams.get("l");
 var commission_value = url.searchParams.get("c");
 if (back_value != null) {
     document.getElementById("backOdds").value = back_value;
+    if (parseFloat(back_value) > 5) {
+        document.getElementById("free_bet").checked = true;
+    }
 }
 if (lay_value != null) {
     document.getElementById("layOdds").value = lay_value;
 }
 if (commission_value != null) {
     document.getElementById("layComm").value = commission_value;
+}
+
+function updateBackOdds() {
+    var back_odds = parseFloat(document.getElementById("backOdds").value);
+    if (!isNaN(back_odds)) {
+        document.getElementById(back_odds > 5 ? "free_bet" : "normal_bet").checked = true;
+    }
+    updatelay(false);
 }
 
 
